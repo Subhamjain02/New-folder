@@ -1,0 +1,30 @@
+.cardimg{
+    z-index: 0 !important;
+    opacity: 0.5;
+    max-height: 600px !important;
+    min-height: 550px !important;
+}
+
+
+.card-title{
+    font-family: 'Zen Maru Gothic' ;
+    font-size: 35px;
+    font-weight: bolder;
+}
+
+.card-text{
+    font-family: 'Montserrat';
+    
+}
+
+
+
+.card-body{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 15px !important;
+}
+
+
+
