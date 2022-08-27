@@ -1,3 +1,3 @@
 # OdishaVoice24
 
-Official Wensite of OdishaVoice24
+Official Website of OdishaVoice24
