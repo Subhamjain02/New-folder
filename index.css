@@ -1,14 +1,24 @@
 @import url('http://fonts.cdnfonts.com/css/agency-fb?styles=17318');
 
-html *{
-    font-family: 'Agency FB';
-}
+/* html *{
+    font-family: 'Agency FB','Teko','Roboto Condensed';
+} */
 
 
  input:focus {
-    border-color: #28a745 !important;
+    border-color: #c1a067 !important;
     box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
 } 
+
+.mcard{
+    background-color: rgba(255, 255, 255, .15) !important;  
+ backdrop-filter: blur(5px) !important;
+
+}
+
+.login{
+    font-size: 35px;
+}
   
 .navbar{
     padding: 5px 0px 5px 0px  !important;
@@ -23,6 +33,10 @@ html *{
     font-size: 25px;
 
 }
+
+/* .Search{
+    font-size: 17px;
+} */
 .dm
 {
     background-color: rgba(255, 255, 255, .15) !important;  
@@ -30,10 +44,17 @@ html *{
 }
 
 .sp{
-    color: whitesmoke !important;
+    color: rgb(233, 233, 233) !important;
     font-weight: lighter;
+    
+}
+.hp{
+    color: rgb(255, 255, 255) !important;
+    font-weight: bolder;
+    
 }
 h1{
+    font-family: 'Zen Maru Gothic';
     color: white;
     margin-left: 10px;
     font-size: 35px !important;
@@ -45,13 +66,15 @@ h2{
     margin-left: 25px;
     font-size: 35px !important;
     text-shadow: 0px 0px 3px ;
+    font-family: 'Zen Maru Gothic';
 
 }
 h3{
     padding-top: 5px;
     color: white;
     margin-left: 25px;
-    font-size: 20px !important;
+    font-size: 19px !important;
+    font-family: 'Zen Maru Gothic';
     /* text-shadow: 0px 0px 3px ; */
 
 }
@@ -84,7 +107,7 @@ h6{
     margin-right: 20px;
     border-color: #C39B54!important;
     /* box-shadow: 3px 3px 4px 3px #000000,  0px 0px 3px 3px #e7e7e7, inset 0px -75px 10px 0px  rgba(0, 0, 0, 0.5) ; */
-    box-shadow: 3px 3px 3px 1px #000000,  0px 0px 3px 1px #e7e7e7, inset 0px -75px 10px 0px  rgba(0, 0, 0, 0.5) ;
+    box-shadow: 3px 3px 3px 1px #000000,  0px 0px 3px 1px #e7e7e7, inset 0px -74px 34px 0px  rgba(0, 0, 0, 0.7) ;
 }
 
 
@@ -107,7 +130,7 @@ h6{
 }
 
 .ci{
-    opacity: 0.4;
+    opacity: 0.5;
     width: 100%;
     height: 20rem;
     object-fit: cover;
@@ -120,38 +143,42 @@ h6{
     padding: 0.4rem 0.6rem !important;
 }
 
-.ct
+
+.cti
 {
-    font-size: 40px;
-    margin-left: 0px;
-    width: fit-content;
+
+    position: absolute;
+    top: 6.4px;
+    left: 9.6px;
+    font-size: 36px;
     text-shadow: 3px 3px 5px #000;
+    font-family: 'Zen Maru Gothic';
 }
 
-.trending{
-     padding-top: 80px;
-     font-size: 20px;
-     color: #C39B54;
-     /* text-shadow: 0px 0px 1px ; */
 
-}
 .para{
-    font-size: 15px;
+    font-size: 12px;
     text-overflow: ellipsis;
     object-fit: cover;
     overflow: hidden;
-    height: 58px;
+    padding-bottom: 5px;
+    height: 62px;
+    margin-left: 3px;
+    font-family: 'Montserrat' ;
+    
     
 }
 .para1{
-    font-size: 13px;
+    font-size: 12px;
     color: white !important;
     font-weight: 400 !important;
     padding-top: 10px;
-    padding-left:5px ;
+    padding-left:8px ;
     padding-right: 3px;
     overflow: hidden;
-    height: 58px;
+    height: 56px;
+    text-overflow: ellipsis;
+    font-family: 'Montserrat';
 }
 
 .cont{
@@ -373,7 +400,7 @@ background-image: linear-gradient(180deg, #522888 1%, #000000 100%);
     
 }
 .polls{
-    margin: 0px 10px 10px 10px;
+    margin: 0px 10px 6px 10px;
 }
 .gossips{
     margin: 0px 10px 0px 12px;
