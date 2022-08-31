@@ -6,6 +6,13 @@
     border-radius: 0px;
     
 }
+.cover
+{
+    box-shadow: inset 0px -266px 44px 0px  rgba(0, 0, 0, 0.5);
+}
+.cbody{
+    padding: 12px !important;
+}
 
 .card-article{
     height: 100vh;
@@ -20,7 +27,7 @@
 
 .A-card-title{
     font-family: 'Zen Maru Gothic' ;
-    font-size : 4.5vh;
+    font-size : 3.3vh;
     font-weight: bolder;
 
 }
@@ -28,7 +35,7 @@
 .card-text {
     font-family: 'Montserrat';
     text-overflow: ellipsis;
-    font-size : 2.5vh;
+    font-size : 2.1vh;
 
 
 }
