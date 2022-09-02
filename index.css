@@ -376,7 +376,7 @@ a:hover {
     background-color:#151419 !important ;
     padding: 8px 8px 3px 8px;
     border:1px solid #000;
-    box-shadow: -2px -2px 8px -3px #e7e7e7 !important;
+    box-shadow: -1px -1px 8px -2px #e7e7e7 !important;
     border-radius: 1.3rem;
 }
 
@@ -385,6 +385,16 @@ a:hover {
     font-size: 12px;
     font-family: 'Oswald';
     text-shadow: 0px 0px 1px;
+}
+
+.billyimg{
+    border: 2px solid #8b8b8b;
+    box-shadow: inset 5px 5px 1px 5px #8b8b8b,inset -5px -5px 1px 5px #8b8b8b;
+   
+}
+.bn a{
+    color: #522888;
+    font-size: 10px;
 }
 
  .card-text {
@@ -585,6 +595,7 @@ background-image: linear-gradient(180deg, #522888 1%, #000000 100%);
     
     }
 } */
+
 
 @media screen and (min-width: 572px)
 {
