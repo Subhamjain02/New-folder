@@ -11,20 +11,20 @@ html *{
 
     height: 120px;
     width: 120px;
-    left: 83px;
+    left: 68px;
  
 }
 .h1{
-    margin-top: 8vh !important;
+    margin-top: 75px !important;
     text-align:left;
-    font-size: 3.2vh !important;
+    font-size: 22px !important;
     color: rgb(255, 255, 255);
     margin-left: 5px;
 }
 
 .h2{
   text-align: left;
-  font-size: 1.8vh !important;
+  font-size: 13px !important;
   color: rgb(131, 131, 131);
   margin-left: 5px;
  text-shadow: 0px 0px 0px;
@@ -39,7 +39,7 @@ html *{
 
 .locan{
     margin-left: 5px;
-    font-size: 1.9vh;
+    font-size: 14px;
 
 }
 .ts{
@@ -47,5 +47,15 @@ text-shadow: 0px 0px 3px;
 }
 
 .bgd{
-    background-color:#151419 !important;
+    background-color: #98763f;
+    background-image: linear-gradient(296deg, #98763f 6%, #522888 24%, #000000 56%);
+    border: 2px solid linear-gradient(296deg, #98763f 6%, #522888 24%, #000000 56%) !important;
+    
+}
+
+.deets
+{
+    color: rgb(186, 186, 186);
+    font-size: 14px;
+
 }
