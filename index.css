@@ -607,4 +607,19 @@ background-image: linear-gradient(180deg, #522888 1%, #000000 100%);
   }
 }
 
+@media (min-width: 1200px)
+{
+.container {
+    max-width: 1300px;
+}
+}
+@media (min-width: 1400px)
+{
+.container {
+    max-width: 1700px !important;
+}
+}
+
+
+
 
