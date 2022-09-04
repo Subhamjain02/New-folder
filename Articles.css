@@ -6,6 +6,10 @@
     border-radius: 0px;
     
 }
+
+video{
+    object-fit: cover;
+}
 .cover
 {
     box-shadow: inset 0px -266px 84px 0px  rgba(0, 0, 0, 0.5);
@@ -48,13 +52,16 @@
     font-size : clamp(13px, 15px, 17px);
 }
 
+.navbar{
+    z-index: 1 !important;
+}
 
 
 
 .article-date{
     position: absolute;
-    Top: 1vw;
-    right: 3vw;
+    bottom: 6.5vw;
+    right: 1vw;
     padding: 15px !important;
 }
 
