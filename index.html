@@ -231,18 +231,6 @@
   </div>
 </div>
           
-
-
-
-
-
-
-
-
-
-
-
-
     <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered ">
         <div class="modal-content  bg-transparent ">  
@@ -286,32 +274,30 @@
         </div>
       </div>
     </div>
-    
-
-
-
-    
-    <!-- <div class="container ">
-      <div class="input-group rounded  ">
-        <input
-          type="search"
-          class="form-control rounded-6 bg-dark   "
-          id="search-input"
-          placeholder="&#xF002; Search"
-          aria-label="Search"
-          aria-describedby="search-addon"
-          style="font-family:Agency, FontAwesome"
-        />
+    <!-- Share modal -->
+    <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered ">
+    <div class="modal-content bg-light">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Share</h5>
+        <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <ul class="icons_1 d-flex justify-content-evenly pe-3">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-whatsapp"></i></a>
+        <a href="#"><i class="fab fa-telegram-plane"></i></a>
+      </ul>
     </div>
-  </div> -->
-
-  <!-- <div class=" input-group mb-4">
-    <div class="form-outline ">
-      <input type="text" id="form3Examplea9" class="form-control form-control-lg border-light" />
-      <label class="form-label" for="form3Examplea9">Your Email</label>
     </div>
-  </div> -->
-  
+  </div>
+</div>
+
+    <!-- Share modal end -->
+
+  <!-- Trending -->
     <div class="container mt-1">
       <h1>Trending</h1>
       <div class="tflex">
@@ -345,19 +331,8 @@
          </p>
         </div>
       </div>
-
-      <!-- <div class="card rounded-9 bg-transparent text-white border border-3">
-        <img src="img/2.jpg" class="card-img ci rounded-8" alt="Stony Beach"/>
-        <div class="card-img-overlay cio">
-          <h5 class="card-title ct">#2</h5>
-          <p class="card-text trending">TRENDING</p>
-          <p class="card-text lh-sm para">FOMER CRICKETER ANDREW SYMONDS
-            DIES AT 46 AFTER MEETING WITH A 
-            CAR ACCIDENT </p>
-        </div>
-      </div> -->
-    
-      
+    <!-- Trending end -->
+      <!-- news nearby -->
     </div>
   </div>
   <div class="container">
@@ -380,49 +355,28 @@
     </div>
   </div>
 </div>
-
-
-<!-- <nav class="nav fixed-bottom">
-  <a href="#" class="nav__link">
-    <i class="material-icons nav__icon"></i>
-    <span class="nav__text"></span>
-  </a>
-  <a href="#" class="nav__link ">
-    <i class="material-icons nav__icon"></i>
-    <span class="nav__text"></span>
-  </a>
-  <a href="#!" class="nav__link" data-mdb-toggle="modal" data-mdb-target="#exampleModal">
-    <i class="material-icons nav__icon"></i>
-    <span class="nav__text"></span>
-  </a>
-  <a href="#" class="nav__link">
-    <i class="material-icons nav__icon"></i>
-    <span class="nav__text"></span>
-  </a>
-  <a href="#" class="nav__link">
-    <i class="material-icons nav__icon">search</i>
-    <span class="nav__text"></span>
-  </a>
-</nav> -->
+  <!-- News Nearby end -->
+  <!-- cards -->
 <div class="hr mt-4"></div>
 <div class="container mt-4 ">
  <div class="row row-cols-1 row-cols-sm-3 g-4">
   <div class="col">
     <div data-aos="zoom-in-up ">
-      <a href="Articles.html">
+      <a href="Articles.html" class="text-white">
     <div class="card posts bg-black  " >
       <span class="d-flex justify-content-start" > <h6>SPORTS</h6></span>
       <img src="https://source.unsplash.com/600x400/?computer" class="card-img-top" alt="Fissure in Sandstone"/>
       <div class="card-body cb bg-black">
         <h5 class="card-title lh-sm ctitle">FOMER CRICKETER ANDREW SYMONDS DIES AT 46 AFTER MEETING WITH A CAR ACCIDENT</h5>
         <p class="card-text  lh-sm ctext">The 46 year old was involved in a single-vehicle accident on Saturday night as per the police. Emergency services were provided however the cricketer succumbed to his injuries the police added.</p>
+      </a>
        <span class="d-flex  ">
         <p class="text-light www">446 likes</p>
         <p class="views www">3461 views</p></span>
       <div class="btns bg-black ">
         <div class="left">
           <i class="fa-regular fa-heart"></i>
-          <i class="fa-regular fa-paper-plane"></i>
+          <a href="#!" class="text-light " data-mdb-target="#exampleModal1" data-mdb-toggle="modal" data-mdb-dismiss="modal"><i class="fa-regular fa-paper-plane"></i></a>
         </div>
         <div class="right">
           <i class="fa-regular fa-bookmark"></i>
@@ -430,7 +384,7 @@
     </div>
   </div>
  </div>
-</a>
+
 </div>
 </div> 
 <div class="hr mb-2"></div>
@@ -511,6 +465,8 @@
  </div>
 </div>
 </div> 
+<!-- cards end -->
+<!-- polls -->
 <div class="hr mb-2"></div>
 <div class="col">
   <div data-aos="zoom-in-up ">
@@ -569,6 +525,8 @@
 </div>
 </div>
 </div>
+<!-- polls end -->
+<!-- Gossips -->
 <div class="hr mb-2"></div>
 
    <div class="col">
@@ -601,6 +559,7 @@
   </div>
  </div> 
 </div>
+<!-- Gossips end -->
 <div class="hr mb-2"></div>
 <div class="col">
   <div data-aos="zoom-in-up ">

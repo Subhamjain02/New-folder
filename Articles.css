@@ -52,10 +52,6 @@ video{
     font-size : clamp(13px, 15px, 17px);
 }
 
-.navbar{
-    z-index: 1 !important;
-}
-
 
 
 .article-date{

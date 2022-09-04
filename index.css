@@ -84,7 +84,7 @@ html *{
     color: white;
     line-height: 30px;
     border-radius: 25px;
-    background-color: rgba(255, 255, 255, .15) !important;  
+    background-color: rgba(255, 255, 255, .1) !important;  
  backdrop-filter: blur(5px) !important;
   }
   
@@ -588,13 +588,48 @@ background-image: linear-gradient(180deg, #522888 1%, #000000 100%);
     font-size: 11px;
     margin: 0px;
 }
-/* @media screen and (min-width: 991px)
-{
-    .nav{
-        display: none !important;
-    
-    }
-} */
+.modal-body .icons_1 a{
+    height: 50px;
+    width: 50px;
+    font-size: 25px;
+    text-decoration: none;
+    border: 1px solid transparent;
+  }
+  .icons_1 a i{
+    transition: transform 0.3s ease-in-out;
+  }
+  .icons_1 a:nth-child(1){
+    color: #1877F2;
+ 
+  }
+ 
+  .icons_1 a:nth-child(2){
+    color: #46C1F6;
+
+  }
+ 
+  .icons_1 a:nth-child(3){
+    color: #e1306c;
+ 
+  }
+  
+  .icons_1 a:nth-child(4){
+    color: #25D366;
+ 
+  }
+  
+  .icons_1 a:nth-child(5){
+    color: #0088cc;
+
+  }
+  
+  .icons_1 a:hover{
+    color: #fff;
+    border-color: transparent;
+  }
+  .icons_1 a:hover i{
+    transform: scale(1.2);
+  }
 
 
 @media screen and (min-width: 572px)
