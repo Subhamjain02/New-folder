@@ -1,0 +1,7 @@
+html *{
+    font-family: 'Montserrat'
+}
+
+.list-group-item{
+    background-color: #522888 !important;
+}
