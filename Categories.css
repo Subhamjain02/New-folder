@@ -5,3 +5,6 @@ html *{
 .list-group-item{
     background-color: #522888 !important;
 }
+h2{
+    margin-left: 0px !important;
+}
