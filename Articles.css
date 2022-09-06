@@ -12,7 +12,7 @@ video{
 }
 .cover
 {
-    box-shadow: inset 0px -266px 84px 0px  rgba(0, 0, 0, 0.5);
+    box-shadow: inset 0px -266px 90px 0px  rgba(0, 0, 0, 0.2);
 }
 .cbody{
     padding: 12px !important;
@@ -52,16 +52,12 @@ video{
     font-size : clamp(13px, 15px, 17px);
 }
 
-
-
 .article-date{
     position: absolute;
     bottom: 6.5vw;
     right: 1vw;
     padding: 15px !important;
 }
-
-
 
 .A-body{
     /* text-align: justify;
@@ -75,5 +71,3 @@ video{
 background-image: linear-gradient(225deg, #FF3CAC 0%, #784BA0 50%, #2B86C5 100%);
 
 }
-
-

@@ -1,39 +1,30 @@
-const viewBtn = document.querySelector(".view-modal"),
-      popup = document.querySelector(".popup"),
-      close = popup.querySelector(".close"),
-      field = popup.querySelector(".field"),
-      input = field.querySelector("input"),
-      copy = field.querySelector("button");
+document.addEventListener('DOMContentLoaded',function(e){
+  let field = document.querySelector('.field');
+  let input = document.querySelector('input');
+  let copyBtn = document.querySelector('.field button');
 
-viewBtn.onclick = ()=>{
-  popup.classList.toggle("show");
-}
-close.onclick = ()=>{
-  viewBtn.click();
-}
-
-copy.onclick = ()=>{
-  input.select(); //select input value
-  if(document.execCommand("copy")){ //if the selected text copy
-    field.classList.add("active");
-    copy.innerText = "Copied";
-    setTimeout(()=>{
-      window.getSelection().removeAllRanges(); //remove selection from document
-      field.classList.remove("active");
-      copy.innerText = "Copy";
-    }, 3000);
+  copyBtn.onclick = () =>{
+      input.select();
+      if(document.execCommand("copy")){
+          field.classList.add('active');
+          copyBtn.innerText = 'Copied';
+          setTimeout(()=>{
+              field.classList.remove('active');
+              copyBtn.innerText = 'Copy';
+          },3500)
+      }
   }
-}
+})
 
-if (window.history && window.history.pushState) {
-  $('#exampleModalToggle23').on('show.bs.modal', function (e) {
-      window.history.pushState('forward', null, './#modal');
-  });
+// if (window.history && window.history.pushState) {
+//   $('#exampleModalToggle23').on('show.bs.modal', function (e) {
+//       window.history.pushState('forward', null, './#exampleModalToggle23');
+//   });
 
-  $(window).on('popstate', function () {
-      $('#exampleModalToggle23').modal('hide');
-  });
-}
+//   $(window).on('popstate', function () {
+//       $('#exampleModalToggle23').modal('hide');
+//   });
+// }
 
 
 
@@ -67,32 +58,7 @@ function fetch_posts() {
                   <div class="btns bg-black ">
                     <div class="left">
                       <i class="fa-regular fa-heart"></i>
-                      <a href="#!" class="button view-modal text-light" ><i class="fa-regular fa-paper-plane"></i></a>
-                          <!-- Share modal -->
-                          <div class="popup">
-                            <header>
-                              <span class="text-muted">Share </span>
-                              <div class="close"><i class="fa fa-duotone fa-xmark"></i></div>
-                            </header>
-                            <div class="content">
-                              <p class="text-muted">Share this link via</p>
-                              <ul class="icons_1">
-                                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                                <a href="#"><i class="fab fa-twitter"></i></a>
-                                <a href="#"><i class="fab fa-instagram"></i></a>
-                                <a href="#"><i class="fab fa-whatsapp"></i></a>
-                                <a href="#"><i class="fab fa-telegram-plane"></i></a>
-                              </ul>
-                              <p class="text-muted">Or copy link</p>
-                              <div class="field text-muted">
-                                  <i class="fa-solid fa-link"></i>
-                                <input type="text" readonly value="example.com/share-link">
-                                <button>Copy</button>
-                              </div>
-                            </div>
-                          </div>
-
-                          <!-- Share modal end -->
+                      <a href="#!" class="text-light" data-mdb-target="#myModel" data-mdb-toggle="modal" data-mdb-dismiss="modal"><i class="fa-regular fa-paper-plane"></i></a>
                     </div>
                     <div class="right">
                       <i class="fa-regular fa-bookmark"></i>
