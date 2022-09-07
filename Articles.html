@@ -5,8 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link href="Articles.css" rel="newest stylesheet" />
     <link href="index.css" rel="old stylesheet" />
+    <link href="Articles.css" rel="newer stylesheet" />
+    
     <link
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
@@ -117,8 +118,10 @@
             </div>
           </div> -->
   
-          <input type="text" placeholder="&#xF002; Search" class="search-nav w-100 mb-3 text-light" style="font-family: Montserrat, FontAwesome">
-          
+          <div class="d-flex align-items-center mb-3">
+            <input type="text" placeholder="&#xF002; Search" class="search-nav w-100  text-light me-1" style="font-family: Montserrat, FontAwesome">
+            <button type="button" class="btn-close fs-6 btn-close-white mt-2" aria-label="Close" data-mdb-dismiss="modal"></button>
+          </div>
   
           <span class="hello ms-3">Hello </span>
         <p class="pp mb-3 ms-3"><span class="name ">Subham</span></p>
@@ -208,6 +211,7 @@
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content bg-transparent">
         <div class="card  text-white mcard" style="border-radius: 1rem;">
+          <button type="button" class="btn-close fs-6 btn-close-white mt-2 position-absolute end-0 mt-3 me-3" aria-label="Close" data-mdb-dismiss="modal"></button>
           <div class="card-body p-5 text-center">
             
             <div class="mb-md-5 mt-md-4 pb-4">
@@ -269,6 +273,7 @@
       <div class="modal-content  bg-transparent ">  
               
       <div class="card  text-white mcard" style="border-radius: 1rem;">
+        <button type="button" class="btn-close fs-6 btn-close-white mt-2 position-absolute end-0 mt-3 me-3" aria-label="Close" data-mdb-dismiss="modal"></button>
           <div class="card-body p-5 text-center ">
   
             <div class="mb-md-5 mt-md-4 ">
@@ -318,7 +323,16 @@
         class="card-img cardimg"
         alt="Stony Beach"
       />
-      <div class="article-date"><span class="vws">06 Nov 2022</span></div>
+      <div class="article-date">
+        <span class="vws ">06 Nov 2022</span>
+      </div>
+      <div class="lss position-absolute d-flex align-items-center flex-column ">
+        <i class="fa-regular fa-heart fs-1 fw-bold"></i>
+        <p class="text-light www mb-5 ">446 likes</p>
+        <i class="fa-regular fa-paper-plane  fs-1"></i>
+        <p class="www mb-5">3461 views</p>
+        <i class="fa-regular fa-bookmark mb-3 fs-1"></i>
+      </div> 
       <div
         class="card-img-overlay d-flex align-items-end justify-content-start "
       >

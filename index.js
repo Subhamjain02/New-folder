@@ -16,15 +16,10 @@ document.addEventListener('DOMContentLoaded',function(e){
   }
 })
 
-// if (window.history && window.history.pushState) {
-//   $('#exampleModalToggle23').on('show.bs.modal', function (e) {
-//       window.history.pushState('forward', null, './#exampleModalToggle23');
-//   });
+document.getElementById("btn").addEventListener("click", function () {
+  document.getElementById("box").classList.toggle("act");
+});
 
-//   $(window).on('popstate', function () {
-//       $('#exampleModalToggle23').modal('hide');
-//   });
-// }
 
 
 
@@ -45,8 +40,9 @@ function fetch_posts() {
             console.log(data);
             for(var i=0;i<data.length;i++){
                 post = data[i];
-                temp = temp + ` <div class="col-sm-4">
+                temp = temp + ` <div class="col">
                 <div class="card posts bg-black">
+                <div data-aos="zoom-in-up ">
                   <span class="d-flex justify-content-start"> <h6>`+ post?.category +`</h6></span>
                   <img src="`+ post?.photo +`" class="card-img-top" alt="`+ post?.caption +`"/>
                   <div class="card-body cb bg-black">
@@ -54,18 +50,53 @@ function fetch_posts() {
                     <p class="card-text  lh-sm ctext">`+ post?.body +`</p>
                    <span class="d-flex  ">
                     <p class="text-light www">`+ post?.likes?.length +` likes</p>
-                    <p class="views www">`+ post?.views +` views</p></span>
+                    <p class="www">`+ post?.views +` views</p></span>
                   <div class="btns bg-black ">
-                    <div class="left">
-                      <i class="fa-regular fa-heart"></i>
-                      <a href="#!" class="text-light" data-mdb-target="#myModel" data-mdb-toggle="modal" data-mdb-dismiss="modal"><i class="fa-regular fa-paper-plane"></i></a>
-                    </div>
+                  <div class="left d-flex align-items-center ">
+                  <i class="fa-regular fa-heart mr"></i>
+                  <div id="box">
+        
+                    <button id="btn">
+                      <i class="fa-regular fa-paper-plane"></i>
+                    </button>
+                  
+                    <ul id="list">
+                      <li class="list-item">
+                        <a class="list-item-link" href="#">
+                          <span class="fas fa-link fs-3"></span>
+                        </a>
+                      </li>
+                      <li class="list-item">
+                        <a class="list-item-link" href="#">
+                          <span class="fab fa-whatsapp fs-3"></span>
+                        </a>
+                      </li>
+                      <li class="list-item">
+                        <a class="list-item-link" href="#">
+                          <span class="fab fa-instagram fs-3"></span>
+                        </a>
+                      </li>
+                      <li class="list-item">
+                        <a class="list-item-link" href="#">
+                          <span class="fab fa-facebook-f fs-3"></span>
+                        </a>
+                      </li>
+                      <li class="list-item">
+                        <a class="list-item-link" href="#">
+                          <span class="fab fa-twitter fs-3"></span>
+                        </a>
+                      </li>
+                      
+                    </ul>
+                  </div>
+                </div>
                     <div class="right">
                       <i class="fa-regular fa-bookmark"></i>
                   </div>
                 </div>
               </div>
              </div>
+            </div>
             </div> 
             <div class="hr mb-4"></div>`
             }

@@ -43,10 +43,6 @@ video{
 
 
 }
-.ctext {
-   font-weight: 500;
-   font-size: 3.8vh;
-}
 
 .by{
     font-size : clamp(13px, 15px, 17px);
@@ -54,7 +50,7 @@ video{
 
 .article-date{
     position: absolute;
-    bottom: 6.5vw;
+    bottom: 5vh;
     right: 1vw;
     padding: 15px !important;
 }
@@ -70,4 +66,14 @@ video{
     background-color: #FF3CAC;
 background-image: linear-gradient(225deg, #FF3CAC 0%, #784BA0 50%, #2B86C5 100%);
 
+}
+.lss{
+    bottom: 18vh;
+    right: 1vh;
+    z-index: 1;
+}
+
+.www{
+    margin: 0px;
+    padding-top: 5px;
 }

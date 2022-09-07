@@ -433,10 +433,13 @@ a:hover {
     cursor: pointer;
 }
 
-.btns .left i{
-    margin-right: 12px;
-}
+/* .btns .left i{
+    margin-right: 24px;
+} */
 
+.mr{
+  margin-right: 12px;
+}
 
 
 .www{
@@ -768,4 +771,91 @@ background-image: linear-gradient(296deg, #98763f 6%, #522888 24%, #000000 56%);
       width: 35px;
       height: 35px;
   }
+}
+
+#box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#btn {
+  width: 40px;
+  height: 40px;
+
+  background-color: rgb(0, 0, 0);
+  border-radius: 100%;
+  border: none;
+
+  font-size: 20px;
+  color: #f5f5f5;
+
+  cursor: pointer;
+  z-index: 2;
+
+  display: grid;
+  place-content: center;
+}
+
+
+#list {
+  position: absolute;
+  left: 15px;
+  top: 15px;
+
+  width: 10px;
+  height: 10px;
+  padding: 0;
+
+  background-color: #222;
+
+  z-index: 1;
+  transition: 0.5s ease-in-out;
+  overflow: hidden;
+  list-style: none;
+}
+
+.act > #list {
+  left: 40px;
+  top: -2px;
+
+  width: 190px;
+  height: 47px;
+  padding: 5px;
+
+  background-color: #222;
+  border-radius: 30px;
+
+  display: flex;
+  gap: 5px;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.list-item {
+  border-radius: 100%;
+}
+
+/*.list-item:hover {
+  background-color: #666;
+  border-radius: 100%;
+}*/
+
+.list-item:hover ion-icon {
+  transform: scale(140%);
+}
+
+.list-item-link {
+
+
+  color: #f5f5f5;
+
+  display: grid;
+  place-content: center;
+}
+
+li.list-item::marker{
+  unicode-bidi:none;
+  font-variant-numeric:none;
 }
