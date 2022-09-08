@@ -50,9 +50,9 @@
           <img src="img\logo1.png" height="30px" alt="MDB Logo" loading="lazy"/></a>
         <div class="d-flex align-items-center">
           <a href="#!" class="text-white-50 fw-bold" data-mdb-target="#exampleModalToggle23" data-mdb-toggle="modal" data-mdb-dismiss="modal" >  <i class="fa-light fa-magnifying-glass me-3 icons1 " style="font-family: 'FontAwesome';"></i> </a>
-          <div class="dropdown ">
+          <div class="dropdown">
             <a
-              class="text-reset me-2 dropdown-toggle hidden-arrow"
+              class=" me-2 dropdown-toggle hidden-arrow"
               href="#"
               id="navbarDropdownMenuLink"
               role="button"
@@ -63,22 +63,40 @@
             </a>
             <ul
               class="dropdown-menu dropdown-menu-end dm"
-              aria-labelledby="navbarDropdownMenuLink"
+              aria-labelledby="navbarDropdownMenuRight"
             >
               <li>
-                <a class="dropdown-item" href="#"><span class="sp">Some news</span></a>
+                <a class="dropdown-item text-light" href="#">Government</a>
               </li>
               <li>
-                <a class="dropdown-item" href="#"><span class="sp">Another news</span></a>
+                <a class="dropdown-item text-light" href="#">Business</a>
               </li>
               <li>
-                <a class="dropdown-item" href="#"><span class="sp">Some another news</span></a>
+                <a class="dropdown-item text-light" href="#">Public</a>
               </li>
               <li>
-                <a class="dropdown-item" href="Categories.html"><span class="sp">Database</span></a>
+                <a class="dropdown-item text-light" href="#">Humanitarian</a>
               </li>
               <li>
-                <a class="dropdown-item" href="#" class="text-white-50 fw-bold" data-mdb-target="#exampleModalToggle22" data-mdb-toggle="modal" data-mdb-dismiss="modal" > <span class="hp">Signup</span></a>
+                <a class="dropdown-item text-light" href="#">Sports</a>
+              </li>
+          
+              <div class="hs"></div>
+              <li>
+                <a class="dropdown-item text-light" href="#">Polls</a>
+              </li>
+              <li>
+                <a class="dropdown-item text-light" href="#">Gossips</a>
+              </li>
+              <div class="hs"></div>
+              <li>
+                
+              </li>
+              <li>
+                <a class="dropdown-item text-light" href="Categories.html">Database</a>
+              </li>
+              <li>
+                <a class="dropdown-item text-light" href="#" class="text-white-50 fw-bold" data-mdb-target="#exampleModalToggle22" data-mdb-toggle="modal" data-mdb-dismiss="modal" > <span class="hp">Signup</span></a>
               </li>
             </ul>
           </div>
@@ -88,7 +106,7 @@
     <div class="modal fade" id="exampleModalToggle23" aria-hidden="true" aria-labelledby="exampleModalToggleLabel23" tabindex="-1">
       <div class="modal-dialog modal-dialog-top ">
         <div class="modal-content bg-transparent scard ">
-          <div class="container mt-2 ">
+          <div class="container mt-2 position-relative position-relative-example ">
             <!-- <div class="input">
               <div class="form-outline form-white  w-100">
                 <input id="search-input" type="search"  id="form1" class="form-control " />
@@ -96,10 +114,10 @@
               </div>
             </div> -->
             <button type="button" class="btn-close fs-6 btn-close-white " aria-label="Close" data-mdb-dismiss="modal"></button>
-            <div class="d-flex align-items-center mb-3">
-            <input type="text" placeholder="&#xF002; Search" class="search-nav w-100  text-light me-1" style="font-family: Montserrat, FontAwesome">
-          </div>
-
+            <div class="mb-3">
+            <input type="text" placeholder="&#xF002; Search" class="search-nav w-100  text-light me-1" style="font-family: Montserrat, FontAwesome" id="Search-news">
+            <div id="match-list"></div>
+            </div>
             <span class="hello ms-3">Hello </span>
           <p class="pp mb-3 ms-3"><span class="name ">Subham</span></p>
           <div class="bor pb-3">
@@ -206,8 +224,8 @@
                   <label class="form-label" for="typePasswordX">Password</label>
                 </div>
                 <div class="form-outline form-white mb-3">
-                  <input type="password" id="typePasswordX" class="form-control form-control-lg" />
-                  <label class="form-label" for="typePasswordX">Confirm Password</label>
+                  <input type="password" id="typePasswordY" class="form-control form-control-lg" />
+                  <label class="form-label" for="typePasswordY">Confirm Password</label>
                 </div>
   
                 <p class="small mb-4 pb-lg-2"><a class="text-white-50" href="#!">Forgot password?</a></p>
@@ -247,13 +265,13 @@
                 <p class="text-white-50 mb-34 pe-1">Please enter your Email and password!</p>
   
                 <div class="form-outline form-white mb-3 " >
-                  <input type="email" id="typeEmailX" class="form-control form-control-lg " />
-                  <label class="form-label" for="typeEmailX">Email</label>
+                  <input type="email" id="typeEmailY" class="form-control form-control-lg " />
+                  <label class="form-label" for="typeEmailY">Email</label>
                 </div>
   
                 <div class="form-outline form-white mb-4 ">
-                  <input type="password" id="typePasswordX" class="form-control form-control-lg " />
-                  <label class="form-label" for="typePasswordX">Password</label>
+                  <input type="password" id="typePasswordZ" class="form-control form-control-lg " />
+                  <label class="form-label" for="typePasswordZ">Password</label>
                 </div>
   
                 <p class="small mb-4 pb-lg-2"><a class="text-white-50" href="#!">Forgot password?</a></p>
@@ -324,7 +342,7 @@
         <img src="img/1.webp" class="card-img ci rounded-8" alt="Stony Beach"/>
         <h5 class="card-title cti">#1</h5>
         <div class="card-img-overlay cio d-flex align-items-end justify-content-center">
-          <p class="card-text lh-sm para text-uppercase"> 
+          <p class="card-text lh-sm para text-uppercase "> 
             FOMER CRICKETER ANDREW SYMONDS
             DIES AT 46 AFTER MEETING WITH A CAR ACCIDENT IN AUSTRALIA ON SUNDAY
          </p>

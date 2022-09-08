@@ -71,7 +71,15 @@ html *{
     margin-top: 5px;
     
 }
-
+.image-search{
+  width: 120px;
+  height: 80px;
+  background-size: cover;
+  object-position: center;
+}
+#match-list{
+  z-index: 1;
+}
 /* .Search{
     font-size: 17px;
 } */
@@ -136,11 +144,7 @@ html *{
  backdrop-filter: blur(5px) !important;
 }
 
-.sp{
-    color: rgb(233, 233, 233) !important;
-    font-weight: lighter;
-    
-}
+
 .hp{
     color: rgb(255, 255, 255) !important;
     font-weight: bolder;

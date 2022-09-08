@@ -1,20 +1,20 @@
-document.addEventListener('DOMContentLoaded',function(e){
-  let field = document.querySelector('.field');
-  let input = document.querySelector('input');
-  let copyBtn = document.querySelector('.field button');
+// document.addEventListener('DOMContentLoaded',function(e){
+//   let field = document.querySelector('.field');
+//   let input = document.querySelector('input');
+//   let copyBtn = document.querySelector('.field button');
 
-  copyBtn.onclick = () =>{
-      input.select();
-      if(document.execCommand("copy")){
-          field.classList.add('active');
-          copyBtn.innerText = 'Copied';
-          setTimeout(()=>{
-              field.classList.remove('active');
-              copyBtn.innerText = 'Copy';
-          },3500)
-      }
-  }
-})
+//   copyBtn.onclick = () =>{
+//       input.select();
+//       if(document.execCommand("copy")){
+//           field.classList.add('active');
+//           copyBtn.innerText = 'Copied';
+//           setTimeout(()=>{
+//               field.classList.remove('active');
+//               copyBtn.innerText = 'Copy';
+//           },3500)
+//       }
+//   }
+// })
 
 document.getElementById("btn").addEventListener("click", function () {
   document.getElementById("box").classList.toggle("act");
@@ -107,3 +107,49 @@ function fetch_posts() {
 
 fetch_posts()
 
+const search = document.getElementById('Search-news');
+const matchList = document.getElementById('match-list');
+
+// Search states.json and filter it
+const searchStates = async searchText => {
+  const res = await fetch(POST_API_URL, { method: 'GET' })
+  const states = await res.json() ;
+
+  
+  // get matches to your input
+  let matches = states.content.filter(state => {
+    const regex = new RegExp(`${searchText}`,'gi');
+    return state.title.match(regex);
+  });
+  if ( searchText.length === 0 ) {
+    matches = [] ;
+    matchList.innerHTML='';
+  }
+
+  outputHtml(matches);
+} ;
+
+// Show results in HTML
+const outputHtml = matches => {
+  if ( matches.length > 0 ) {
+    const html = matches.map ( match => `
+    <div class=" d-flex mt-3  align-items-center">
+              <div class="image-search">
+            <img src="`+ match.photo +`" alt="`+ match.caption +`" width="120px" height="80px">
+            </div>
+            <div class="ms-2 lh-sm">
+              <span class="txt">`+ match.title +`</span>
+            </div>
+          </div>
+    `
+    ).join('') ;
+    
+    matchList.innerHTML = html;
+
+    
+}
+};
+    
+
+
+search.addEventListener('input',()=>searchStates(search.value))
