@@ -140,8 +140,8 @@ html *{
 
 .dm
 {
-    background-color: rgba(255, 255, 255, .14) !important;  
- backdrop-filter: blur(10px) !important;
+    background-color: rgba(255, 255, 255, .03) !important;  
+ backdrop-filter: blur(15px) !important;
 
 
   
@@ -888,6 +888,9 @@ li.list-item::marker{
   max-height:420px;
   overflow:scroll; 
   /* scrollbar-color: gold white !important; */
+}
+.dropdown-menu::-webkit-scrollbar{
+  display: none;
 }
 
 /* .material-symbols-outlined {
