@@ -41,8 +41,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.4.0/mdb.min.css"
       rel="stylesheet"
     />
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  </head>
+   </head>
   <body class="bg-black">
     <nav class="navbar navbar-expand-lg navbar-dark bg-black sticky-top">
       <div class="container">
@@ -50,7 +49,7 @@
           <img src="img\logo1.png" height="30px" alt="MDB Logo" loading="lazy"/></a>
         <div class="d-flex align-items-center">
           <a href="#!" class="text-white-50 fw-bold" data-mdb-target="#exampleModalToggle23" data-mdb-toggle="modal" data-mdb-dismiss="modal" >  <i class="fa-light fa-magnifying-glass me-3 icons1 " style="font-family: 'FontAwesome';"></i> </a>
-          <div class="dropdown">
+          <div class="dropdown d-flex">
             <a
               class=" me-2 dropdown-toggle hidden-arrow"
               href="#"
@@ -66,40 +65,69 @@
               aria-labelledby="navbarDropdownMenuRight"
             >
               <li>
-                <a class="dropdown-item text-light" href="#">Government</a>
+                <a class="dropdown-item text-light" href="#"><i class="fa fa-thin fa-landmark  me-1 "></i> Government</a>
               </li>
               <li>
-                <a class="dropdown-item text-light" href="#">Business</a>
+                <a class="dropdown-item text-light" href="#"><i class="fa fa-duotone fa-user-tie  me-2"></i> Business</a>
               </li>
               <li>
-                <a class="dropdown-item text-light" href="#">Public</a>
+                <a class="dropdown-item text-light ps-2" href="#"><i class=" fa fa-solid fa-users me-1" style="margin-left: 7px ;"></i> Public</a>
               </li>
               <li>
-                <a class="dropdown-item text-light" href="#">Humanitarian</a>
+                <a class="dropdown-item text-light" href="#"><i class="fa fa-thin fa-hand-holding-heart " style="margin-right: 5px; "></i> Humanitarian</a>
               </li>
               <li>
-                <a class="dropdown-item text-light" href="#">Sports</a>
+                <a class="dropdown-item text-light" href="#"><i class="fa fa-thin fa-volleyball  " style="margin-right: 10px ; padding-left: 1px"></i>Sports</a>
               </li>
-          
-              <div class="hs"></div>
+              <div class="ha mb-2 mt-2"></div>
               <li>
-                <a class="dropdown-item text-light" href="#">Polls</a>
-              </li>
-              <li>
-                <a class="dropdown-item text-light" href="#">Gossips</a>
-              </li>
-              <div class="hs"></div>
-              <li>
-                
+                <a class="dropdown-item text-light" href="#"><i class="fa-solid fa-earth me-1"></i> Newsroom</a>
               </li>
               <li>
-                <a class="dropdown-item text-light" href="Categories.html">Database</a>
+                <a class="dropdown-item text-light" href="#"><i class="fa fa-thin fa-microphone me-2 " style="padding-left: 1px;"></i> Talkshow</a>
+              </li>
+              <div class="ha mb-2 mt-2"></div>
+              
+                <a class="dropdown-item text-light" href="#"><i class="fas fa-regular fa-square-poll-vertical me-1 " style="margin-left: 2px;"></i>  Polls</a>
               </li>
               <li>
-                <a class="dropdown-item text-light" href="#" class="text-white-50 fw-bold" data-mdb-target="#exampleModalToggle22" data-mdb-toggle="modal" data-mdb-dismiss="modal" > <span class="hp">Signup</span></a>
+                <a class="dropdown-item text-light" href="#"><i class="fa-solid fa-comment me-1 " style="margin-left: 2px;"></i> Gossips</a>
+              </li>
+              
+              <div class="ha mb-2 mt-2"></div>
+              <li>
+                <a class="dropdown-item text-light" href="">V24 SPECIALS</a>
+              </li>
+              <li>
+                <div class="ha mb-2 mt-2"></div>
+              <li>
+                <a class="dropdown-item text-light" href="#"><i class="fa fa-solid fa-circle-info me-1"></i>  Explains</a>
+              </li>
+              <li>
+                <a class="dropdown-item text-light" href="#"><i class="fa fa-thin fa-film me-2"></i> Films</a>
+              </li>
+              <li> 
+                <a class="dropdown-item text-light" href="#"><i class="fa-solid fa-wand-magic-sparkles me-1"></i>  Explore</a>
+              </li>
+              <li>
+                <a class="dropdown-item text-light" href="#"><i class="fa-solid fa-person-running me-2"></i>  Persuit</a>
+              </li>
+              <div class="ha mb-2 mt-2"></div>
+              <li>
+                <a class="dropdown-item text-light" href="Categories.html">  DATABASE</a>
+              </li>
+              <div class="ha mb-2 mt-2"></div>
+              <li>
+                <a class="dropdown-item text-light" href="Categories.html">  CONTACT US</a>
+              </li>
+              <div class="ha mb-2 mt-2"></div>
+              <li>
+                <a class="dropdown-item text-light" href="#" class="text-white-50 fw-bold" data-mdb-target="#exampleModalToggle22" data-mdb-toggle="modal" data-mdb-dismiss="modal" > <span class="hp">  Signup</span></a>
               </li>
             </ul>
+  
           </div>
+          
       </div>
     </nav>
 
@@ -398,7 +426,6 @@
 <div class="container mt-4 ">
  <div class="row row-cols-1 row-cols-sm-3 g-4">
   <div class="col">
-    <div data-aos="zoom-in-up ">
     <a href="Articles.html" class="text-light">
     <div class="card posts bg-black " >
       <span class="d-flex justify-content-start"> <h6>SPORTS</h6></span>
@@ -413,13 +440,13 @@
       <div class="btns bg-black ">
         <div class="left d-flex align-items-center ">
           <i class="fa-regular fa-heart mr"></i>
-          <div id="box">
+          <div class="box">
 
-            <button id="btn">
+            <button class="btn1">
               <i class="fa-regular fa-paper-plane"></i>
             </button>
           
-            <ul id="list">
+            <ul class="list">
               <li class="list-item">
                 <a class="list-item-link" href="#">
                   <span class="fas fa-link fs-3"></span>
@@ -445,9 +472,6 @@
                   <span class="fab fa-twitter fs-3"></span>
                 </a>
               </li>
-              
-              
-              
             </ul>
           </div>
         </div>
@@ -456,14 +480,10 @@
       </div>
     </div>
   </div>
- </div>
 </div>
-</div> 
-
-
-<div class="hr mb-2"></div>
+</div>
+  <div class="hr mb-2"></div>
   <div class="col">
-    <div data-aos="zoom-in-up ">
     <div class="card posts bg-black " >
       <span class="d-flex justify-content-start"> <h6>SPORTS</h6></span>
       <img src="https://source.unsplash.com/600x400/?computer" class="card-img-top" alt="Fissure in Sandstone"/>
@@ -476,13 +496,13 @@
       <div class="btns bg-black ">
         <div class="left d-flex align-items-center ">
           <i class="fa-regular fa-heart mr"></i>
-          <div id="box">
+          <div class="box">
 
-            <button id="btn">
+            <button class="btn1">
               <i class="fa-regular fa-paper-plane"></i>
             </button>
           
-            <ul id="list">
+            <ul class="list">
               <li class="list-item">
                 <a class="list-item-link" href="#">
                   <span class="fas fa-link fs-3"></span>
@@ -507,10 +527,7 @@
                 <a class="list-item-link" href="#">
                   <span class="fab fa-twitter fs-3"></span>
                 </a>
-              </li>
-              
-              
-              
+              </li> 
             </ul>
           </div>
         </div>
@@ -521,12 +538,11 @@
   </div>
  </div>
 </div>
-</div> 
+ 
 
 
 <div class="hr mb-2"></div>
   <div class="col">
-    <div data-aos="zoom-in-up ">
     <div class="card posts bg-black " >
       <span class="d-flex justify-content-start"> <h6>SPORTS</h6></span>
       <img src="https://source.unsplash.com/600x400/?computer" class="card-img-top" alt="Fissure in Sandstone"/>
@@ -539,13 +555,13 @@
       <div class="btns bg-black ">
         <div class="left d-flex align-items-center ">
           <i class="fa-regular fa-heart mr"></i>
-          <div id="box">
+          <div class="box">
 
-            <button id="btn">
+            <button class="btn1">
               <i class="fa-regular fa-paper-plane"></i>
             </button>
           
-            <ul id="list">
+            <ul class="list">
               <li class="list-item">
                 <a class="list-item-link" href="#">
                   <span class="fas fa-link fs-3"></span>
@@ -570,10 +586,7 @@
                 <a class="list-item-link" href="#">
                   <span class="fab fa-twitter fs-3"></span>
                 </a>
-              </li>
-              
-              
-              
+              </li>       
             </ul>
           </div>
         </div>
@@ -584,12 +597,10 @@
   </div>
  </div>
 </div>
-</div> 
 
 
 <div class="hr mb-2"></div>
   <div class="col">
-    <div data-aos="zoom-in-up ">
     <div class="card posts bg-black " >
       <span class="d-flex justify-content-start"> <h6>SPORTS</h6></span>
       <img src="https://source.unsplash.com/600x400/?computer" class="card-img-top" alt="Fissure in Sandstone"/>
@@ -602,13 +613,13 @@
       <div class="btns bg-black ">
         <div class="left d-flex align-items-center ">
           <i class="fa-regular fa-heart mr"></i>
-          <div id="box">
+          <div class="box">
 
-            <button id="btn">
+            <button class="btn1">
               <i class="fa-regular fa-paper-plane"></i>
             </button>
           
-            <ul id="list">
+            <ul class="list">
               <li class="list-item">
                 <a class="list-item-link" href="#">
                   <span class="fas fa-link fs-3"></span>
@@ -633,10 +644,7 @@
                 <a class="list-item-link" href="#">
                   <span class="fab fa-twitter fs-3"></span>
                 </a>
-              </li>
-              
-              
-              
+              </li> 
             </ul>
           </div>
         </div>
@@ -646,13 +654,12 @@
     </div>
   </div>
  </div>
-</div>
+
 </div> 
 
 
 <div class="hr mb-2"></div>
   <div class="col">
-    <div data-aos="zoom-in-up ">
     <div class="card posts bg-black " >
       <span class="d-flex justify-content-start"> <h6>SPORTS</h6></span>
       <img src="https://source.unsplash.com/600x400/?computer" class="card-img-top" alt="Fissure in Sandstone"/>
@@ -665,13 +672,13 @@
       <div class="btns bg-black ">
         <div class="left d-flex align-items-center ">
           <i class="fa-regular fa-heart mr"></i>
-          <div id="box">
+          <div class="box">
 
-            <button id="btn">
+            <button class="btn1">
               <i class="fa-regular fa-paper-plane"></i>
             </button>
           
-            <ul id="list">
+            <ul class="list">
               <li class="list-item">
                 <a class="list-item-link" href="#">
                   <span class="fas fa-link fs-3"></span>
@@ -710,9 +717,6 @@
   </div>
  </div>
 </div>
-</div> 
-
-
 <div class="hr mb-2"></div>
 
  
@@ -720,7 +724,7 @@
 <!-- polls -->
 
 <div class="col">
-  <div data-aos="zoom-in-up ">
+
   <div class="d-flex justify-content-between align-items-center polls ">
     <div class="polls1">POLLS</div>
     <img src="img\logo1.png" height="25px">
@@ -761,19 +765,19 @@
 </div>
 </div>
 <div class="pding">
-<span class="d-flex  ">
+<div class="d-flex  ">
   <p class="text-light www ">446 likes</p>
-   <p class="views www">3461 views</p></span>
+   <p class="views www">3461 views</p></div>
 <div class="btns bg-black ">
   <div class="left d-flex align-items-center ">
     <i class="fa-regular fa-heart mr"></i>
-    <div id="box">
+    <div class="box">
 
-      <button id="btn">
+      <button class="btn1">
         <i class="fa-regular fa-paper-plane"></i>
       </button>
     
-      <ul id="list">
+      <ul class="list">
         <li class="list-item">
           <a class="list-item-link" href="#">
             <span class="fas fa-link fs-3"></span>
@@ -811,13 +815,13 @@
 </div>
 </div>
 </div>
-</div>
+
 <!-- polls end -->
 <!-- Gossips -->
 <div class="hr mb-2"></div>
 
    <div class="col">
-    <div data-aos="zoom-in-up ">
+
      <div class="card posts bg-black  ">
        <span class="d-flex justify-content-between "> <div class="polls1 gossips" >GOSSIPS</div></span>
        <div class="card-body cb1 bg-black">
@@ -836,13 +840,13 @@
        <div class="btns bg-black ">
         <div class="left d-flex align-items-center ">
           <i class="fa-regular fa-heart mr"></i>
-          <div id="box">
+          <div class="box">
 
-            <button id="btn">
+            <button class="btn1">
               <i class="fa-regular fa-paper-plane"></i>
             </button>
           
-            <ul id="list">
+            <ul class="list">
               <li class="list-item">
                 <a class="list-item-link" href="#">
                   <span class="fas fa-link fs-3"></span>
@@ -881,11 +885,9 @@
    </div>
   </div>
  </div> 
-</div>
 <!-- Gossips end -->
 <div class="hr mb-2"></div>
 <div class="col">
-  <div data-aos="zoom-in-up ">
   <div class="card  billy-1 mb-3  ">
     <img src="https://source.unsplash.com/600x400/?computer" class="card-img-top billyimg-1" alt="Fissure in Sandstone"/>
     <div class="card-body bb ">
@@ -893,11 +895,10 @@
       <p class="bn fw-light lh-sm m-0"><a href="">Cafe Sundowner</a></p>
 </div>
 </div>
-</div> 
 </div>
 <div class="hr mb-2"></div>
 <div class="col">
-  <div data-aos="zoom-in-up ">
+
   <div class="card  billy mb-3  ">
     <img src="https://source.unsplash.com/600x400/?computer" class="card-img-top billyimg" alt="Fissure in Sandstone"/>
     <div class="card-body bb ">
@@ -906,16 +907,13 @@
 </div>
 </div>
 </div> 
-</div>
 <div class="hr mb-2"></div>
-</div>
-</div>
 
+ </div>
+ </div>
+
+ 
 <script src="index.js"></script>
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>
-  AOS.init();
-</script>
     <script
       type="text/javascript"
       src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.4.0/mdb.min.js"

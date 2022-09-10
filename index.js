@@ -16,9 +16,6 @@
 //   }
 // })
 
-document.getElementById("btn").addEventListener("click", function () {
-  document.getElementById("box").classList.toggle("act");
-});
 
 
 
@@ -42,7 +39,7 @@ function fetch_posts() {
                 post = data[i];
                 temp = temp + ` <div class="col">
                 <div class="card posts bg-black">
-                <div data-aos="zoom-in-up ">
+                
                   <span class="d-flex justify-content-start"> <h6>`+ post?.category +`</h6></span>
                   <img src="`+ post?.photo +`" class="card-img-top" alt="`+ post?.caption +`"/>
                   <div class="card-body cb bg-black">
@@ -54,13 +51,13 @@ function fetch_posts() {
                   <div class="btns bg-black ">
                   <div class="left d-flex align-items-center ">
                   <i class="fa-regular fa-heart mr"></i>
-                  <div id="box">
+                  <div class="box">
         
-                    <button id="btn">
+                    <button class="btn">
                       <i class="fa-regular fa-paper-plane"></i>
                     </button>
                   
-                    <ul id="list">
+                    <ul class="list">
                       <li class="list-item">
                         <a class="list-item-link" href="#">
                           <span class="fas fa-link fs-3"></span>
@@ -94,11 +91,11 @@ function fetch_posts() {
                       <i class="fa-regular fa-bookmark"></i>
                   </div>
                 </div>
-              </div>
+              
              </div>
             </div>
             </div> 
-            <div class="hr mb-4"></div>`
+            <div class="hr mb-2"></div>`
             }
             document.getElementById('articles').innerHTML = temp;
         })
@@ -150,6 +147,12 @@ const outputHtml = matches => {
 }
 };
     
-
-
 search.addEventListener('input',()=>searchStates(search.value))
+
+
+var elements=document.getElementsByClassName("btn1");
+
+Array.from(elements).forEach(function(element) {
+element.addEventListener("click", function () {
+  document.getElementsByClassName("box").classList.toggle("act");
+})});
