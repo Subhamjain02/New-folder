@@ -154,5 +154,5 @@ var elements=document.getElementsByClassName("btn1");
 
 Array.from(elements).forEach(function(element) {
 element.addEventListener("click", function () {
-  document.getElementsByClassName("box").classList.toggle("act");
-})});
+  document.querySelectorAll("box").forEach(x => x.classList.toggle('act')
+)})});
