@@ -25,8 +25,6 @@ const getHeaders = () => {
 }
 
 
-
-
 const HOST_API_URL = `https://newsapp24er.herokuapp.com`;
 const POST_API_URL = `${HOST_API_URL}/newsdekho/api/post`;
 const UPLOAD_API_URL = `${HOST_API_URL}/upload`;
@@ -38,66 +36,66 @@ async function  fetch_posts () {
   let res = await fetch(POST_API_URL, { method: 'GET' })
   let posts = await res.json() ;
   let html_content = posts?.content.map ( post => `
-  <div class="hr mb-2"></div>
   <div class="col">
-    
-    <div class="card posts bg-black " >
-      <span class="d-flex justify-content-start"> <h6>`+ post?.category +`</h6></span>
-      <img src="`+ post?.photo +`" class="card-img-top" alt="`+ post?.caption +`"/>
-      <div class="card-body cb bg-black">
-      <a href="Articles.html?id=`+post?._id+`" class="text-light"><h5 class="card-title lh-sm ctitle">`+ post?.title +`</h5> <a/>
-        <p class="card-text  lh-sm ctext">`+ post?.body.slice(0,150) +`.</p>
-       <span class="d-flex  ">
-        <p class="text-light www ">`+ post?.likes?.length +` likes</p>
-         <p class="www">`+ post?.views +` views</p></span>
-      <div class="btns bg-black ">
-        <div class="left d-flex align-items-center ">
-          <i class="fa-regular fa-heart mr" onclick="like('`+post?._id+`')" data-arg=`+ post?._id +`></i>
-          <div id="box">
+  <a href="Articles.html?id=`+post?._id+`" class="text-light">
+  <div class="card posts bg-black ">
+    <span class="d-flex justify-content-start"> <h6>`+ post?.category +`</h6></span>
+    <img src="`+ post?.photo +`" class="card-img-top" alt="`+ post?.caption +`"/>
+    <div class="card-body cb bg-black">
+      <h5 class="card-title lh-sm ctitle">`+ post?.title +`</h5>
+      <p class="card-text  lh-sm ctext">`+ post?.body.slice(0,150) +`</p>
+    </a>
+     <span class="d-flex  ">
+      <p class="text-light www ">`+ post?.likes?.length +` likes</p>
+       <p class="www">`+ post?.views +` views</p></span>
+    <div class="btns bg-black ">
+      <div class="left d-flex align-items-center ">
+        <i class="fa-regular fa-heart mr"></i>
+        <div class="box">
 
-            <button id="btn">
-              <i class="fa-regular fa-paper-plane"></i>
-            </button>
-          
-            <ul id="list">
-              <li class="list-item">
-                <a class="list-item-link" href="#">
-                  <span class="fas fa-link fs-3"></span>
-                </a>
-              </li>
-              <li class="list-item">
-                <a class="list-item-link" href="#">
-                  <span class="fab fa-whatsapp fs-3"></span>
-                </a>
-              </li>
-              <li class="list-item">
-                <a class="list-item-link" href="#">
-                  <span class="fab fa-instagram fs-3"></span>
-                </a>
-              </li>
-              <li class="list-item">
-                <a class="list-item-link" href="#">
-                  <span class="fab fa-facebook-f fs-3"></span>
-                </a>
-              </li>
-              <li class="list-item">
-                <a class="list-item-link" href="#">
-                  <span class="fab fa-twitter fs-3"></span>
-                </a>
-              </li>
-              
-              
-              
-            </ul>
-          </div>
+          <button class="btn1">
+            <i class="fa-regular fa-paper-plane"></i>
+          </button>
+        
+          <ul class="list">
+            <li class="list-item">
+              <a class="list-item-link" href="#">
+                <span class="fas fa-link fs-3"></span>
+              </a>
+            </li>
+            <li class="list-item">
+              <a class="list-item-link" href="#">
+                <span class="fab fa-whatsapp fs-3"></span>
+              </a>
+            </li>
+            <li class="list-item">
+              <a class="list-item-link" href="#">
+                <span class="fab fa-instagram fs-3"></span>
+              </a>
+            </li>
+            <li class="list-item">
+              <a class="list-item-link" href="#">
+                <span class="fab fa-facebook-f fs-3"></span>
+              </a>
+            </li>
+            <li class="list-item">
+              <a class="list-item-link" href="#">
+                <span class="fab fa-twitter fs-3"></span>
+              </a>
+            </li>
+          </ul>
         </div>
-        <div class="right">
-          <i class="fa-regular fa-bookmark"></i>
       </div>
+      <div class="right">
+        <i class="fa-regular fa-bookmark"></i>
     </div>
   </div>
- </div>
 </div>
+</div>
+</div>
+  
+
+
     `
     ).join('') ;
 
@@ -200,7 +198,6 @@ const outputHtml = matches => {
     
     matchList.innerHTML = html;
 
-    
 }
 };
     
