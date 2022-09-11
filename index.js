@@ -16,9 +16,6 @@
 //   }
 // })
 
-document.getElementById("btn").addEventListener("click", function () {
-  document.getElementById("box").classList.toggle("act");
-});
 
 const getHeaders = () => {
   return {
@@ -207,6 +204,7 @@ const outputHtml = matches => {
 }
 };
     
+search.addEventListener('input',()=>searchStates(search.value))
 
 
 search.addEventListener('input',()=>searchStates(search.value))

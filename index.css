@@ -140,8 +140,11 @@ html *{
 
 .dm
 {
-    background-color: rgba(255, 255, 255, .15) !important;  
- backdrop-filter: blur(5px) !important;
+    background-color: rgba(255, 255, 255, .03) !important;  
+ backdrop-filter: blur(15px) !important;
+
+
+  
 }
 
 
@@ -478,11 +481,20 @@ background-image: linear-gradient(90deg, #3d3d3d 52%, #4b4b4b 72%, #878787 100%)
 .hs
 {
   width: 100%;
-  height: 1px;
+  height: 0.5px;
   background-color: #262626;
 background-image: linear-gradient(90deg, #262626 0%, #9b9b9b 46%, #262626 100%);
 
 }
+.ha
+{
+  width: 100%;
+  height: 0.8px;
+  background-color: #3d3d3d;
+background-image: linear-gradient(90deg, #3d3d3d 0%, #ffffff 46%, #3d3d3d 100%);
+
+}
+
 
   
   /* .ctnr {
@@ -777,14 +789,14 @@ background-image: linear-gradient(296deg, #98763f 6%, #522888 24%, #000000 56%);
   }
 }
 
-#box {
+.box {
   position: relative;
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-#btn {
+.btn1 {
   width: 40px;
   height: 40px;
 
@@ -803,7 +815,7 @@ background-image: linear-gradient(296deg, #98763f 6%, #522888 24%, #000000 56%);
 }
 
 
-#list {
+.list {
   position: absolute;
   left: 15px;
   top: 15px;
@@ -820,7 +832,7 @@ background-image: linear-gradient(296deg, #98763f 6%, #522888 24%, #000000 56%);
   list-style: none;
 }
 
-.act > #list {
+.act > .list {
   left: 40px;
   top: -2px;
 
@@ -863,3 +875,28 @@ li.list-item::marker{
   unicode-bidi:none;
   font-variant-numeric:none;
 }
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 1,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 20
+}
+
+.dropdown-menu {
+  max-height:420px;
+  overflow:scroll; 
+  /* scrollbar-color: gold white !important; */
+}
+.dropdown-menu::-webkit-scrollbar{
+  display: none;
+}
+
+/* .material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48
+} */
