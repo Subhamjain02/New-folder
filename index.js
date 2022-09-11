@@ -17,6 +17,12 @@
 // })
 
 
+const getHeaders = () => {
+  return {
+      "Content-Type": "application/json",
+      "x-access-token": localStorage.getItem('jwt')
+  }
+}
 
 
 
@@ -28,81 +34,132 @@ const STATIC_API_URL = `${HOST_API_URL}/public`;
 const AUTHOR_API_URL = `${HOST_API_URL}/newsdekho/api/author`;
 const ADMIN_API_URL = `${HOST_API_URL}/newsdekho/api/admin`;
 
-function fetch_posts() {
-    fetch(POST_API_URL, { method: 'GET' })
-        .then(Result => Result.json())
-        .then(res => {
-            var temp = "";
-            data = res?.content;
-            console.log(data);
-            for(var i=0;i<data.length;i++){
-                post = data[i];
-                temp = temp + ` <div class="col">
-                <div class="card posts bg-black">
-                
-                  <span class="d-flex justify-content-start"> <h6>`+ post?.category +`</h6></span>
-                  <img src="`+ post?.photo +`" class="card-img-top" alt="`+ post?.caption +`"/>
-                  <div class="card-body cb bg-black">
-                    <h5 class="card-title lh-sm ctitle">`+ post?.title +`</h5>
-                    <p class="card-text  lh-sm ctext">`+ post?.body +`</p>
-                   <span class="d-flex  ">
-                    <p class="text-light www">`+ post?.likes?.length +` likes</p>
-                    <p class="www">`+ post?.views +` views</p></span>
-                  <div class="btns bg-black ">
-                  <div class="left d-flex align-items-center ">
-                  <i class="fa-regular fa-heart mr"></i>
-                  <div class="box">
-        
-                    <button class="btn">
-                      <i class="fa-regular fa-paper-plane"></i>
-                    </button>
-                  
-                    <ul class="list">
-                      <li class="list-item">
-                        <a class="list-item-link" href="#">
-                          <span class="fas fa-link fs-3"></span>
-                        </a>
-                      </li>
-                      <li class="list-item">
-                        <a class="list-item-link" href="#">
-                          <span class="fab fa-whatsapp fs-3"></span>
-                        </a>
-                      </li>
-                      <li class="list-item">
-                        <a class="list-item-link" href="#">
-                          <span class="fab fa-instagram fs-3"></span>
-                        </a>
-                      </li>
-                      <li class="list-item">
-                        <a class="list-item-link" href="#">
-                          <span class="fab fa-facebook-f fs-3"></span>
-                        </a>
-                      </li>
-                      <li class="list-item">
-                        <a class="list-item-link" href="#">
-                          <span class="fab fa-twitter fs-3"></span>
-                        </a>
-                      </li>
-                      
-                    </ul>
-                  </div>
-                </div>
-                    <div class="right">
-                      <i class="fa-regular fa-bookmark"></i>
-                  </div>
-                </div>
+async function  fetch_posts () {
+  let res = await fetch(POST_API_URL, { method: 'GET' })
+  let posts = await res.json() ;
+  let html_content = posts?.content.map ( post => `
+  <div class="hr mb-2"></div>
+  <div class="col">
+    
+    <div class="card posts bg-black " >
+      <span class="d-flex justify-content-start"> <h6>`+ post?.category +`</h6></span>
+      <img src="`+ post?.photo +`" class="card-img-top" alt="`+ post?.caption +`"/>
+      <div class="card-body cb bg-black">
+      <a href="Articles.html?id=`+post?._id+`" class="text-light"><h5 class="card-title lh-sm ctitle">`+ post?.title +`</h5> <a/>
+        <p class="card-text  lh-sm ctext">`+ post?.body.slice(0,150) +`.</p>
+       <span class="d-flex  ">
+        <p class="text-light www ">`+ post?.likes?.length +` likes</p>
+         <p class="www">`+ post?.views +` views</p></span>
+      <div class="btns bg-black ">
+        <div class="left d-flex align-items-center ">
+          <i class="fa-regular fa-heart mr" onclick="like('`+post?._id+`')" data-arg=`+ post?._id +`></i>
+          <div id="box">
+
+            <button id="btn">
+              <i class="fa-regular fa-paper-plane"></i>
+            </button>
+          
+            <ul id="list">
+              <li class="list-item">
+                <a class="list-item-link" href="#">
+                  <span class="fas fa-link fs-3"></span>
+                </a>
+              </li>
+              <li class="list-item">
+                <a class="list-item-link" href="#">
+                  <span class="fab fa-whatsapp fs-3"></span>
+                </a>
+              </li>
+              <li class="list-item">
+                <a class="list-item-link" href="#">
+                  <span class="fab fa-instagram fs-3"></span>
+                </a>
+              </li>
+              <li class="list-item">
+                <a class="list-item-link" href="#">
+                  <span class="fab fa-facebook-f fs-3"></span>
+                </a>
+              </li>
+              <li class="list-item">
+                <a class="list-item-link" href="#">
+                  <span class="fab fa-twitter fs-3"></span>
+                </a>
+              </li>
               
-             </div>
-            </div>
-            </div> 
-            <div class="hr mb-2"></div>`
-            }
-            document.getElementById('articles').innerHTML = temp;
-        })
-        .catch(errorMsg => { console.log(errorMsg); });
+              
+              
+            </ul>
+          </div>
+        </div>
+        <div class="right">
+          <i class="fa-regular fa-bookmark"></i>
+      </div>
+    </div>
+  </div>
+ </div>
+</div>
+    `
+    ).join('') ;
+
+    document.getElementById('articles').innerHTML = html_content;
+  
 }
 
 fetch_posts()
+
+
+async function like(postId) {
+  console.log(postId);
+  let id_payload = {
+    _id : postId
+  }
+  let res = await fetch(POST_API_URL+'/like', { method: 'PUT' ,headers : getHeaders(), body: JSON.stringify(id_payload)})
+  let posts = await res.json() ;
+  console.log(posts);
+  fetch_posts();
+}
+
+async function fetch_trending_post() {
+  let res = await fetch(POST_API_URL+'/type/Trending', { method: 'GET' })
+  let posts = await res.json() ;
+  let html_content = posts?.content.map ( post => `
+  <div class="card rounded-9 bg-transparent text-white border border-3">
+  <img src="`+ post?.photo +`" class="card-img ci rounded-8" alt="`+ post?.caption +`"/>
+  <h5 class="card-title cti">#1</h5>
+  <div class="card-img-overlay cio d-flex align-items-end justify-content-center">
+    <p class="card-text lh-sm para text-uppercase "> 
+        `+ post?.title +`
+   </p>
+  </div>
+</div>
+    `
+    ).join('') ;
+
+    document.getElementById('trending').innerHTML = html_content;
+}
+fetch_trending_post()
+
+async function fetch_nearby_post() {
+  let res = await fetch(POST_API_URL+'/type/Trending', { method: 'GET' })
+  let posts = await res.json() ;
+  let html_content_text = `
+  <div class="cont text-wrap">
+        <h2>Nearby</h2>
+        <h3>(Bringing you the lastest news of your own city)</h3>
+    </div>
+  `
+  let html_content = posts?.content.map ( post => `
+  <div class="card child bg-transparent ">
+  <img src="`+ post?.photo +`" class="card-img-top cit rounded-9 border-3 " alt="`+ post?.caption +`"/>
+  <p class="card-text lh-sm para1 ">`+ post?.title +`</p>
+</div>
+    `
+    ).join('') ;
+    html_content_text = html_content_text + html_content;
+    document.getElementById('nearby').innerHTML = html_content_text;
+}
+fetch_nearby_post()
+
 
 const search = document.getElementById('Search-news');
 const matchList = document.getElementById('match-list');
@@ -150,9 +207,63 @@ const outputHtml = matches => {
 search.addEventListener('input',()=>searchStates(search.value))
 
 
-var elements=document.getElementsByClassName("btn1");
+search.addEventListener('input',()=>searchStates(search.value))
 
-Array.from(elements).forEach(function(element) {
-element.addEventListener("click", function () {
-  document.querySelectorAll("box").forEach(x => x.classList.toggle('act')
-)})});
+async function signup () {
+  let name = document.getElementById("nameX").value;
+  let email = document.getElementById("typeEmailX").value;
+  let password = document.getElementById("typePasswordX").value;
+  let repassword = document.getElementById("typePasswordY").value;
+  console.log(email);
+  console.log(password);
+  console.log(repassword);
+  if (email == '' || password == '' || repassword == '') {
+    alert("Please enter all the fields");
+    return;
+  }
+  if(password != repassword ) {
+    alert("Password is not matching");
+    return;
+  }
+
+  let author_payload = {
+    name: name,
+    email : email,
+    password: password
+    }
+
+    let res = await fetch(AUTHOR_API_URL+'/signup', { method: 'POST' ,headers : getHeaders(), body: JSON.stringify(author_payload)})
+    let author = await res.json() ;
+    console.log(author);
+    alert(author.message);
+    if(author.status == 'success') {
+      // add code to close modal
+    }
+}
+
+async function signin() {
+  let email = document.getElementById("typeEmailY").value;
+  let password = document.getElementById("typePasswordZ").value;
+  console.log(email);
+  console.log(password);
+  if (email == '' || password == '') {
+    alert("Please enter all the fields");
+    return;
+  }
+
+  let author_payload = {
+    email : email,
+    password: password
+    }
+
+    let res = await fetch(AUTHOR_API_URL+'/signin', { method: 'POST' ,headers : getHeaders(), body: JSON.stringify(author_payload)})
+    let author = await res.json() ;
+    console.log(author);
+    alert(author.message);
+    if(author.status == 'success') {
+      // add code to close modal
+      localStorage.setItem('author', author.content.author);
+      localStorage.setItem('jwt', author.content.token);
+    }
+}
+

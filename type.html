@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link href="index.css" rel="stylesheet" />
+    <link href="type.css" rel="stylesheet" />
  
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link
@@ -35,13 +35,14 @@
       href="https://fonts.googleapis.com/css?family=Oswald:300,400,500,700&display=swap"
       rel="stylesheet"
     />
-    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" /> -->
+
 
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.4.0/mdb.min.css"
       rel="stylesheet"
     />
-   </head>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  </head>
   <body class="bg-black">
     <nav class="navbar navbar-expand-lg navbar-dark bg-black sticky-top">
       <div class="container">
@@ -49,7 +50,7 @@
           <img src="img\logo1.png" height="30px" alt="MDB Logo" loading="lazy"/></a>
         <div class="d-flex align-items-center">
           <a href="#!" class="text-white-50 fw-bold" data-mdb-target="#exampleModalToggle23" data-mdb-toggle="modal" data-mdb-dismiss="modal" >  <i class="fa-light fa-magnifying-glass me-3 icons1 " style="font-family: 'FontAwesome';"></i> </a>
-          <div class="dropdown d-flex">
+          <div class="dropdown">
             <a
               class=" me-2 dropdown-toggle hidden-arrow"
               href="#"
@@ -65,21 +66,19 @@
               aria-labelledby="navbarDropdownMenuRight"
             >
               <li>
-                <a class="dropdown-item text-light" href="type.html?type=Government">Government</a>
+                <a class="dropdown-item text-light" href="#">Government</a>
               </li>
               <li>
-                <a class="dropdown-item text-light" href="type.html?type=Business">Business</a>
+                <a class="dropdown-item text-light" href="#">Business</a>
               </li>
               <li>
-                <a class="dropdown-item text-light" href="type.html?type=Public">Public</a>
-              </li>
-              
-              <div class="ha mb-2 mt-2"></div>
-              <li>
-                <a class="dropdown-item text-light" href="type.html?type=Humanitarian">Humanitarian</a>
+                <a class="dropdown-item text-light" href="#">Public</a>
               </li>
               <li>
-                <a class="dropdown-item text-light" href="type.html?type=Sports">Sports</a>
+                <a class="dropdown-item text-light" href="#">Humanitarian</a>
+              </li>
+              <li>
+                <a class="dropdown-item text-light" href="#">Sports</a>
               </li>
           
               <div class="hs"></div>
@@ -93,18 +92,14 @@
               <li>
                 
               </li>
-              <div class="ha mb-2 mt-2"></div>
               <li>
                 <a class="dropdown-item text-light" href="Categories.html">Database</a>
               </li>
-              <div class="ha mb-2 mt-2"></div>
               <li>
                 <a class="dropdown-item text-light" href="#" class="text-white-50 fw-bold" data-mdb-target="#exampleModalToggle22" data-mdb-toggle="modal" data-mdb-dismiss="modal" > <span class="hp">Signup</span></a>
               </li>
             </ul>
-  
           </div>
-          
       </div>
     </nav>
   
@@ -306,84 +301,75 @@
       </div>
     </div>
     
-  <!-- Share Modal -->
-  <!-- <div class="modal fade" id="myModel" tabindex="-1" aria-labelledby="myModelLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content  rounded-6">
-            <div class="modal-header">
-                <h5 class="modal-title fw-bold fd fs-4" id="myModelLabel">Share</h5>
-                <button type="button" class="btn-close bg-light rounded-circle" data-mdb-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body ">
-                <p class="fd">Share this link via</p>
-                <div class="d-flex align-items-center justify-content-evenly icons">                
-                    <a href="#" class="fs-3 d-flex align-items-center justify-content-center">
-                        <span class="fab fa-facebook-f"></span>
-                    </a>                
-                    <a href="#" class="fs-3 d-flex align-items-center justify-content-center">
-                        <span class="fab fa-twitter"></span>
-                    </a>                
-                    <a href="#" class="fs-3 d-flex align-items-center justify-content-center">
-                        <span class="fab fa-instagram"></span>
-                    </a>                
-                    <a href="#" class="fs-3 d-flex align-items-center justify-content-center">
-                        <span class="fab fa-whatsapp"></span>
-                    </a>                
-                    <a href="#" class="fs-3 d-flex align-items-center justify-content-center">
-                        <span class="fab fa-telegram-plane"></span>
-                    </a>
-                </div>
-                <p class="fd">Or copy link</p>
-                <div class="field d-flex align-items-center justify-content-between mb-2">
-                    <span class="fas fa-link text-center"></span>
-                    <input type="text" value="some.com/share">
-                    <button>Copy</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> -->
-  <!-- Share Modal -->
-  <!-- Trending -->
-    <div class="container mt-1">
-      <h1>Trending</h1>
-      <div class="tflex" id="trending">
-    <!-- Trending end -->
-      <!-- news nearby -->
-    </div>
-  </div>
-  <div class="container">
-  <div class="nflex mt-4" id ="nearby">
 
+
+
+
+
+  <div  id="category">
+ 
   </div>
-</div>
-  <!-- News Nearby end -->
-  <!-- cards -->
-<div class="hr mt-4"></div>
-<div class="container mt-4 ">
- <div class="row row-cols-1 row-cols-sm-3 g-4">
+ 
+
+
+
+
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.4.0/mdb.min.js"
+    ></script>
+    <script>
+        const getHeaders = () => {
+            return {
+                "Content-Type": "application/json",
+                "x-access-token": localStorage.getItem('jwt')
+            }
+        }
+        async function like(postId) {
+            console.log(postId);
+            let id_payload = {
+                _id : postId
+            }
+            let res = await fetch(POST_API_URL+'/like', { method: 'PUT' ,headers : getHeaders(), body: JSON.stringify(id_payload)})
+            let posts = await res.json() ;
+            console.log(posts);
+            fetch_category();
+        }
+       async function fetch_category() {
+        var category = location.search.split('type=')[1];      
+        console.log(category);
+        category = "Global";
+        let res = await fetch(POST_API_URL+'/category/'+category, { method: 'GET' })
+        let posts = await res.json() ;
+        console.log(posts);
+        let html_content = posts?.content.map ( post => `
+        <div class="hr mb-2"></div>
   <div class="col">
-    <a href="Articles.html" class="text-light">
+    
     <div class="card posts bg-black " >
-      <span class="d-flex justify-content-start"> <h6>SPORTS</h6></span>
-      <img src="https://source.unsplash.com/600x400/?computer" class="card-img-top" alt="Fissure in Sandstone"/>
+      <span class="d-flex justify-content-start"> <h6>`+ post?.category +`</h6></span>
+      <img src="`+ post?.photo +`" class="card-img-top" alt="`+ post?.caption +`"/>
       <div class="card-body cb bg-black">
-        <h5 class="card-title lh-sm ctitle">FOMER CRICKETER ANDREW SYMONDS DIES AT 46 AFTER MEETING WITH A CAR ACCIDENT</h5>
-        <p class="card-text  lh-sm ctext">The 46 year old was involved in a single-vehicle accident on Saturday night as per the police. Emergency services were provided however the cricketer succumbed to his injuries the police added.</p>
-      </a>
+      <a href="Articles.html?id=`+post?._id+`" class="text-light"><h5 class="card-title lh-sm ctitle">`+ post?.title +`</h5> <a/>
+        <p class="card-text  lh-sm ctext">`+ post?.body.slice(0,150) +`.</p>
        <span class="d-flex  ">
-        <p class="text-light www ">446 likes</p>
-         <p class="www">3461 views</p></span>
+        <p class="text-light www ">`+ post?.likes?.length +` likes</p>
+         <p class="www">`+ post?.views +` views</p></span>
       <div class="btns bg-black ">
         <div class="left d-flex align-items-center ">
-          <i class="fa-regular fa-heart mr"></i>
-          <div class="box">
+          <i class="fa-regular fa-heart mr" onclick="like('`+post?._id+`')" data-arg=`+ post?._id +`></i>
+          <div id="box">
 
-            <button class="btn1">
+            <button id="btn">
               <i class="fa-regular fa-paper-plane"></i>
             </button>
           
-            <ul class="list">
+            <ul id="list">
               <li class="list-item">
                 <a class="list-item-link" href="#">
                   <span class="fas fa-link fs-3"></span>
@@ -409,6 +395,9 @@
                   <span class="fab fa-twitter fs-3"></span>
                 </a>
               </li>
+              
+              
+              
             </ul>
           </div>
         </div>
@@ -417,214 +406,21 @@
       </div>
     </div>
   </div>
+ </div>
 </div>
-</div>
-</div> 
+                `
+             ).join('') ;
 
-
-
-
-  <div  id="articles">
- 
-  </div>
- 
-<!-- cards end -->
-<!-- polls -->
-
-<div class="col">
-
-  <div class="d-flex justify-content-between align-items-center polls ">
-    <div class="polls1">POLLS</div>
-    <img src="img\logo1.png" height="25px">
-
-  </div>
-  
-  <div class="text-wrap mb-4">
-    <h4>When will man. utd. stop embarrassing its fans?</h4>
-</div>
-<div class="ctnr d-flex justify-content-evenly">
-  <div class="per ">
-  <div class="loadbar ">
-  <div class="bar " style='height:40%;'></div>
-  <h5>Buisnessman</h5>
-</div>
-<p class="text-center percent">40%</p>
-</div>
-  <div class="per ">
-  <div class="loadbar ">
-  <div class="bar " style='height:30%;'></div>
-  <h5>Buisnessman</h5>
-</div>
-<p class="text-center percent">30%</p>
-</div>
-  <div class="per ">
-  <div class="loadbar ">
-  <div class="bar " style='height:70%;'></div>
-  <h5>Buisnessman</h5>
-</div>
-<p class="text-center percent">70%</p>
-</div>
-  <div class="per ">
-  <div class="loadbar ">
-  <div class="bar " style='height:60%;'></div>
-  <h5>Buisnessman</h5>
-</div>
-<p class="text-center percent">60%</p>
-</div>
-</div>
-<div class="pding">
-<div class="d-flex  ">
-  <p class="text-light www ">446 likes</p>
-   <p class="views www">3461 views</p></div>
-<div class="btns bg-black ">
-  <div class="left d-flex align-items-center ">
-    <i class="fa-regular fa-heart mr"></i>
-    <div class="box">
-
-      <button class="btn1">
-        <i class="fa-regular fa-paper-plane"></i>
-      </button>
+    document.getElementById('category').innerHTML = html_content;
+      }
+      
+      const HOST_API_URL = `https://newsapp24er.herokuapp.com`;
+      const POST_API_URL = `${HOST_API_URL}/newsdekho/api/post`;
+        console.log("testing");
     
-      <ul class="list">
-        <li class="list-item">
-          <a class="list-item-link" href="#">
-            <span class="fas fa-link fs-3"></span>
-          </a>
-        </li>
-        <li class="list-item">
-          <a class="list-item-link" href="#">
-            <span class="fab fa-whatsapp fs-3"></span>
-          </a>
-        </li>
-        <li class="list-item">
-          <a class="list-item-link" href="#">
-            <span class="fab fa-instagram fs-3"></span>
-          </a>
-        </li>
-        <li class="list-item">
-          <a class="list-item-link" href="#">
-            <span class="fab fa-facebook-f fs-3"></span>
-          </a>
-        </li>
-        <li class="list-item">
-          <a class="list-item-link" href="#">
-            <span class="fab fa-twitter fs-3"></span>
-          </a>
-        </li>
-        
-        
-        
-      </ul>
-    </div>
-  </div>
-  <div class="right">
-    <i class="fa-regular fa-bookmark"></i>
-</div>
-</div>
-</div>
-</div>
-
-<!-- polls end -->
-<!-- Gossips -->
-<div class="hr mb-2"></div>
-
-   <div class="col">
-
-     <div class="card posts bg-black  ">
-       <span class="d-flex justify-content-between "> <div class="polls1 gossips" >GOSSIPS</div></span>
-       <div class="card-body cb1 bg-black">
-        <div class="gossipsbody">
-        <div class="gossipsimg">
-        <img src="img\logo1.png" height="20px" >
-        <span >@odishavoice24</span>
-      </div>
-         <p class="card-text  lh-sm mb-4 ctext">Good Buisnesses Are Assets For The Industrialist, The country, And For The Humanity.</p>
-         <p class="web">www.odishavoice24.com</p>
-        </div>
-        <span class="d-flex ">
-          <p class="text-light www">446 likes</p>
-          <p class="views www">3461 views</p>
-         </span>
-       <div class="btns bg-black ">
-        <div class="left d-flex align-items-center ">
-          <i class="fa-regular fa-heart mr"></i>
-          <div class="box">
-
-            <button class="btn1">
-              <i class="fa-regular fa-paper-plane"></i>
-            </button>
-          
-            <ul class="list">
-              <li class="list-item">
-                <a class="list-item-link" href="#">
-                  <span class="fas fa-link fs-3"></span>
-                </a>
-              </li>
-              <li class="list-item">
-                <a class="list-item-link" href="#">
-                  <span class="fab fa-whatsapp fs-3"></span>
-                </a>
-              </li>
-              <li class="list-item">
-                <a class="list-item-link" href="#">
-                  <span class="fab fa-instagram fs-3"></span>
-                </a>
-              </li>
-              <li class="list-item">
-                <a class="list-item-link" href="#">
-                  <span class="fab fa-facebook-f fs-3"></span>
-                </a>
-              </li>
-              <li class="list-item">
-                <a class="list-item-link" href="#">
-                  <span class="fab fa-twitter fs-3"></span>
-                </a>
-              </li>
-              
-              
-              
-            </ul>
-          </div>
-        </div>
-         <div class="right">
-           <i class="fa-regular fa-bookmark"></i>
-       </div>
-     </div>
-   </div>
-  </div>
- </div> 
-<!-- Gossips end -->
-<div class="hr mb-2"></div>
-<div class="col">
-  <div class="card  billy-1 mb-3  ">
-    <img src="https://source.unsplash.com/600x400/?computer" class="card-img-top billyimg-1" alt="Fissure in Sandstone"/>
-    <div class="card-body bb ">
-      <h5 class="card-title lh-sm bill-title mb-0">BILLBOARD</h5>
-      <p class="bn fw-light lh-sm m-0"><a href="">Cafe Sundowner</a></p>
-</div>
-</div>
-</div>
-<div class="hr mb-2"></div>
-<div class="col">
-
-  <div class="card  billy mb-3  ">
-    <img src="https://source.unsplash.com/600x400/?computer" class="card-img-top billyimg" alt="Fissure in Sandstone"/>
-    <div class="card-body bb ">
-      <h5 class="card-title lh-sm bill-title mb-0">BILLBOARD</h5>
-      <p class="bn fw-light m-0"><a href="">Cafe Sundowner</a></p>
-</div>
-</div>
-</div> 
-<div class="hr mb-2"></div>
-
- </div>
- </div>
-
- 
-<script src="index.js"></script>
-    <script
-      type="text/javascript"
-      src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.4.0/mdb.min.js"
-    ></script>
+        fetch_category();
+   
+    </script>
+    
   </body>
 </html>
