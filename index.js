@@ -39,7 +39,7 @@ async function  fetch_posts () {
   <div class="col">
   <a href="Articles.html?id=`+post?._id+`" class="text-light">
   <div class="card posts bg-black ">
-    <span class="d-flex justify-content-start"> <h6>`+ post?.category +`</h6></span>
+    <span class="d-flex justify-content-start text-uppercase"> <h6>`+ post?.category +`</h6></span>
     <img src="`+ post?.photo +`" class="card-img-top" alt="`+ post?.caption +`"/>
     <div class="card-body cb bg-black">
       <h5 class="card-title lh-sm ctitle">`+ post?.title +`</h5>
@@ -51,36 +51,36 @@ async function  fetch_posts () {
     <div class="btns bg-black ">
       <div class="left d-flex align-items-center ">
         <i class="fa-regular fa-heart mr"></i>
-        <div class="box">
+        <div id="box">
 
-          <button class="btn1">
+          <button id="btn1">
             <i class="fa-regular fa-paper-plane"></i>
           </button>
         
-          <ul class="list">
+          <ul id="list">
             <li class="list-item">
               <a class="list-item-link" href="#">
-                <span class="fas fa-link fs-3"></span>
+                <span class="fas fa-link fs-4"></span>
               </a>
             </li>
             <li class="list-item">
               <a class="list-item-link" href="#">
-                <span class="fab fa-whatsapp fs-3"></span>
+                <span class="fab fa-whatsapp fs-4"></span>
               </a>
             </li>
             <li class="list-item">
               <a class="list-item-link" href="#">
-                <span class="fab fa-instagram fs-3"></span>
+                <span class="fab fa-instagram fs-4"></span>
               </a>
             </li>
             <li class="list-item">
               <a class="list-item-link" href="#">
-                <span class="fab fa-facebook-f fs-3"></span>
+                <span class="fab fa-facebook-f fs-4"></span>
               </a>
             </li>
             <li class="list-item">
               <a class="list-item-link" href="#">
-                <span class="fab fa-twitter fs-3"></span>
+                <span class="fab fa-twitter fs-4"></span>
               </a>
             </li>
           </ul>
@@ -264,3 +264,6 @@ async function signin() {
     }
 }
 
+document.getElementById("btn1").addEventListener("click", function () {
+  document.getElementById("box").classList.toggle("act");
+});
