@@ -67,27 +67,27 @@ async function  fetch_posts () {
            <div class="d-flex justify-content-evenly align-items-center">
              <li class="list-item ">
                <a class="list-item-link" href="#">
-                 <span class="fas fa-link fs-3 "></span>
+                 <span class="fas fa-link  "></span>
                </a>
              </li>
              <li class="list-item">
                <a class="list-item-link" href="#">
-                 <span class="fab fa-whatsapp fs-3"></span>
+                 <span class="fab fa-whatsapp "></span>
                </a>
              </li>
              <li class="list-item">
                <a class="list-item-link" href="#">
-                 <span class="fab fa-instagram fs-3"></span>
+                 <span class="fab fa-instagram "></span>
                </a>
              </li>
              <li class="list-item">
                <a class="list-item-link" href="#">
-                 <span class="fab fa-facebook-f fs-3"></span>
+                 <span class="fab fa-facebook-f"></span>
                </a>
              </li>
              <li class="list-item">
                <a class="list-item-link" href="#">
-                 <span class="fab fa-twitter fs-4"></span>
+                 <span class="fab fa-twitter"></span>
                </a>
              </li>
            </div>
@@ -100,7 +100,7 @@ async function  fetch_posts () {
 </div>
 </div>
 </div>  
-
+<div class="hr mt-4 mb-4"></div>
 
     `
     ).join('') ;
@@ -108,6 +108,7 @@ async function  fetch_posts () {
     document.getElementById('articles').innerHTML = html_content;
   
 }
+
 
 fetch_posts()
 
