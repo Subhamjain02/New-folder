@@ -38,62 +38,68 @@ async function  fetch_posts () {
   let html_content = posts?.content.map ( post => `
   <div class="col">
   <a href="Articles.html?id=`+post?._id+`" class="text-light">
-  <div class="card posts bg-black ">
+  <div class="card bg-black posts">
     <span class="d-flex justify-content-start text-uppercase"> <h6>`+ post?.category +`</h6></span>
-    <img src="`+ post?.photo +`" class="card-img-top" alt="`+ post?.caption +`"/>
+    <img src="`+ post?.photo +`" class="card-img-top cito" alt="`+ post?.caption +`"/>
     <div class="card-body cb bg-black">
-      <h5 class="card-title lh-sm ctitle">`+ post?.title +`</h5>
-      <p class="card-text  lh-sm ctext">`+ post?.body.slice(0,150) +`</p>
+      <h5 class="card-title lh-sm ctitle">`+ post?.title +`</h5></a>
+      <a href="Articles.html?id=`+post?._id+`" class="text-light"><p class="card-text  lh-sm ctext">`+ post?.body.slice(0,150) +`</p>
     </a>
      <span class="d-flex  ">
       <p class="text-light www ">`+ post?.likes?.length +` likes</p>
        <p class="www">`+ post?.views +` views</p></span>
-    <div class="btns bg-black ">
-      <div class="left d-flex align-items-center ">
-        <i class="fa-regular fa-heart mr"></i>
-        <div id="box">
-
-          <button id="btn1">
-            <i class="fa-regular fa-paper-plane"></i>
-          </button>
+       <div class="btns bg-black ">
+       <div class="left d-flex align-items-center ">
+         <i class="fa-regular fa-heart me-3"></i>
         
-          <ul id="list">
-            <li class="list-item">
-              <a class="list-item-link" href="#">
-                <span class="fas fa-link fs-4"></span>
-              </a>
-            </li>
-            <li class="list-item">
-              <a class="list-item-link" href="#">
-                <span class="fab fa-whatsapp fs-4"></span>
-              </a>
-            </li>
-            <li class="list-item">
-              <a class="list-item-link" href="#">
-                <span class="fab fa-instagram fs-4"></span>
-              </a>
-            </li>
-            <li class="list-item">
-              <a class="list-item-link" href="#">
-                <span class="fab fa-facebook-f fs-4"></span>
-              </a>
-            </li>
-            <li class="list-item">
-              <a class="list-item-link" href="#">
-                <span class="fab fa-twitter fs-4"></span>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="right">
-        <i class="fa-regular fa-bookmark"></i>
-    </div>
-  </div>
+         <a
+         class="dropdown-toggle d-flex align-items-center hidden-arrow"
+         href="#"
+         id="navbarDropdownMenuAvatar"
+         role="button"
+         data-mdb-toggle="dropdown"
+         aria-expanded="false"
+         >
+             <i class="fa-regular fa-paper-plane text-light"></i>
+         </a>
+           <ul class="dropdown-menu bg-dark share-btn rounded-8"
+           aria-labelledby="navbarDropdownMenuAvatar">
+           <div class="d-flex justify-content-evenly align-items-center">
+             <li class="list-item ">
+               <a class="list-item-link" href="#">
+                 <span class="fas fa-link fs-3 "></span>
+               </a>
+             </li>
+             <li class="list-item">
+               <a class="list-item-link" href="#">
+                 <span class="fab fa-whatsapp fs-3"></span>
+               </a>
+             </li>
+             <li class="list-item">
+               <a class="list-item-link" href="#">
+                 <span class="fab fa-instagram fs-3"></span>
+               </a>
+             </li>
+             <li class="list-item">
+               <a class="list-item-link" href="#">
+                 <span class="fab fa-facebook-f fs-3"></span>
+               </a>
+             </li>
+             <li class="list-item">
+               <a class="list-item-link" href="#">
+                 <span class="fab fa-twitter fs-4"></span>
+               </a>
+             </li>
+           </div>
+           </ul>
+         </div>
+       <div class="right">
+         <i class="fa-regular fa-bookmark"></i>
+     </div>
+   </div>
 </div>
 </div>
-</div>
-  
+</div>  
 
 
     `
@@ -264,6 +270,19 @@ async function signin() {
     }
 }
 
-document.getElementById("btn1").addEventListener("click", function () {
-  document.getElementById("box").classList.toggle("act");
-});
+// document.getElementById("btn1").addEventListener("click", function () {
+//   document.getElementById("box").classList.toggle("act");
+// });
+
+// const btn1 = document.getElementsByClassName("btn1");
+// const box = document.getElementsByClassName("box");
+// btn1.addEventListener("click", function(){
+//   box.classList.toggle("act");
+// } );
+
+// function share()
+// {
+//   const elements = document.querySelectorAll('.box');
+// elements.forEach(x => x.classList.toggle('.act'));
+
+// }
