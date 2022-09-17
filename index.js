@@ -36,7 +36,7 @@ async function  fetch_posts () {
   let res = await fetch(POST_API_URL, { method: 'GET' })
   let posts = await res.json() ;
   let html_content = posts?.content.map ( post => `
-  <div class="col">
+  <div class="col d-flex justify-content-center">
   <a href="Articles.html?id=`+post?._id+`" class="text-light">
   <div class="card bg-black posts">
     <span class="d-flex justify-content-start text-uppercase"> <h6>`+ post?.category +`</h6></span>
