@@ -68,35 +68,34 @@
       <div class="container mt-4" >
 
     </div>
-    <form>
         <div class="container">
             <div class="form-check form-check-inline">
                 <h1>Polls</h1>
             </div>
           
             <div class="form-outline mb-5">
-                <textarea class="form-control" id="form6Example7" rows="2"></textarea>
-                <label class="form-label" for="form6Example7">Question </label>
+                <textarea class="form-control" id="form6Example" rows="2"></textarea>
+                <label class="form-label" for="form6Example">Question </label>
                 <div class="form-helper">Keep within 15 words </div>
               </div>
     
               <div class="form-outline mb-4">
-                <input type="text" id="form6Example3" class="form-control" />
-                <label class="form-label" for="form6Example3">Option 1</label>
+                <input type="text" id="form6Example1" class="form-control" />
+                <label class="form-label" for="form6Example1">Option 1</label>
               </div>
               <div class="form-outline mb-4">
-                <input type="text" id="form6Example3" class="form-control" />
-                <label class="form-label" for="form6Example3">Option 2</label>
+                <input type="text" id="form6Example2" class="form-control" />
+                <label class="form-label" for="form6Example2">Option 2</label>
               </div>
               <div class="form-outline mb-4">
                 <input type="text" id="form6Example3" class="form-control" />
                 <label class="form-label" for="form6Example3">Option 3</label>
               </div>
               <div class="form-outline mb-4">
-                <input type="text" id="form6Example3" class="form-control" />
-                <label class="form-label" for="form6Example3">Option 4</label>
+                <input type="text" id="form6Example4" class="form-control" />
+                <label class="form-label" for="form6Example4">Option 4</label>
               </div>
-              <button type="submit" class="btn btn-primary btn-block mb-4 ">Submit</button>
+              <button type="submit" class="btn btn-primary btn-block mb-4 " onclick="create_poll()">Submit</button>
             </div>
     
             
@@ -107,7 +106,7 @@
         </div>
         
         
-    </form>
+
     
 
     
@@ -117,7 +116,33 @@
       type="text/javascript"
       src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.4.0/mdb.min.js"
     ></script>
-
+<script>
+  const HOST_API_URL = `https://odishavoice24.herokuapp.com`;
+  const POLL_API_URL = `${HOST_API_URL}/newsdekho/api/poll`;
+  const getHeaders = () => {
+            return {
+                "Content-Type": "application/json",
+                "x-access-token": localStorage.getItem('jwt')
+            }
+        }
+  async function create_poll() {
+    let qsn = document.getElementById('form6Example').value;
+    let op1 = document.getElementById('form6Example1').value;
+    let op2 = document.getElementById('form6Example2').value;
+    let op3 = document.getElementById('form6Example3').value;
+    let op4 = document.getElementById('form6Example4').value;
+    let poll = {
+            qsn: qsn,
+            op1: op1,
+            op2: op2,
+            op3: op3,
+            op4: op4
+        }
+    let res = await fetch(POLL_API_URL, { method: 'POST' , headers : getHeaders(), body: JSON.stringify(poll)});
+    let poll_res = await res.json();
+    console.log(poll_res);
+  }
+</script>
 
   </body>
 </html>

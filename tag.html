@@ -48,16 +48,15 @@
 
     </div>
     
-
-
+    
 
     <div class="container mt-4 ">
-      <div class="row row-cols-1 row-cols-sm-3 g-4" id="category">
+      <div class="row row-cols-1 row-cols-sm-3 g-4" id="tag">
      </div>
      </div>
 
 
- 
+
 
 
 
@@ -86,8 +85,9 @@
             let res = await fetch(POST_API_URL+'/like', { method: 'PUT' ,headers : getHeaders(), body: JSON.stringify(id_payload)})
             let posts = await res.json() ;
             console.log(posts);
-            fetch_category();
+            fetch_tagged_post();
         }
+
         async function unlike(postId) {
   console.log(postId);
   let id_payload = {
@@ -96,7 +96,7 @@
   let res = await fetch(POST_API_URL+'/unlike', { method: 'PUT' ,headers : getHeaders(), body: JSON.stringify(id_payload)})
   let posts = await res.json() ;
   console.log(posts);
-  fetch_category();
+  fetch_tagged_post();
 }
 
 async function bookmark(postId) {
@@ -108,7 +108,7 @@ async function bookmark(postId) {
   let posts = await res.json() ;
   console.log(posts);
   localStorage.setItem("bookmarks",posts.content.bookmarks);
-  fetch_category();
+  fetch_tagged_post();
 }
 async function unbookmark(postId) {
   console.log(postId, "unbookmark");
@@ -119,14 +119,14 @@ async function unbookmark(postId) {
   let posts = await res.json() ;
   localStorage.setItem("bookmarks",posts.content.bookmarks);
   console.log(posts);
-  fetch_category();
+  fetch_tagged_post();
 }
-
-       async function fetch_category() {
-        var category = location.search.split('type=')[1];      
-        console.log(category);
-      
-        let res = await fetch(POST_API_URL+'/category/'+category, { method: 'GET' })
+       async function fetch_tagged_post() {
+        console.log("fetchtag called")
+        var tag = location.search.split('tag=')[1];
+        console.log(tag);
+        console.log(POST_API_URL+'/tag/'+tag);
+        let res = await fetch(POST_API_URL+'/tag/'+tag, { method: 'GET' })
         let posts = await res.json() ;
         console.log(posts);
         let bookmarks_arr = localStorage.getItem('bookmarks');
@@ -205,7 +205,7 @@ async function unbookmark(postId) {
 
     ).join('');
 
-    document.getElementById('category').innerHTML = html_content;
+    document.getElementById('tag').innerHTML = html_content;
     document.getElementById("btn1").addEventListener("click", function () {
             document.getElementById("box").classList.toggle("act");
           });
@@ -224,8 +224,7 @@ const AUTHOR_API_URL = `${HOST_API_URL}/newsdekho/api/author`;
 const ADMIN_API_URL = `${HOST_API_URL}/newsdekho/api/admin`;
         console.log("testing");
     
-        fetch_category();
-
+        fetch_tagged_post();
         function copy_link(id) {
         var base_url = window.location.origin;
         let postUrl = base_url+"Articles.html?id="+id;
