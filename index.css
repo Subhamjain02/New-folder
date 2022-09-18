@@ -425,6 +425,8 @@ a:hover {
 
 
 
+
+
  .card-text {
   margin-bottom: 5px !important;
  }
@@ -472,6 +474,7 @@ a:hover {
 }
 .ctext{
   font-size: small;
+  height: 85px;
   height: 85px;
   
 }
@@ -637,6 +640,8 @@ background-image: linear-gradient(180deg, #522888 1%, #000000 100%);
   .hr{
     display: none;
   }
+
+
 }
 
 @media (min-width: 1200px)
@@ -648,8 +653,15 @@ background-image: linear-gradient(180deg, #522888 1%, #000000 100%);
 @media (min-width: 1400px)
 {
 .container {
-    max-width: 1700px !important;
+    max-width: 1400px !important;
 }
+/* #articles{
+  padding-left: 20px;
+} */
+}
+
+.col{
+  padding: 0px !important;
 }
 
 
@@ -804,7 +816,7 @@ background-image: linear-gradient(296deg, #98763f 6%, #522888 24%, #000000 56%);
   gap: 10px;
 }
 
-.btn1 {
+#btn1 {
   width: 40px;
   height: 40px;
 
@@ -823,7 +835,7 @@ background-image: linear-gradient(296deg, #98763f 6%, #522888 24%, #000000 56%);
 }
 
 
-.list {
+#list {
   position: absolute;
   left: 15px;
   top: 15px;
