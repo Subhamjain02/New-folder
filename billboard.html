@@ -65,49 +65,51 @@
           </a>
         </div>
       </nav>
-<div class="container mt-3">
-    <form >
+      <div class="container mt-4" >
+       
         <!-- 2 column grid layout with text inputs for the first and last names -->
-        <h1>Gossips</h1>
-        <div class="row mb-4">
-          <div class="col">
-            
-            <div class="form-outline">
-              <input type="text" id="form6Example1" class="form-control" />
-              <label class="form-label" for="form6Example1">First name</label>
-            </div>
-          </div>
-          <div class="col">
-            <div class="form-outline">
-              <input type="text" id="form6Example2" class="form-control" />
-              <label class="form-label" for="form6Example2">Last name</label>
-            </div>
-          </div>
-        </div>
+        <h1>Billboards</h1>
+        <div class="row mb-4 needs-validation" novalidate>
+
       
-        <!-- Email input -->
+    
+      
+        <!-- photo input -->
+        <label class="form-label " for="customFile">Image</label>
         <div class="form-outline mb-4">
-            <input type="email" id="form6Example5" class="form-control" />
-            <label class="form-label" for="form6Example5">Email</label>
-          </div>
+            
+          <input type="file" class="form-control" id="customFile" />
+          </div> 
           
+
+
+          
+        
         <!-- Message input -->
         <div class="form-outline mb-5">
           <textarea class="form-control" id="form6Example7" rows="2"></textarea>
           <label class="form-label" for="form6Example7">Title </label>
           <div class="form-helper">Keep within 15 words </div>
         </div>
-    
-        <div class="form-outline mb-4">
-          <textarea class="form-control" id="form6Example7" rows="8"></textarea>
-          <label class="form-label" for="form6Example7">Body </label>
-        </div>
-      
-        <button type="submit" class="btn btn-primary btn-block mb-4">Submit</button>
-    
+
+        <select class="select w-100 mb-4 form-control" id="inlineFormSelectPref" placeholder="Categories">
+          <option value="">Select size</option>
+          <option value="small">Small</option>
+          <option value="big">Big</option>
+        </select>
+
+        <button class="btn btn-primary btn-block mb-4 " onclick="create_billboard()">Submit</button>
+       
+
     </div>
-    </form>
-    </div>
+
+  </div>
+
+
+
+
+    
+
 </body>
 <script
       type="text/javascript"
@@ -116,4 +118,48 @@
 
 
   </body>
+  <script>
+    const HOST_API_URL = `https://odishavoice24.herokuapp.com`;
+    const POST_API_URL = `${HOST_API_URL}/newsdekho/api/post`;
+    const BILLBOARD_API_URL = `${HOST_API_URL}/newsdekho/api/billboard`;
+    const UPLOAD_API_URL = `${HOST_API_URL}/upload`;
+    const STATIC_API_URL = `${HOST_API_URL}/public`;
+    const AUTHOR_API_URL = `${HOST_API_URL}/newsdekho/api/author`;
+    const ADMIN_API_URL = `${HOST_API_URL}/newsdekho/api/admin`;
+    const getHeaders = () => {
+            return {
+                "Content-Type": "application/json",
+                "x-access-token": localStorage.getItem('jwt')
+            }
+        }
+    
+    async function create_billboard() {
+        let title = document.getElementById('form6Example7').value;
+        let size = document.getElementById('inlineFormSelectPref').value;
+        let file_tab = document.getElementById('customFile');
+        let file = file_tab.files[0];
+        console.log(title);
+        console.log(file);
+        if(title == '' || file =='' ){
+            alert("Please provide all the fileds");
+            return;
+        }
+        const body = new FormData();
+        body.append("image", file);
+        let res = await fetch(UPLOAD_API_URL, { method: 'POST' , body: body});
+        let photo = await res.json();
+        let img_url = HOST_API_URL+'/public/images/'+photo.content;
+        console.log(img_url);
+        let Billboards = {
+            title: title,
+            photo: img_url,
+            size: size
+        }
+        let res1 = await fetch(BILLBOARD_API_URL, { method: 'POST' , headers : getHeaders(), body: JSON.stringify(Billboards)});
+        let bill = await res1.json();
+        console.log(bill);
+        alert("Billboard created successfully");
+    }
+  </script>
 </html>
+

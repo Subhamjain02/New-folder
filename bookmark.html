@@ -48,13 +48,15 @@
 
     </div>
     
+    
 
 
 
     <div class="container mt-4 ">
-      <div class="row row-cols-1 row-cols-sm-3 g-4" id="category">
+      <div class="row row-cols-1 row-cols-sm-3 g-4" id="bookmark">
      </div>
      </div>
+
 
 
  
@@ -86,8 +88,9 @@
             let res = await fetch(POST_API_URL+'/like', { method: 'PUT' ,headers : getHeaders(), body: JSON.stringify(id_payload)})
             let posts = await res.json() ;
             console.log(posts);
-            fetch_category();
+            fetch_bookmark();
         }
+
         async function unlike(postId) {
   console.log(postId);
   let id_payload = {
@@ -96,7 +99,7 @@
   let res = await fetch(POST_API_URL+'/unlike', { method: 'PUT' ,headers : getHeaders(), body: JSON.stringify(id_payload)})
   let posts = await res.json() ;
   console.log(posts);
-  fetch_category();
+  fetch_bookmark();
 }
 
 async function bookmark(postId) {
@@ -108,7 +111,7 @@ async function bookmark(postId) {
   let posts = await res.json() ;
   console.log(posts);
   localStorage.setItem("bookmarks",posts.content.bookmarks);
-  fetch_category();
+  fetch_bookmark();
 }
 async function unbookmark(postId) {
   console.log(postId, "unbookmark");
@@ -119,22 +122,28 @@ async function unbookmark(postId) {
   let posts = await res.json() ;
   localStorage.setItem("bookmarks",posts.content.bookmarks);
   console.log(posts);
-  fetch_category();
+  fetch_bookmark();
 }
-
-       async function fetch_category() {
-        var category = location.search.split('type=')[1];      
-        console.log(category);
-      
-        let res = await fetch(POST_API_URL+'/category/'+category, { method: 'GET' })
-        let posts = await res.json() ;
+       async function fetch_bookmark() {
+        let posts = []
+        let bookmarks_list = localStorage.getItem("bookmarks");
+        let bookmarks_lists = (bookmarks_list) ? bookmarks_list : [];
+        let html_content = ``;
+        if (bookmarks_list){
+            let bookmarks = bookmarks_list.split(',');
+            console.log(bookmarks);
+        for(let i=0;i<bookmarks.length; i++) {
+            let postId = bookmarks[i];
+            console.log(postId);
+            let res = await fetch(POST_API_URL+'/'+postId, { method: 'GET' });
+            let posts_res = await res.json() ;
+            posts.push(posts_res.content) ;
+        }
         console.log(posts);
-        let bookmarks_arr = localStorage.getItem('bookmarks');
-  let bookmarks = (bookmarks_arr) ? bookmarks_arr : [];
-        let html_content = posts?.content.map ( post =>{
+         html_content = posts.map ( post =>{
     let author_id = localStorage.getItem('_id');
     let like_content = (post?.likes.includes(author_id)) ? `<i class="fa-regular fa-heart me-3 fw-bold" onclick="unlike('`+post?._id+`')"></i> `: `<i class="fa-regular fa-heart me-3" onclick="like('`+post?._id+`')"></i>`
-    let bookmark_content = (bookmarks.includes(post?._id)) ? `<i class="fa-regular fa-bookmark fw-bold" onclick="unbookmark('`+post?._id+`')"></i> `: `<i class="fa-regular fa-bookmark text-light" onclick="bookmark('`+post?._id+`')"></i>`
+    let bookmark_content = (bookmarks_lists.includes(post?._id)) ? `<i class="fa-regular fa-bookmark fw-bold" onclick="unbookmark('`+post?._id+`')"></i> `: `<i class="fa-regular fa-bookmark text-light" onclick="bookmark('`+post?._id+`')"></i>`
     return (
       `
       <div class="col">
@@ -204,8 +213,12 @@ async function unbookmark(postId) {
   } 
 
     ).join('');
+        } else {
+            html_content = `No bookmarks till now`;
+        }
 
-    document.getElementById('category').innerHTML = html_content;
+
+    document.getElementById('bookmark').innerHTML = html_content;
     document.getElementById("btn1").addEventListener("click", function () {
             document.getElementById("box").classList.toggle("act");
           });
@@ -224,8 +237,7 @@ const AUTHOR_API_URL = `${HOST_API_URL}/newsdekho/api/author`;
 const ADMIN_API_URL = `${HOST_API_URL}/newsdekho/api/admin`;
         console.log("testing");
     
-        fetch_category();
-
+        fetch_bookmark();
         function copy_link(id) {
         var base_url = window.location.origin;
         let postUrl = base_url+"Articles.html?id="+id;
