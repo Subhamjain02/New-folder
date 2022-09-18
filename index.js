@@ -274,6 +274,15 @@ async function signin() {
 // document.getElementById("btn1").addEventListener("click", function () {
 //   document.getElementById("box").classList.toggle("act");
 // });
+var elms = document.querySelectorAll("[id='btn1']");
+var box = document.querySelectorAll("[id='box']");
+for(var i = 0; i < elms.length; i++) 
+  elms[i].addEventListener("click", function () {
+    for(var i = 0; i < box.length; i++) 
+    {
+      box[i].classList.toggle("act");
+    }
+  })// <-- whatever you need to do here.
 
 // const btn1 = document.getElementsByClassName("btn1");
 // const box = document.getElementsByClassName("box");
@@ -285,5 +294,15 @@ async function signin() {
 // {
 //   const elements = document.querySelectorAll('.box');
 // elements.forEach(x => x.classList.toggle('.act'));
+
+// }
+// function toggle(selector) {
+//   let x = document.querySelectorAll(selector)[0];
+//   if (x.style.display === "none") {
+//     x.style.display = "flex";
+//     x.style.transition = "all 2s";
+//   } else {
+//     x.style.display = "none";
+//   }
 
 // }
