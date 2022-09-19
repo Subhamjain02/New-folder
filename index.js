@@ -65,41 +65,35 @@ async function  fetch_posts () {
            <div class="left d-flex align-items-center ">`
              +like_content+
             
-             `<a
-             class="dropdown-toggle d-flex align-items-center hidden-arrow"
-             href="#"
-             id="navbarDropdownMenuAvatar"
-             role="button"
-             data-mdb-toggle="dropdown"
-             aria-expanded="false"
-             >
-                 <i class="fa-regular fa-paper-plane text-light"></i>
-             </a>
-               <ul class="dropdown-menu bg-dark share-btn rounded-8"
-               aria-labelledby="navbarDropdownMenuAvatar">
-               <div class="d-flex justify-content-evenly align-items-center">
+             ` <div id="box" >
+
+             <button id="btn1">
+               <i class="fa-regular fa-paper-plane"></i>
+             </button>
+           
+             <ul id="list">
                  <li class="list-item ">
                    <a class="list-item-link" onclick="copy_link('`+post?._id+`')">
-                     <span class="fas fa-link  "></span>
+                     <span class="fas fa-link fsi "></span>
                    </a>
                  </li>
                  <li class="list-item">
                    <a class="list-item-link" onclick="share_post('`+post?._id+`', '`+ post?.title +`', '`+ post?.hashtags +`', 'whatsApp')">
-                     <span class="fab fa-whatsapp "></span>
+                     <span class="fab fa-whatsapp fsi"></span>
                    </a>
                  </li>
                  <li class="list-item">
                    <a class="list-item-link" onclick="share_post('`+post?._id+`', '`+ post?.title +`', '`+ post?.hashtags +`', 'facebook')">
-                     <span class="fab fa-facebook-f"></span>
+                     <span class="fab fa-facebook-f fsi"></span>
                    </a>
                  </li>
                  <li class="list-item">
                    <a class="list-item-link" onclick="share_post('`+post?._id+`', '`+ post?.title +`', '`+ post?.hashtags +`', 'twitter')">
-                     <span class="fab fa-twitter"></span>
+                     <span class="fab fa-twitter fsi"></span>
                    </a>
                  </li>
-               </div>
                </ul>
+               </div>
              </div>
            <div class="right">`+
            bookmark_content
@@ -153,9 +147,18 @@ async function  fetch_posts () {
 
     document.getElementById('articles').innerHTML = html_content;
     
-    document.getElementById("btn1").addEventListener("click", function () {
-      document.getElementById("box").classList.toggle("act");
-    });
+    // document.getElementById("btn1").addEventListener("click", function () {
+    //   document.getElementById("box").classList.toggle("act");
+    // });
+    var elms = document.querySelectorAll("[id='btn1']");
+    var box = document.querySelectorAll("[id='box']");
+      for(var i = 0; i < elms.length; i++) 
+        elms[i].addEventListener("click", function () {
+          for(var i = 0; i < box.length; i++) 
+          {
+            box[i].classList.toggle("act");
+          }
+        })
   
 }
 fetch_posts()
