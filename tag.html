@@ -227,7 +227,7 @@ const ADMIN_API_URL = `${HOST_API_URL}/newsdekho/api/admin`;
         fetch_tagged_post();
         function copy_link(id) {
         var base_url = window.location.origin;
-        let postUrl = base_url+"Articles.html?id="+id;
+        let postUrl = base_url+"/Articles.html?id="+id;
         navigator.clipboard.writeText(postUrl).then(function() {
           console.log('Async: Copying to clipboard was successful!');
         }, function(err) {

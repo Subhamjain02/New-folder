@@ -173,7 +173,7 @@ function share_toogle(suffix) {
 
 function copy_link(id) {
   var base_url = window.location.origin;
-  let postUrl = base_url+"Articles.html?id="+id;
+  let postUrl = base_url+"/Articles.html?id="+id;
   navigator.clipboard.writeText(postUrl).then(function() {
     console.log('Async: Copying to clipboard was successful!');
   }, function(err) {
