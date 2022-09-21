@@ -99,7 +99,9 @@
             console.log(cat_map);
             let html_content = ``;
             console.log(typeof(cat_map));
+            let i=0;
             for (let [category, v] of Object.entries(cat_map)) {
+              i++;
               let brand_list = cat_map[category];
               let options = brand_list.map ( brand =>
                     `
@@ -112,11 +114,11 @@
             <div class="accordion-item bg-black mb-3 rounded-6">
               <h2 class="accordion-header" id="flush-headingFiveX">
                 <button class="accordion-button collapsed bg-dark rounded-6 text-light" type="button" data-mdb-toggle="collapse"
-                  data-mdb-target="#flush-collapseFourX" aria-expanded="false" aria-controls="flush-collapseFourX">
+                  data-mdb-target="#flush-collapseFourX`+i+`" aria-expanded="false" aria-controls="flush-collapseFourX`+i+`">
                    `+category+`
                 </button>
               </h2>
-              <div id="flush-collapseFourX" class="accordion-collapse collapse" aria-labelledby="flush-headingFourX"
+              <div id="flush-collapseFourX`+i+`" class="accordion-collapse collapse" aria-labelledby="flush-headingFourX`+i+`"
                 data-mdb-parent="#accordionFlushExampleX">
                 <div class="accordion-body">
                     <ul class="list-group list-group-light ">                        

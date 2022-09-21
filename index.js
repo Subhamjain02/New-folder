@@ -42,7 +42,6 @@ async function  fetch_posts () {
   let posts = await res.json() ;
   let bookmarks_arr = localStorage.getItem('bookmarks');
   let bookmarks = (bookmarks_arr) ? bookmarks_arr : [];
-  
   let html_content = posts?.content.map ( post =>{
     let author_id = localStorage.getItem('_id');
     let like_content = (post?.likes.includes(author_id)) ? `<i class="fa-regular fa-heart me-3 fw-bold" onclick="unlike('`+post?._id+`')"></i> `: `<i class="fa-regular fa-heart me-3" onclick="like('`+post?._id+`')"></i>`
@@ -65,9 +64,9 @@ async function  fetch_posts () {
            <div class="left d-flex align-items-center ">`
              +like_content+
             
-             ` <div id="box" >
+             ` <div id="box`+post?._id+`" onclick="share_toogle('`+post?._id+`')">
 
-             <button id="btn1">
+             <button id="btn1`+post?._id+`" >
                <i class="fa-regular fa-paper-plane"></i>
              </button>
            
@@ -150,18 +149,27 @@ async function  fetch_posts () {
     // document.getElementById("btn1").addEventListener("click", function () {
     //   document.getElementById("box").classList.toggle("act");
     // });
-    var elms = document.querySelectorAll("[id='btn1']");
-    var box = document.querySelectorAll("[id='box']");
-      for(var i = 0; i < elms.length; i++) 
-        elms[i].addEventListener("click", function () {
-          for(var i = 0; i < box.length; i++) 
-          {
-            box[i].classList.toggle("act");
-          }
-        })
+    // var elms = document.querySelectorAll("[id='btn1']");
+    // var box = document.querySelectorAll("[id='box']");
+    //   for(var i = 0; i < elms.length; i++) 
+    //     elms[i].addEventListener("click", function () {
+    //       for(var i = 0; i < box.length; i++) 
+    //       {
+    //         box[i].classList.toggle("act");
+    //       }
+    //     })
   
 }
 fetch_posts()
+
+function share_toogle(suffix) {
+  let id1 = 'btn1'+suffix;
+  let id2 = 'box'+suffix;
+  document.getElementById(id1).addEventListener("click", function () {
+      document.getElementById(id2).classList.toggle("act");
+    });
+
+}
 
 function copy_link(id) {
   var base_url = window.location.origin;
