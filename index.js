@@ -25,7 +25,7 @@ const getHeaders = () => {
 }
 
 
-const HOST_API_URL = `https://odishavoice24.herokuapp.com`;
+const HOST_API_URL = `https://newsapiodisha24.herokuapp.com`;
 const POST_API_URL = `${HOST_API_URL}/newsdekho/api/post`;
 const GOSSIP_API_URL = `${HOST_API_URL}/newsdekho/api/gossip`;
 const POLL_API_URL = `${HOST_API_URL}/newsdekho/api/poll`;
@@ -177,7 +177,7 @@ function share_post (id, title, hashtags, media) {
   console.log(media);
   let hashTag = hashtags;
   var base_url = window.location.origin;
-  let postUrl = base_url+"Articles.html?id="+id;
+  let postUrl = base_url+"/Articles.html?id="+id;
   if (media == "twitter") {
     url = `https://twitter.com/share?url=${postUrl}&text=${title}&hashtags=${hashTag}`;
   } else if(media == "facebook") {

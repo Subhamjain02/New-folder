@@ -146,26 +146,26 @@
 }
   const HOST_API_URL = `https://newsapiodisha24.herokuapp.com`;
 const POST_API_URL = `${HOST_API_URL}/newsdekho/api/post`;
+const BILLBOARD_API_URL = `${HOST_API_URL}/newsdekho/api/billboard`;
 const ADMIN_API_URL = `${HOST_API_URL}/newsdekho/api/admin`;
   async function fetch_post() {
 
-    let res = await fetch(POST_API_URL+"/raw", { method: 'GET' })
-  let posts = await res.json() ;
+    let res = await fetch(BILLBOARD_API_URL, { method: 'GET' })
+  let billboards = await res.json() ;
   let ind =1;
-  let html_content = posts?.content.map ((post, index)  =>{
+  let html_content = billboards?.content.map ((billboard, index)  =>{
     ind = ind + 1;
-    let appove_opt = (post?.status == 'pending') ? `<button type="button" class="btn btn-success" data-mdb-toggle="modal" data-mdb-target="#exampleModal" onclick="setId('`+ post?._id +`')"><i class="fa-solid fa-check"></i></button>`
-     : `<button type="button" class="btn btn-info" data-mdb-toggle="modal" data-mdb-target="#exampleModal3" onclick="setId('`+ post?._id +`')"><i class="fa-solid fa-remove"></i></button>`
+    let appove_opt = (billboard?.status == 'pending') ? `<button type="button" class="btn btn-success" data-mdb-toggle="modal" data-mdb-target="#exampleModal" onclick="setId('`+ billboard?._id +`')"><i class="fa-solid fa-check"></i></button>`
+     : `<button type="button" class="btn btn-info" data-mdb-toggle="modal" data-mdb-target="#exampleModal3" onclick="setId('`+ billboard?._id +`')"><i class="fa-solid fa-remove"></i></button>`
     return (
       `
           <ul class="list-group list-group-horizontal  mb-1">
             <li class="list-group-item sl bg-dark text-white">`+ ind +`</li>
-            <li class="list-group-item ti bg-dark text-white">`+ post?.title +`</li>
-            <li class="list-group-item st bg-dark text-white d-flex align-items-center justify-content-center">`+ post?.status +`</li>
+            <li class="list-group-item ti bg-dark text-white">`+ billboard?.title +`</li>
+            <li class="list-group-item st bg-dark text-white d-flex align-items-center justify-content-center">`+ billboard?.status +`</li>
             <li class="list-group-item ac bg-dark text-white d-flex align-items-center justify-content-center"><div class="btn-group" role="group" aria-label="Basic example">
                 `+appove_opt+`
-                <button type="button" class="btn btn-primary" data-mdb-toggle="modal"  onclick="editPost('`+ post?._id +`')"><i class="fa-solid fa-pen-to-square"></i></button>
-                <button type="button" class="btn btn-danger" data-mdb-toggle="modal" data-mdb-target="#exampleModal2" onclick="setId('`+ post?._id +`')"><i class="fa-solid fa-trash"></i></button>
+                <button type="button" class="btn btn-danger" data-mdb-toggle="modal" data-mdb-target="#exampleModal2" onclick="setId('`+ billboard?._id +`')"><i class="fa-solid fa-trash"></i></button>
               </div></li>
           </ul>
     `
@@ -181,31 +181,31 @@ const ADMIN_API_URL = `${HOST_API_URL}/newsdekho/api/admin`;
     document.location = 'Admin_Cards_Editor.html'
   }
   function setId(postId) {
-    localStorage.setItem('postId', postId);
+    localStorage.setItem('billboardId', postId);
   }
   async function approve_post() {
-    let postId = localStorage.getItem('postId');
+    let billboardId = localStorage.getItem('billboardId');
     let id_payload = {
-      _id: postId
+      _id: billboardId
     }
-    let res = await fetch(ADMIN_API_URL+'/approve', { method: 'PUT' ,headers : getHeaders(), body: JSON.stringify(id_payload)})
+    let res = await fetch(BILLBOARD_API_URL+'/approve', { method: 'PUT' ,headers : getHeaders(), body: JSON.stringify(id_payload)})
     let post = await res.json() ;
   console.log(post);
     fetch_post();
   }
   async function unapprove_post() {
-    let postId = localStorage.getItem('postId');
+    let billboardId = localStorage.getItem('billboardId');
     let id_payload = {
-      _id: postId
+      _id: billboardId
     }
-    let res = await fetch(ADMIN_API_URL+'/unapprove', { method: 'PUT' ,headers : getHeaders(), body: JSON.stringify(id_payload)})
+    let res = await fetch(BILLBOARD_API_URL+'/unapprove', { method: 'PUT' ,headers : getHeaders(), body: JSON.stringify(id_payload)})
     let post = await res.json() ;
   console.log(post);
     fetch_post();
   }
   async function delete_post() {
-    let postId = localStorage.getItem('postId');
-    let res = await fetch(ADMIN_API_URL+'/post/'+postId, { method: 'DELETE' ,headers : getHeaders()})
+    let billboardId = localStorage.getItem('billboardId');
+    let res = await fetch(BILLBOARD_API_URL+'/'+billboardId, { method: 'DELETE' ,headers : getHeaders()})
     let post = await res.json() ;
     console.log(post);
     fetch_post();
