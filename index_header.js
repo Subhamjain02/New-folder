@@ -368,14 +368,21 @@ async function fetch_tag() {
         let isAdmin = localStorage.getItem('isAdmin');
         if (isAdmin == 'true') {
             opt = `
-            <li> <a class="dropdown-item text-light" href="./admin-pannel/PostAdmin.html">Post AdminPannel</a></li>
-            <li> <a class="dropdown-item text-light" href="./admin-pannel/EditPoll.html">Edit Poll</a></li>
+            
+            
+       <li> <a class="dropdown-item text-light" href="Cards_editor.html">Write Post</a></li>
+       <li> <a class="dropdown-item text-light" href="gossips.html"> Write Gossip</a></li>
+       <li> <a class="dropdown-item text-light" href="poll.html"> create a new Poll</a></li>
+       <li> <a class="dropdown-item text-light" href="Brand_ed.html"> Add Brand</a></li>
+       <li> <a class="dropdown-item text-light" href="./admin-pannel/PostAdmin.html">Post AdminPannel</a></li>
+       <li> <a class="dropdown-item text-light" href="./admin-pannel/BrandAdmin.html">Brand AdminPannel</a></li>
+       <li> <a class="dropdown-item text-light" href="./admin-pannel/GossipAdmin.html">Gossip AdminPannel</a></li>
+       <li> <a class="dropdown-item text-light" href="./admin-pannel/BillboardAdmin.html">Billboards AdminPannel</a></li>
+      <li> <a class="dropdown-item text-light" href="./admin-pannel/EditPoll.html">Edit Poll</a></li>
             `
         }
         opt = opt +`
-       <li> <a class="dropdown-item text-light" href="bookmark.html"><i class="fa-regular fa-bookmark" style="margin-right: 5px; "></i> Bookmarks</a></li>
-       <li> <a class="dropdown-item text-light" href="Cards_editor.html">Write Post</a></li>
-       <li> <a class="dropdown-item text-light" href="gossips.html"> Write Gossip</a></li>
+        <li> <a class="dropdown-item text-light" href="bookmark.html"><i class="fa-regular fa-bookmark" style="margin-right: 5px; "></i> Bookmarks</a></li>
        <li> <a class="dropdown-item text-light" onclick="logout()"> Logout</a></li>
         `
     }else {
@@ -413,7 +420,7 @@ async function fetch_tag() {
   </li>
   <div class="ha mb-2 mt-2"></div>
   <li>
-    <a class="dropdown-item text-light" href="#">  CONTACT US</a>
+    <a class="dropdown-item text-light" href="Aboutus.html">  CONTACT US</a>
   </li>
   <div class="ha mb-2 mt-2"></div>
 
