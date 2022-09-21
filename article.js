@@ -79,7 +79,9 @@ for(let i=0 ;i<post?.body.length;i+=800 ) {
       lt = post?.body.length -1;
       bk =1;
     }
-    temp1 = `<div class="card bg-dark text-white card-article">
+    temp1 = `
+    <div class="article-lg">
+    <div class="card bg-dark text-white card-article card-article-lg">
       <img
       src="`+ post?.photo +`"
       class="card-img cardimg"
@@ -97,6 +99,19 @@ for(let i=0 ;i<post?.body.length;i+=800 ) {
           </p>
         </div>
       </div>
+    </div>
+
+    <div class="lg-body ">
+    <div class="marg">
+    <span class="lg-heading fw-bold fs-3 lh-sm">
+    `+ post?.title +`
+    </span>
+    <p class="lg-para mt-2">
+            `+ post?.body.slice(i,lt) +`
+            
+          </p>
+    </div>
+    </div>
     </div>
         `
         temp2+=temp1;

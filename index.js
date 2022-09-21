@@ -442,13 +442,11 @@ async function fetch_poll() {
   let pr4=Math.round(ans4/total*100);
   let html_content =  `
   <div class="col">
-  <div>
+  <div class="mar">
   <div class="d-flex justify-content-between align-items-center polls ">
     <div class="polls1">POLLS</div>
     <img src="img/logo1.png" height="25px">
-
   </div>
-  
   <div class="text-wrap mb-4">
     <h4>`+poll.qsn+`</h4>
 </div>
