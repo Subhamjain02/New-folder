@@ -125,7 +125,7 @@ for(let i=0 ;i<post?.body.length;i+=800 ) {
           let bookmark_content = (bookmarks.includes(post?._id)) ? `<i class="fa-regular fa-bookmark fw-bold" onclick="unbookmark('`+post?._id+`')"></i> `: `<i class="fa-regular fa-bookmark text-light" onclick="bookmark('`+post?._id+`')"></i>`
           return (
             `
-            <div class="col">
+            <div class="col d-flex justify-content-center">
             <a href="Articles.html?id=`+post?._id+`" class="text-light">
             <div class="card bg-black posts">
               <span class="d-flex justify-content-start text-uppercase"> <h6>`+ post?.category +`</h6></span>
@@ -138,49 +138,43 @@ for(let i=0 ;i<post?.body.length;i+=800 ) {
                 <p class="text-light www ">`+ post?.likes?.length +` likes</p>
                  <p class="www">`+ post?.views +` views</p></span>
                  <div class="btns bg-black ">
-                 <div class="left d-flex align-items-center ">`
-                   +like_content+
-                  
-                   `<a
-                   class="dropdown-toggle d-flex align-items-center hidden-arrow"
-                   href="#"
-                   id="navbarDropdownMenuAvatar"
-                   role="button"
-                   data-mdb-toggle="dropdown"
-                   aria-expanded="false"
-                   >
-                       <i class="fa-regular fa-paper-plane text-light"></i>
+           <div class="left d-flex align-items-center ">`
+             +like_content+
+            
+             ` <div id="box`+post?._id+`" onclick="share_toogle('`+post?._id+`')" class="box">
+
+             <button id="btn1`+post?._id+`" class="btn1">
+               <i class="fa-regular fa-paper-plane"></i>
+             </button>
+           
+             <ul id="list">
+                 <li class="list-item ">
+                   <a class="list-item-link" onclick="copy_link('`+post?._id+`')">
+                     <span class="fas fa-link fsi "></span>
                    </a>
-                     <ul class="dropdown-menu bg-dark share-btn rounded-8"
-                     aria-labelledby="navbarDropdownMenuAvatar">
-                     <div class="d-flex justify-content-evenly align-items-center">
-                       <li class="list-item ">
-                         <a class="list-item-link" onclick="copy_link('`+post?._id+`')">
-                           <span class="fas fa-link  "></span>
-                         </a>
-                       </li>
-                       <li class="list-item">
-                         <a class="list-item-link" onclick="share_post('`+post?._id+`', '`+ post?.title +`', '`+ post?.hashtags +`', 'whatsApp')">
-                           <span class="fab fa-whatsapp "></span>
-                         </a>
-                       </li>
-                       <li class="list-item">
-                         <a class="list-item-link" onclick="share_post('`+post?._id+`', '`+ post?.title +`', '`+ post?.hashtags +`', 'facebook')">
-                           <span class="fab fa-facebook-f"></span>
-                         </a>
-                       </li>
-                       <li class="list-item">
-                         <a class="list-item-link" onclick="share_post('`+post?._id+`', '`+ post?.title +`', '`+ post?.hashtags +`', 'twitter')">
-                           <span class="fab fa-twitter"></span>
-                         </a>
-                       </li>
-                     </div>
-                     </ul>
-                   </div>
-                 <div class="right">`+
-                 bookmark_content
-               +`</div>
+                 </li>
+                 <li class="list-item">
+                   <a class="list-item-link" onclick="share_post('`+post?._id+`', '`+ post?.title +`', '`+ post?.hashtags +`', 'whatsApp')">
+                     <span class="fab fa-whatsapp fsi"></span>
+                   </a>
+                 </li>
+                 <li class="list-item">
+                   <a class="list-item-link" onclick="share_post('`+post?._id+`', '`+ post?.title +`', '`+ post?.hashtags +`', 'facebook')">
+                     <span class="fab fa-facebook-f fsi"></span>
+                   </a>
+                 </li>
+                 <li class="list-item">
+                   <a class="list-item-link" onclick="share_post('`+post?._id+`', '`+ post?.title +`', '`+ post?.hashtags +`', 'twitter')">
+                     <span class="fab fa-twitter fsi"></span>
+                   </a>
+                 </li>
+               </ul>
+               </div>
              </div>
+           <div class="right">`+
+           bookmark_content
+         +`</div>
+       </div>
           </div>
           </div>
           </div>  
@@ -195,11 +189,12 @@ for(let i=0 ;i<post?.body.length;i+=800 ) {
       
           document.getElementById('suggest').innerHTML = html_content;
           
-          document.getElementById("btn1").addEventListener("click", function () {
-            document.getElementById("box").classList.toggle("act");
-          });
+         
       }
-
+      function share_toogle(suffix) {
+        let id2 = 'box'+suffix;
+            document.getElementById(id2).classList.toggle("act");
+      }
       function copy_link(id) {
         var base_url = window.location.origin;
         let postUrl = base_url+"Articles.html?id="+id;

@@ -48,7 +48,7 @@ async function  fetch_posts () {
     let bookmark_content = (bookmarks.includes(post?._id)) ? `<i class="fa-regular fa-bookmark fw-bold" onclick="unbookmark('`+post?._id+`')"></i> `: `<i class="fa-regular fa-bookmark text-light" onclick="bookmark('`+post?._id+`')"></i>`
     return (
       `
-      <div class="col">
+      <div class="col d-flex justify-content-center">
       <a href="Articles.html?id=`+post?._id+`" class="text-light">
       <div class="card bg-black posts">
         <span class="d-flex justify-content-start text-uppercase"> <h6>`+ post?.category +`</h6></span>
@@ -64,9 +64,9 @@ async function  fetch_posts () {
            <div class="left d-flex align-items-center ">`
              +like_content+
             
-             ` <div id="box`+post?._id+`" onclick="share_toogle('`+post?._id+`')">
+             ` <div id="box`+post?._id+`" onclick="share_toogle('`+post?._id+`')" class="box">
 
-             <button id="btn1`+post?._id+`" >
+             <button id="btn1`+post?._id+`" class="btn1">
                <i class="fa-regular fa-paper-plane"></i>
              </button>
            
@@ -115,7 +115,7 @@ async function  fetch_posts () {
       let billboards = await res2.json() ;
       let html_content2 = billboards?.content.map ( billboard =>  `
       <div class="hr mb-2"></div>
-      <div class="col">
+      <div class="col d-flex justify-content-center">
         <div class="card  billy-1 mb-3  ">
           <img src="`+ billboard?.photo +`" class="card-img-top billyimg-1" alt="Fissure in Sandstone"/>
           <div class="card-body bb ">
@@ -131,7 +131,7 @@ async function  fetch_posts () {
   let billboards1 = await res3.json() ;
   let html_content3 = billboards1?.content.map ( billboard =>  `
   <div class="hr mb-2"></div>
-  <div class="col">
+  <div class="col d-flex justify-content-center">
     <div class="card  billy mb-3  ">
       <img src="`+ billboard?.photo +`" class="card-img-top billyimg" alt="Fissure in Sandstone"/>
       <div class="card-body bb ">
@@ -162,13 +162,17 @@ async function  fetch_posts () {
 }
 fetch_posts()
 
-function share_toogle(suffix) {
-  let id1 = 'btn1'+suffix;
-  let id2 = 'box'+suffix;
-  document.getElementById(id1).addEventListener("click", function () {
-      document.getElementById(id2).classList.toggle("act");
-    });
+// function share_toogle(suffix) {
+//   let id1 = 'btn1'+suffix;
+//   let id2 = 'box'+suffix;
+//   document.getElementById(id1).addEventListener("click", function () {
+//       document.getElementById(id2).classList.toggle("act");
+//     });
 
+// }
+function share_toogle(suffix) {
+  let id2 = 'box'+suffix;
+      document.getElementById(id2).classList.toggle("act");
 }
 
 function copy_link(id) {
@@ -359,7 +363,7 @@ async function  fetch_gossips () {
       `
       <div class="hr mb-2"></div>
     
-      <div class="col">
+      <div class="col d-flex justify-content-center">
     
         <div class="card posts bg-black  ">
           <span class="d-flex justify-content-between "> <div class="polls1 gossips" >GOSSIPS</div></span>
@@ -438,7 +442,7 @@ async function fetch_poll() {
   let pr4=Math.round(ans4/total*100);
   let html_content =  `
   <div class="col">
-
+  <div>
   <div class="d-flex justify-content-between align-items-center polls ">
     <div class="polls1">POLLS</div>
     <img src="img/logo1.png" height="25px">
@@ -476,6 +480,7 @@ async function fetch_poll() {
   <h5>`+poll.op4+`</h5>
 </div>
 <p class="text-center percent">`+pr4+`%</p>
+</div>
 </div>
 </div>
 </div>
