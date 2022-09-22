@@ -252,12 +252,15 @@ async function fetch_trending_post() {
   let res = await fetch(POST_API_URL+'/type/Trending', { method: 'GET' })
   let posts = await res.json() ;
   console.log(posts);
-  let html_content = posts?.content.map ( post =>
+  let i=0;
+  let html_content = posts?.content.map ( post =>{
+    i++;
+    return(
  `
   <a href="Articles.html?id=`+post?._id+`" class="text-light">
   <div class="card rounded-9 bg-transparent text-white border border-3">
   <img src="`+ post?.photo +`" class="card-img ci rounded-8" alt="`+ post?.caption +`"/>
-  <h5 class="card-title cti">#1</h5>
+  <h5 class="card-title cti">#`+i+`</h5>
   <div class="card-img-overlay cio d-flex align-items-end justify-content-center">
     <p class="card-text lh-sm para text-uppercase "> 
         `+ post?.title +`
@@ -266,7 +269,7 @@ async function fetch_trending_post() {
 </div>
 </a>
     `
-    ).join('') ;
+   )} ).join('') ;
 
     document.getElementById('trending').innerHTML = html_content;
 }
@@ -291,17 +294,25 @@ async function fetch_nearby_post() {
   let posts_res = await res.json() ;
   let posts = posts_res.content;
   let nearby_post = [];
+  let other_post =[];
+  
   for(let i =0; i<posts.length ;i++) {
     let post = posts[i];
+    let flag = 1;
     for(let j =0; j<location_arr.length; j ++) {
       let str1 = location_arr[j].toLowerCase();
       let str2 = post?.location.toLowerCase();
       if(str1.includes(str2)) {
         nearby_post.push(post);
+        flag=0;
         break;
-      }
+      } 
+    }
+    if(flag) {
+      other_post.push(post);
     }
   }
+  nearby_post.push(...other_post);
   let html_content_text = `
   <div class="cont text-wrap">
         <h2>Nearby</h2>
