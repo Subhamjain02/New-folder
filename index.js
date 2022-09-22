@@ -15,7 +15,7 @@
 //       }
 //   }
 // })
-
+getlocation();
 
 const getHeaders = () => {
   return {
@@ -286,6 +286,7 @@ function ArrToStr(tags){
   });
   return tagStr;
 }
+
 async function fetch_nearby_post() {
   let location_str = localStorage.getItem('location');
   let location_arr = prepareTags(location_str);
@@ -355,11 +356,12 @@ function successfulLookup(position) {
       location.push(location_obj.suburb);
       location.push(res.results?.[0].formatted);
       localStorage.setItem("location", location);
+      location.reload();
       
     })
 
 }
-getlocation()
+
 
 
 
