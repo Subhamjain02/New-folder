@@ -388,6 +388,7 @@ a:hover {
     border:1px solid #000;
     box-shadow: -1px -1px 8px -2px #e7e7e7 !important;
     border-radius: 1.3rem;
+    width: 360px;
 }
 .billy-1{
     background-color:#151419 !important ;
@@ -396,7 +397,7 @@ a:hover {
     box-shadow: -1px -1px 8px -2px #e7e7e7 !important;
     border-radius: 1.3rem;
     max-height: 150px;
-
+    width: 360px;
 }
 
 .bill-title{

@@ -178,17 +178,17 @@ async function fetch_tag() {
         <div class="col">
         <div class="d-flex justify-content-evenly" >
         <div class="chip mt-3 ">
-          <a href="tag.html?tag=`+tags[0].slice(1)+`">`+tags[0]+`</a>
+          <a href="tag.html?tag=`+tags[0].slice(1)+`" class="text-light">`+tags[0]+`</a>
           <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
           </div>
         <div class="chip mt-3 ">
           <!-- <img src="https://iexperimen.github.io/assets/icon/icon.png" alt="iExperimen" width="96" height="96"> -->
-          <a href="tag.html?tag=`+tags[1].slice(1)+`">`+tags[1]+`</a>
+          <a href="tag.html?tag=`+tags[1].slice(1)+`"  class="text-light">`+tags[1]+`</a>
           <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
           </div>
         <div class="chip mt-3">
           <!-- <img src="https://iexperimen.github.io/assets/icon/icon.png" alt="iExperimen" width="96" height="96"> -->
-          <a href="tag.html?tag=`+tags[2].slice(1)+`">`+tags[2]+`</a>
+          <a href="tag.html?tag=`+tags[2].slice(1)+`"  class="text-light">`+tags[2]+`</a>
           <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
           </div>
           
@@ -198,17 +198,17 @@ async function fetch_tag() {
         <div class="d-flex justify-content-evenly">
         <div class="chip mt-3">
           <!-- <img src="https://iexperimen.github.io/assets/icon/icon.png" alt="iExperimen" width="96" height="96"> -->
-          <a href="tag.html?tag=`+tags[3].slice(1)+`">`+tags[3]+`</a>
+          <a href="tag.html?tag=`+tags[3].slice(1)+`"  class="text-light">`+tags[3]+`</a>
           <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
           </div>
         <div class="chip mt-3 ">
           <!-- <img src="https://iexperimen.github.io/assets/icon/icon.png" alt="iExperimen" width="96" height="96"> -->
-          <a href="tag.html?tag=`+tags[4].slice(1)+`">`+tags[4]+`</a>
+          <a href="tag.html?tag=`+tags[4].slice(1)+`"  class="text-light">`+tags[4]+`</a>
           <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
           </div>
         <div class="chip mt-3 ">
           <!-- <img src="https://iexperimen.github.io/assets/icon/icon.png" alt="iExperimen" width="96" height="96"> -->
-          <a href="tag.html?tag=`+tags[5].slice(1)+`">`+tags[5]+`</a>
+          <a href="tag.html?tag=`+tags[5].slice(1)+`"  class="text-light">`+tags[5]+`</a>
           <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
           </div>
         
