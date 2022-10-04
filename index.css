@@ -320,7 +320,7 @@ background-image: linear-gradient(296deg, #98763f 6%, #522888 24%, #000000 56%);
     width: 160px;
     height: 160px;
     border: 1px solid #C39B54!important;
-    box-shadow: 3px 3px 3px 1px #000000,  0px 0px 3px 1px #e7e7e7, inset 0px -75px 10px 0px  rgba(0, 0, 0, 0.5) ;
+    box-shadow: 3px 3px 3px 1px #000000,  0px 0px 3px 1px #e7e7e7 ;
 }
 
 .nav {
@@ -656,9 +656,6 @@ background-image: linear-gradient(180deg, #522888 1%, #000000 100%);
 .container {
     max-width: 1400px !important;
 }
-/* #articles{
-  padding-left: 20px;
-} */
 }
 
 .col{
