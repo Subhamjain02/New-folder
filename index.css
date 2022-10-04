@@ -228,6 +228,9 @@ h6{
 .nflex::-webkit-scrollbar{
     display: none;
 }
+body::-webkit-scrollbar{
+    display: none;
+}
 
 .ci{
     opacity: 0.5;
