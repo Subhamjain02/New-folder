@@ -114,7 +114,7 @@ async function  fetch_posts () {
       let res2 = await fetch(SM_BD_API_URL, { method: 'GET' })
       let billboards = await res2.json() ;
       let html_content2 = billboards?.content.map ( billboard =>  `
-      <div class="hr mb-2"></div>
+      
       <div class="col d-flex justify-content-center">
         <div class="card  billy-1 mb-3  ">
           <img src="`+ billboard?.photo +`" class="card-img-top billyimg-1" alt="Fissure in Sandstone"/>
@@ -124,13 +124,14 @@ async function  fetch_posts () {
       </div>
       </div>
       </div>
+      <div class="hr mb-2"></div>
         `
         ).join('') ;
 
         let res3 = await fetch(BG_BD_API_URL, { method: 'GET' })
   let billboards1 = await res3.json() ;
   let html_content3 = billboards1?.content.map ( billboard =>  `
-  <div class="hr mb-2"></div>
+  
   <div class="col d-flex justify-content-center">
     <div class="card  billy mb-3  ">
       <img src="`+ billboard?.photo +`" class="card-img-top billyimg" alt="Fissure in Sandstone"/>
@@ -140,6 +141,7 @@ async function  fetch_posts () {
   </div>
   </div>
   </div>
+  <div class="hr mb-2"></div>
     `
     ).join('') ;
       html_content = html_content + html_content3  + html_content2 ;

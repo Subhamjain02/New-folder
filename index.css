@@ -228,6 +228,9 @@ h6{
 .nflex::-webkit-scrollbar{
     display: none;
 }
+body::-webkit-scrollbar{
+    display: none;
+}
 
 .ci{
     opacity: 0.5;
@@ -320,7 +323,7 @@ background-image: linear-gradient(296deg, #98763f 6%, #522888 24%, #000000 56%);
     width: 160px;
     height: 160px;
     border: 1px solid #C39B54!important;
-    box-shadow: 3px 3px 3px 1px #000000,  0px 0px 3px 1px #e7e7e7, inset 0px -75px 10px 0px  rgba(0, 0, 0, 0.5) ;
+    box-shadow: 3px 3px 3px 1px #000000,  0px 0px 3px 1px #e7e7e7 ;
 }
 
 .nav {
@@ -388,6 +391,7 @@ a:hover {
     border:1px solid #000;
     box-shadow: -1px -1px 8px -2px #e7e7e7 !important;
     border-radius: 1.3rem;
+    width: 360px;
 }
 .billy-1{
     background-color:#151419 !important ;
@@ -396,7 +400,7 @@ a:hover {
     box-shadow: -1px -1px 8px -2px #e7e7e7 !important;
     border-radius: 1.3rem;
     max-height: 150px;
-
+    width: 360px;
 }
 
 .bill-title{
@@ -655,9 +659,6 @@ background-image: linear-gradient(180deg, #522888 1%, #000000 100%);
 .container {
     max-width: 1400px !important;
 }
-/* #articles{
-  padding-left: 20px;
-} */
 }
 
 .col{
