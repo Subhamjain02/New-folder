@@ -162,7 +162,10 @@ async function unbookmark(postId) {
             console.log(postId);
             let res = await fetch(POST_API_URL+'/'+postId, { method: 'GET' });
             let posts_res = await res.json() ;
-            posts.push(posts_res.content) ;
+            if(posts_res) {
+              posts.push(posts_res?.content) ;
+            }
+            
         }
         console.log(posts);
          html_content = posts.map ( post =>{
