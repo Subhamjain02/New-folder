@@ -122,7 +122,7 @@
     const HOST_API_URL = `http://odv24.com`;
     const POST_API_URL = `${HOST_API_URL}/newsdekho/api/post`;
     const BILLBOARD_API_URL = `${HOST_API_URL}/newsdekho/api/billboard`;
-    const UPLOAD_API_URL = `${HOST_API_URL}/upload`;
+    const UPLOAD_API_URL = `${HOST_API_URL}/newsdekho/api/upload`;
     const STATIC_API_URL = `${HOST_API_URL}/public`;
     const AUTHOR_API_URL = `${HOST_API_URL}/newsdekho/api/author`;
     const ADMIN_API_URL = `${HOST_API_URL}/newsdekho/api/admin`;
@@ -148,7 +148,7 @@
         body.append("image", file);
         let res = await fetch(UPLOAD_API_URL, { method: 'POST' , body: body});
         let photo = await res.json();
-        let img_url = HOST_API_URL+'/public/images/'+photo.content;
+        let img_url = HOST_API_URL+'/newsdekho/api/public/images/'+photo.content;
         console.log(img_url);
         let Billboards = {
             title: title,
