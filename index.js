@@ -25,7 +25,7 @@ const getHeaders = () => {
 }
 
 
-const HOST_API_URL = `https://newsapiodisha24.herokuapp.com`;
+const HOST_API_URL = `http://localhost:5000`;
 const POST_API_URL = `${HOST_API_URL}/newsdekho/api/post`;
 const GOSSIP_API_URL = `${HOST_API_URL}/newsdekho/api/gossip`;
 const POLL_API_URL = `${HOST_API_URL}/newsdekho/api/poll`;
@@ -288,32 +288,36 @@ function ArrToStr(tags){
 }
 
 async function fetch_nearby_post() {
-  let location_str = localStorage.getItem('location');
-  let location_arr = prepareTags(location_str);
-  console.log(location_arr);
+  let nearby_post = [];
   let res = await fetch(POST_API_URL, { method: 'GET' })
   let posts_res = await res.json() ;
   let posts = posts_res.content;
-  let nearby_post = [];
   let other_post =[];
-  
-  for(let i =0; i<posts.length ;i++) {
-    let post = posts[i];
-    let flag = 1;
-    for(let j =0; j<location_arr.length; j ++) {
-      let str1 = location_arr[j].toLowerCase();
-      let str2 = post?.location.toLowerCase();
-      if(str1.includes(str2)) {
-        nearby_post.push(post);
-        flag=0;
-        break;
-      } 
+  let location_str = localStorage.getItem('location');
+  if(location_str) {
+    let location_arr = prepareTags(location_str);
+    console.log(location_arr);
+    for(let i =0; i<posts.length ;i++) {
+      let post = posts[i];
+      let flag = 1;
+      for(let j =0; j<location_arr.length; j ++) {
+        let str1 = location_arr[j].toLowerCase();
+        let str2 = post?.location.toLowerCase();
+        if(str1.includes(str2)) {
+          nearby_post.push(post);
+          flag=0;
+          break;
+        } 
+      }
+      if(flag) {
+        other_post.push(post);
+      }
     }
-    if(flag) {
-      other_post.push(post);
-    }
+    nearby_post.push(...other_post);
+  } else {
+    nearby_post.push(...posts);
   }
-  nearby_post.push(...other_post);
+  
   let html_content_text = `
   <div class="cont text-wrap">
         <h2>Nearby</h2>
@@ -335,11 +339,14 @@ async function fetch_nearby_post() {
 
 fetch_nearby_post()
 function getlocation() {
+  let location_str = localStorage.getItem('location');
+  if(location_str == null) {
   if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(successfulLookup, console.log);
     } else {
       console.log("Geolocation is not supported by this browser.");
     }
+  }
 }
 
 function successfulLookup(position) {
@@ -356,10 +363,10 @@ function successfulLookup(position) {
       location.push(location_obj.suburb);
       location.push(res.results?.[0].formatted);
       localStorage.setItem("location", location);
-      location.reload();
+      
       
     })
-
+    location.reload();
 }
 
 
