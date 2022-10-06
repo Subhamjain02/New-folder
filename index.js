@@ -17,6 +17,15 @@
 // })
 getlocation();
 
+function logincheck() {
+  let email = localStorage.getItem('email');
+  if(email) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
 const getHeaders = () => {
   return {
       "Content-Type": "application/json",
@@ -25,7 +34,7 @@ const getHeaders = () => {
 }
 
 
-const HOST_API_URL = `http://localhost:5000`;
+const HOST_API_URL = `http://odv24.com`;
 const POST_API_URL = `${HOST_API_URL}/newsdekho/api/post`;
 const GOSSIP_API_URL = `${HOST_API_URL}/newsdekho/api/gossip`;
 const POLL_API_URL = `${HOST_API_URL}/newsdekho/api/poll`;
@@ -207,6 +216,10 @@ function share_post (id, title, hashtags, media) {
 }
 
 async function like(postId) {
+  if(!logincheck()) {
+    $("#exampleModal").modal('show');
+    return;
+  }
   console.log(postId);
   let id_payload = {
     _id : postId
@@ -217,6 +230,10 @@ async function like(postId) {
   fetch_posts();
 }
 async function unlike(postId) {
+  if(!logincheck()) {
+    $("#exampleModal").modal('show');
+    return;
+  }
   console.log(postId);
   let id_payload = {
     _id : postId
@@ -228,6 +245,10 @@ async function unlike(postId) {
 }
 
 async function bookmark(postId) {
+  if(!logincheck()) {
+    $("#exampleModal").modal('show');
+    return;
+  }
   console.log(postId, "bookmark");
   let id_payload = {
     _id : postId
@@ -239,6 +260,10 @@ async function bookmark(postId) {
   fetch_posts();
 }
 async function unbookmark(postId) {
+  if(!logincheck()) {
+    $("#exampleModal").modal('show');
+    return;
+  }
   console.log(postId, "unbookmark");
   let id_payload = {
     _id : postId
@@ -427,6 +452,10 @@ fetch_gossips()
 
 
 async function like_gossip(gossipId) {
+  if(!logincheck()) {
+    $("#exampleModal").modal('show');
+    return;
+  }
   console.log(gossipId);
   let id_payload = {
     _id : gossipId
@@ -438,6 +467,10 @@ async function like_gossip(gossipId) {
 }
 
 async function unlike_gossip(gossipId) {
+  if(!logincheck()) {
+    $("#exampleModal").modal('show');
+    return;
+  }
   console.log(gossipId);
   let id_payload = {
     _id : gossipId
