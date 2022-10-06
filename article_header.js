@@ -362,6 +362,7 @@ async function fetch_tag() {
           
      <li> <a class="dropdown-item text-light" href="Cards_editor.html">Write Post</a></li>
      <li> <a class="dropdown-item text-light" href="gossips.html"> Write Gossip</a></li>
+     <li> <a class="dropdown-item text-light" href="billboard.html"> Add Billboard</a></li>
      <li> <a class="dropdown-item text-light" href="poll.html"> create a new Poll</a></li>
      <li> <a class="dropdown-item text-light" href="Brand_ed.html"> Add Brand</a></li>
      <li> <a class="dropdown-item text-light" href="./admin-pannel/PostAdmin.html">Post AdminPannel</a></li>
