@@ -413,7 +413,7 @@ a:hover {
 .billyimg{
     border: 2px solid #8b8b8b;
     box-shadow: inset 5px 5px 1px 5px #8b8b8b,inset -5px -5px 1px 5px #8b8b8b;
-    
+    object-fit: cover;
 }
 .billyimg-1{
     border: 2px solid #8b8b8b;
@@ -555,7 +555,7 @@ background-image: linear-gradient(90deg, #3d3d3d 0%, #ffffff 46%, #3d3d3d 100%);
   }
   .bar
   {
-      width:100%;
+      width:95%;
       display:block;        
       font-family:arial;
       font-size:12px; 
@@ -565,7 +565,7 @@ background-image: linear-gradient(90deg, #3d3d3d 0%, #ffffff 46%, #3d3d3d 100%);
       border-radius: 14px;
       background-color: #522888;
 background-image: linear-gradient(180deg, #522888 1%, #000000 100%);
-
+      margin-bottom: 2px;
    
   }
 
@@ -905,14 +905,14 @@ li.list-item::marker{
   'opsz' 20
 }
 
-.dropdown-menu {
+/* .dropdown-menu {
   max-height:420px;
   overflow:scroll; 
-  /* scrollbar-color: gold white !important; */
-}
-.dropdown-menu::-webkit-scrollbar{
+  
+} */
+/* .dropdown-menu::-webkit-scrollbar{
   display: none;
-}
+} */
 .fsi{
   font-size: 22px ;
 }

@@ -382,12 +382,12 @@ async function fetch_tag() {
             `
         }
         opt = opt +`
-        <li> <a class="dropdown-item text-light" href="bookmark.html"><i class="fa-regular fa-bookmark" style="margin-right: 5px; "></i> Bookmarks</a></li>
+        <li> <a class="dropdown-item text-light" href="bookmark.html"><i class="fa-regular fa-bookmark fw-bold" style="margin-right: 5px; "></i> Bookmarks</a></li>
        <li> <a class="dropdown-item text-light" onclick="logout()"> Logout</a></li>
         `
     }else {
         opt =`
-        <li><a class="dropdown-item text-light" href="#" class="text-white-50 fw-bold" data-mdb-target="#exampleModal" data-mdb-toggle="modal" data-mdb-dismiss="modal" > <span class="hp">  Login</span></a></li>
+        <li><a class="dropdown-item text-light mb-2" href="#" class="text-white-50 fw-bold" data-mdb-target="#exampleModal" data-mdb-toggle="modal" data-mdb-dismiss="modal" > <span class="hp">  Login</span></a></li>
         `
     }
     let html_content = `
