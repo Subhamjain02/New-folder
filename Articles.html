@@ -50,8 +50,26 @@
     />
 
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script>
+      document.onreadystatechange =  function() {
+                  if (document.readyState !== "complete") {
+                      document.querySelector(
+                        "body").style.visibility = "hidden";
+                      document.querySelector(
+                        "#loader").style.visibility = "visible";
+                  } else {
+                    setTimeout( function(){
+                      document.querySelector(
+                        "#loader").style.display = "none";
+                      document.querySelector(
+                        "body").style.visibility = "visible";
+                    },800 );
+                  }
+              };
+          </script>
   </head>
   <body class="bg-black">
+    <img src="img/logo1.png" height="70px" class="position-absolute top-50 start-50 translate-middle" alt="Loader" id="loader" loading="lazy"/></a>
     <div id="myheader">
 
     </div>
