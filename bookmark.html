@@ -42,6 +42,7 @@
       rel="stylesheet"
     />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
   </head>
   <body class="bg-black">
     <div id="myheader">
@@ -74,6 +75,14 @@
       src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.4.0/mdb.min.js"
     ></script>
     <script>
+      function logincheck() {
+        let email = localStorage.getItem('email');
+        if(email) {
+          return true;
+        } else {
+          return false;
+        }
+      }
         const getHeaders = () => {
             return {
                 "Content-Type": "application/json",
@@ -81,6 +90,10 @@
             }
         }
         async function like(postId) {
+          if(!logincheck()) {
+          $("#exampleModal").modal('show');
+          return;
+        }
             console.log(postId);
             let id_payload = {
                 _id : postId
@@ -92,6 +105,10 @@
         }
 
         async function unlike(postId) {
+          if(!logincheck()) {
+          $("#exampleModal").modal('show');
+          return;
+        }
   console.log(postId);
   let id_payload = {
     _id : postId
@@ -103,6 +120,10 @@
 }
 
 async function bookmark(postId) {
+  if(!logincheck()) {
+          $("#exampleModal").modal('show');
+          return;
+        }
   console.log(postId, "bookmark");
   let id_payload = {
     _id : postId
@@ -114,6 +135,10 @@ async function bookmark(postId) {
   fetch_bookmark();
 }
 async function unbookmark(postId) {
+  if(!logincheck()) {
+          $("#exampleModal").modal('show');
+          return;
+        }
   console.log(postId, "unbookmark");
   let id_payload = {
     _id : postId
@@ -137,7 +162,10 @@ async function unbookmark(postId) {
             console.log(postId);
             let res = await fetch(POST_API_URL+'/'+postId, { method: 'GET' });
             let posts_res = await res.json() ;
-            posts.push(posts_res.content) ;
+            if(posts_res) {
+              posts.push(posts_res?.content) ;
+            }
+            
         }
         console.log(posts);
          html_content = posts.map ( post =>{
@@ -221,7 +249,7 @@ async function unbookmark(postId) {
                 document.getElementById(id2).classList.toggle("act");
           }
       
-      const HOST_API_URL = `https://newsapiodisha24.herokuapp.com`;
+      const HOST_API_URL = `http://odv24.com`;
 const POST_API_URL = `${HOST_API_URL}/newsdekho/api/post`;
 const GOSSIP_API_URL = `${HOST_API_URL}/newsdekho/api/gossip`;
 const POLL_API_URL = `${HOST_API_URL}/newsdekho/api/poll`;

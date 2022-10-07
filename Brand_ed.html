@@ -179,10 +179,13 @@
         ></script>
     
        <script>
-        const HOST_API_URL = `https://newsapiodisha24.herokuapp.com`;
+        function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+        const HOST_API_URL = `http://odv24.com`;
     const BRAND_API_URL = `${HOST_API_URL}/newsdekho/api/brand`;
     const BILLBOARD_API_URL = `${HOST_API_URL}/newsdekho/api/billboard`;
-    const UPLOAD_API_URL = `${HOST_API_URL}/upload`;
+    const UPLOAD_API_URL = `${HOST_API_URL}/newsdekho/api/upload`;
     const STATIC_API_URL = `${HOST_API_URL}/public`;
     const AUTHOR_API_URL = `${HOST_API_URL}/newsdekho/api/author`;
     const ADMIN_API_URL = `${HOST_API_URL}/newsdekho/api/admin`;
@@ -198,14 +201,17 @@
           const data1 = new FormData();
           data1.append("image", cover_file);
           let res1 = await fetch(UPLOAD_API_URL, { method: 'POST' , body: data1});
+          
           let photo1 = await res1.json();
-          let cover = HOST_API_URL+'/public/images/'+photo1.content;
+         
+          let cover = HOST_API_URL+'/newsdekho/api/public/images/'+photo1.content;
           let icon_file = document.getElementById("customFile1").files[0];
           const data2 = new FormData();
           data2.append("image", icon_file);
           let res2 = await fetch(UPLOAD_API_URL, { method: 'POST' , body: data2});
+      
           let photo2 = await res2.json();
-          let icon = HOST_API_URL+'/public/images/'+photo2.content;
+          let icon = HOST_API_URL+'/newsdekho/api/public/images/'+photo2.content;
           let name = document.getElementById("form6Example").value;
           let category = document.getElementById("form6Example1").value;
           let location = document.getElementById("form6Example2").value;
@@ -222,7 +228,8 @@
           data3.append("image", profile1_file);
           let res3 = await fetch(UPLOAD_API_URL, { method: 'POST' , body: data3});
           let photo3 = await res3.json();
-          let profile1 = HOST_API_URL+'/public/images/'+photo3.content;
+          
+          let profile1 = HOST_API_URL+'/newsdekho/api/public/images/'+photo3.content;
           let owner2 = document.getElementById("form6Example11").value;
           let position2 = document.getElementById("form6Example12").value;
           let about2 = document.getElementById("form6Example13").value;
@@ -232,43 +239,50 @@
           data4.append("image", profile2_file);
           let res4 = await fetch(UPLOAD_API_URL, { method: 'POST' , body: data4});
           let photo4 = await res4.json();
-          let profile2 = HOST_API_URL+'/public/images/'+photo4.content;
+          
+          let profile2 = HOST_API_URL+'/newsdekho/api/public/images/'+photo4.content;
           let img1_file = document.getElementById("customFile4").files[0];
+         
           const data5 = new FormData();
           data5.append("image", img1_file);
           let res5 = await fetch(UPLOAD_API_URL, { method: 'POST' , body: data5});
           let photo5 = await res5.json();
-          let img1 = HOST_API_URL+'/public/images/'+photo5.content;
+          let img1 = HOST_API_URL+'/newsdekho/api/public/images/'+photo5.content;
           let img2_file = document.getElementById("customFile5").files[0];
+         
           const data6 = new FormData();
           data6.append("image", img2_file);
           let res6 = await fetch(UPLOAD_API_URL, { method: 'POST' , body: data6});
           let photo6 = await res6.json();
-          let img2 = HOST_API_URL+'/public/images/'+photo6.content;
+          let img2 = HOST_API_URL+'/newsdekho/api/public/images/'+photo6.content;
           let img3_file = document.getElementById("customFile6").files[0];
+          
           const data7 = new FormData();
           data7.append("image", img3_file);
           let res7 = await fetch(UPLOAD_API_URL, { method: 'POST' , body: data7});
           let photo7 = await res7.json();
-          let img3 = HOST_API_URL+'/public/images/'+photo7.content;
+          let img3 = HOST_API_URL+'/newsdekho/api/public/images/'+photo7.content;
           let img4_file = document.getElementById("customFile7").files[0];
+          
           const data8 = new FormData();
           data8.append("image", img4_file);
           let res8 = await fetch(UPLOAD_API_URL, { method: 'POST' , body: data8});
           let photo8 = await res8.json();
-          let img4 = HOST_API_URL+'/public/images/'+photo8.content;
+          let img4 = HOST_API_URL+'/newsdekho/api/public/images/'+photo8.content;
           let img5_file = document.getElementById("customFile8").files[0];
+          
           const data9 = new FormData();
           data9.append("image", img5_file);
           let res9 = await fetch(UPLOAD_API_URL, { method: 'POST' , body: data9});
           let photo9 = await res9.json();
-          let img5 = HOST_API_URL+'/public/images/'+photo9.content;
+          let img5 = HOST_API_URL+'/newsdekho/api/public/images/'+photo9.content;
           let img6_file = document.getElementById("customFile9").files[0];
+          
           const data10 = new FormData();
           data10.append("image", img6_file);
           let res10 = await fetch(UPLOAD_API_URL, { method: 'POST' , body: data10});
           let photo10 = await res10.json();
-          let img6 = HOST_API_URL+'/public/images/'+photo10.content;
+          let img6 = HOST_API_URL+'/newsdekho/api/public/images/'+photo10.content;
 
           let brand = {
           cover: cover,
@@ -283,7 +297,7 @@
           owner1: owner1,
           position1: position1,
           about1: about1,
-          phone1: phone,
+          phone1: phone1,
           profile1: profile1,
           owner2: owner2,
           position2: position2,

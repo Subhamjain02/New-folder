@@ -272,10 +272,10 @@
       src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.4.0/mdb.min.js"
     ></script>
    <script>
-    const HOST_API_URL = `https://newsapiodisha24.herokuapp.com`;
+    const HOST_API_URL = `http://odv24.com`;
     const POST_API_URL = `${HOST_API_URL}/newsdekho/api/post`;
     const BILLBOARD_API_URL = `${HOST_API_URL}/newsdekho/api/billboard`;
-    const UPLOAD_API_URL = `${HOST_API_URL}/upload`;
+    const UPLOAD_API_URL = `${HOST_API_URL}/newsdekho/api/upload`;
     const STATIC_API_URL = `${HOST_API_URL}/public`;
     const AUTHOR_API_URL = `${HOST_API_URL}/newsdekho/api/author`;
     const ADMIN_API_URL = `${HOST_API_URL}/newsdekho/api/admin`;
@@ -305,7 +305,7 @@
         data.append("image", file);
         let res = await fetch(UPLOAD_API_URL, { method: 'POST' , body: data});
         let photo = await res.json();
-        let url = HOST_API_URL+'/public/images/'+photo.content;
+        let url = HOST_API_URL+'/newsdekho/api/public/images/'+photo.content;
         let tagArr = prepareTags(hashtags);
         let post = {
             title: title,

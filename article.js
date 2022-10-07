@@ -1,4 +1,4 @@
-const HOST_API_URL = `https://newsapiodisha24.herokuapp.com`;
+const HOST_API_URL = `http://odv24.com`;
 const POST_API_URL = `${HOST_API_URL}/newsdekho/api/post`;
 const GOSSIP_API_URL = `${HOST_API_URL}/newsdekho/api/gossip`;
 const POLL_API_URL = `${HOST_API_URL}/newsdekho/api/poll`;
@@ -15,7 +15,21 @@ const ADMIN_API_URL = `${HOST_API_URL}/newsdekho/api/admin`;
             "x-access-token": localStorage.getItem('jwt')
         }
       }
+
+      function logincheck() {
+        let email = localStorage.getItem('email');
+        if(email) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+
       async function like(postId) {
+        if(!logincheck()) {
+          $("#exampleModal").modal('show');
+          return;
+        }
         console.log(postId);
         let id_payload = {
           _id : postId
@@ -250,6 +264,10 @@ for(let i=0 ;i<post?.body.length;i+=800 ) {
       });
 
       async function unlike(postId) {
+        if(!logincheck()) {
+          $("#exampleModal").modal('show');
+          return;
+        }
         console.log(postId, "unlike");
         let id_payload = {
           _id : postId
@@ -263,6 +281,10 @@ for(let i=0 ;i<post?.body.length;i+=800 ) {
       }
       
       async function bookmark(postId) {
+        if(!logincheck()) {
+          $("#exampleModal").modal('show');
+          return;
+        }
         console.log(postId, "bookmark");
         let id_payload = {
           _id : postId
@@ -275,6 +297,10 @@ for(let i=0 ;i<post?.body.length;i+=800 ) {
         fetch_post(postId);
       }
       async function unbookmark(postId) {
+        if(!logincheck()) {
+          $("#exampleModal").modal('show');
+          return;
+        }
         console.log(postId, "unbookmark");
         let id_payload = {
           _id : postId
