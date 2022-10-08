@@ -308,7 +308,6 @@ async function fetch_tag() {
       let res = await fetch(AUTHOR_API_URL+'/signup', { method: 'POST' ,headers : getHeaders(), body: JSON.stringify(author_payload)})
       let author = await res.json() ;
       console.log(author);
-      alert(author.message);
       if(author.status == 'success') {
         // add code to close modal
       }
@@ -332,7 +331,6 @@ async function fetch_tag() {
       let res = await fetch(AUTHOR_API_URL+'/signin', { method: 'POST' ,headers : getHeaders(), body: JSON.stringify(author_payload)})
       let author = await res.json() ;
       console.log(author);
-      alert(author.message);
       if(author.status == 'success') {
         // add code to close modal
         localStorage.setItem('name', author.content.author.name);
