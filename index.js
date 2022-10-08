@@ -64,7 +64,7 @@ async function  fetch_posts () {
         <img src="`+ post?.photo +`" class="card-img-top cito" alt="`+ post?.caption +`"/>
         <div class="card-body cb bg-black">
           <h5 class="card-title lh-sm ctitle">`+ post?.title +`</h5></a>
-          <a href="Articles.html?id=`+post?._id+`" class="text-light"><p class="card-text  lh-sm ctext">`+ post?.body.slice(0,150) +`</p>
+          <a href="Articles.html?id=`+post?._id+`" class="text-light"><p class="card-text  lh-sm ctext">`+ post?.body +`</p>
         </a>
          <span class="d-flex  ">
           <p class="text-light www ">`+ post?.likes?.length +` likes</p>
@@ -498,7 +498,7 @@ async function fetch_poll() {
   let html_content =  `
   <div class="col d-flex justify-content-center">
   <div class="mar">
-  <div class="d-flex justify-content-between align-items-center polls pe-1">
+  <div class="d-flex justify-content-between align-items-center polls">
     <div class="polls1">POLLS</div>
     <img src="img/logo1.png" height="25px">
   </div>

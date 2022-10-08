@@ -242,7 +242,7 @@ body::-webkit-scrollbar{
 }
 
 .cito{
-  height: 200px;
+  height: 230px;
 }
 
 
@@ -478,9 +478,9 @@ a:hover {
 }
 .ctext{
   font-size: small;
-  height: 85px;
-  height: 85px;
-  
+  height: 83px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .hr
@@ -906,7 +906,7 @@ li.list-item::marker{
 }
 
 .dropdown-menu {
-  max-height:459.200px;
+  max-height:420px;
   overflow:scroll; 
   
 }
@@ -916,8 +916,7 @@ li.list-item::marker{
 .fsi{
   font-size: 22px ;
 }
-@media (min-width: 1400px) {
-  .mar{
-    margin-left: 43px;
-  }
+
+.mar{
+  width: 380px;
 }
