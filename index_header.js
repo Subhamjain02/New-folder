@@ -1,7 +1,7 @@
 //header js
 async function fetch_navbar() {
     let html_content = `
-    <nav class="navbar navbar-expand-lg navbar-dark bg-black sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-black fixed-top">
     <div class="container">
       <a class="navbar-brand ms-1 " href="index.html">
         <img src="img/logo1.png" height="30px" alt="MDB Logo" loading="lazy"/></a>
