@@ -144,13 +144,13 @@
       "x-access-token": localStorage.getItem('jwt')
   }
 }
-  const HOST_API_URL = `http://odv24.com`;
+  const HOST_API_URL = `http://localhost:5000`;
 const POST_API_URL = `${HOST_API_URL}/newsdekho/api/post`;
 const BILLBOARD_API_URL = `${HOST_API_URL}/newsdekho/api/billboard`;
 const ADMIN_API_URL = `${HOST_API_URL}/newsdekho/api/admin`;
   async function fetch_post() {
 
-    let res = await fetch(BILLBOARD_API_URL, { method: 'GET' })
+    let res = await fetch(BILLBOARD_API_URL+"/raw", { method: 'GET' })
   let billboards = await res.json() ;
   let ind =1;
   let html_content = billboards?.content.map ((billboard, index)  =>{

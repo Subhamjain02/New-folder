@@ -34,7 +34,7 @@ const getHeaders = () => {
 }
 
 
-const HOST_API_URL = `http://odv24.com`;
+const HOST_API_URL = `http://localhost:5000`;
 const POST_API_URL = `${HOST_API_URL}/newsdekho/api/post`;
 const GOSSIP_API_URL = `${HOST_API_URL}/newsdekho/api/gossip`;
 const POLL_API_URL = `${HOST_API_URL}/newsdekho/api/poll`;
@@ -55,20 +55,24 @@ async function  fetch_posts () {
     let author_id = localStorage.getItem('_id');
     let like_content = (post?.likes.includes(author_id)) ? `<i class="fa-regular fa-heart me-3 fw-bold" onclick="unlike('`+post?._id+`')"></i> `: `<i class="fa-regular fa-heart me-3" onclick="like('`+post?._id+`')"></i>`
     let bookmark_content = (bookmarks.includes(post?._id)) ? `<i class="fa-regular fa-bookmark fw-bold" onclick="unbookmark('`+post?._id+`')"></i> `: `<i class="fa-regular fa-bookmark text-light" onclick="bookmark('`+post?._id+`')"></i>`
+
+    if(post?.mode == 'post'){
     return (
       `
       <div class="col d-flex justify-content-center">
       <a href="Articles.html?id=`+post?._id+`" class="text-light">
       <div class="card bg-black posts">
         <span class="d-flex justify-content-start text-uppercase"> <h6>`+ post?.category +`</h6></span>
-        <img src="`+ post?.photo +`" class="card-img-top cito" alt="`+ post?.caption +`"/>
+        <img src="`+ post?.photo[0] +`" class="card-img-top cito" alt="`+ post?.caption +`"/>
         <div class="card-body cb bg-black">
           <h5 class="card-title lh-sm ctitle">`+ post?.title +`</h5></a>
-          <a href="Articles.html?id=`+post?._id+`" class="text-light"><p class="card-text  lh-sm ctext">`+ post?.body.slice(0,150) +`</p>
-        </a>
+          <a href="Articles.html?id=`+post?._id+`" class="text-light">
+             <p class="card-text  lh-sm ctext">`+ post?.body.slice(0,150) +`</p>
+          </a>
          <span class="d-flex  ">
-          <p class="text-light www ">`+ post?.likes?.length +` likes</p>
-           <p class="www">`+ post?.views +` views</p></span>
+           <p class="text-light www ">`+ post?.likes?.length +` likes</p>
+           <p class="www">`+ post?.views +` views</p>
+          </span>
            <div class="btns bg-black ">
            <div class="left d-flex align-items-center ">`
              +like_content+
@@ -111,49 +115,253 @@ async function  fetch_posts () {
     </div>
     </div>  
     <div class="hr mt-4 mb-4"></div>
-    
-    
         `
     )
+    }
+
+    if(post?.mode == 'poll') {
+      let poll = post;
+  console.log(poll);
+  let ans1 = poll?.ans1+1;
+  let ans2 = poll?.ans2+1;
+  let ans3 = poll?.ans3+1;
+  let ans4 = poll?.ans4+1;
+  let total = ans1+ans2+ans3+ans4;
+  let pr1=Math.round(ans1/total*100);
+  let pr2=Math.round(ans2/total*100);
+  let pr3=Math.round(ans3/total*100);
+  let pr4=Math.round(ans4/total*100);
+  return(  `
+  <div class="col">
+  <div class="mar">
+  <div class="d-flex justify-content-between align-items-center polls ">
+    <div class="polls1">POLLS</div>
+    <img src="img/logo1.png" height="25px">
+  </div>
+  <div class="text-wrap mb-4">
+    <h4>`+poll.qsn+`</h4>
+   </div>
+<div class="ctnr d-flex justify-content-evenly">
+  <div class="per " onclick="vote('1', '`+poll?.ans1+`', '`+poll?._id+`')">
+  <div class="loadbar ">
+  <div class="bar " style='height:`+pr1+`%;'></div>
+  <h5>`+poll.op1+`</h5>
+</div>
+<p class="text-center percent">`+pr1+`%</p>
+</div>
+  <div class="per " onclick="vote('2', '`+poll?.ans2+`', '`+poll?._id+`')">
+  <div class="loadbar ">
+  <div class="bar " style='height:`+pr2+`%;'></div>
+  <h5>`+poll.op2+`</h5>
+</div>
+<p class="text-center percent">`+pr2+`%</p>
+</div>
+<div class="per " onclick="vote('3', '`+poll?.ans3+`', '`+poll?._id+`')">
+  <div class="loadbar ">
+  <div class="bar " style='height:`+pr3+`%;'></div>
+  <h5>`+poll.op3+`</h5>
+</div>
+<p class="text-center percent">`+pr3+`%</p>
+</div>
+ <div class="per " onclick="vote('4', '`+poll?.ans4+`', '`+poll?._id+`')">
+  <div class="loadbar ">
+  <div class="bar " style='height:`+pr4+`%;'></div>
+  <h5>`+poll.op4+`</h5>
+</div>
+<p class="text-center percent">`+pr4+`%</p>
+</div>
+</div>
+<span class="d-flex  ">
+           <p class="text-light www ">`+ poll?.likes?.length +` likes</p>
+           <p class="www">`+ poll?.views +` views</p>
+          </span>
+           <div class="btns bg-black ">
+           <div class="left d-flex align-items-center ">`
+             +like_content+
+            
+             ` <div id="box`+poll?._id+`" onclick="share_toogle('`+poll?._id+`')" class="box">
+
+             <button id="btn1`+poll?._id+`" class="btn1">
+               <i class="fa-regular fa-paper-plane"></i>
+             </button>
+           
+             <ul id="list">
+                 <li class="list-item ">
+                   <a class="list-item-link" onclick="copy_link('`+poll?._id+`')">
+                     <span class="fas fa-link fsi "></span>
+                   </a>
+                 </li>
+                 <li class="list-item">
+                   <a class="list-item-link" onclick="share_post('`+poll?._id+`', '`+ poll?.title +`', '`+ poll?.hashtags +`', 'whatsApp')">
+                     <span class="fab fa-whatsapp fsi"></span>
+                   </a>
+                 </li>
+                 <li class="list-item">
+                   <a class="list-item-link" onclick="share_post('`+poll?._id+`', '`+ poll?.title +`', '`+ poll?.hashtags +`', 'facebook')">
+                     <span class="fab fa-facebook-f fsi"></span>
+                   </a>
+                 </li>
+                 <li class="list-item">
+                   <a class="list-item-link" onclick="share_post('`+poll?._id+`', '`+ poll?.title +`', '`+ poll?.hashtags +`', 'twitter')">
+                     <span class="fab fa-twitter fsi"></span>
+                   </a>
+                 </li>
+               </ul>
+               </div>
+             </div>
+           <div class="right">`+
+           bookmark_content
+         +`</div>
+       </div>
+</div>
+</div>
+
+    ` )
+    }
+
+    if(post?.mode == 'billboard' && post?.size == 'small') {
+      return(`
+      <div class="col d-flex justify-content-center">
+      <div class="card  billy-1 mb-3  ">
+        <img src="`+ post?.pic +`" class="card-img-top billyimg-1" alt="Fissure in Sandstone"/>
+        <div class="card-body bb ">
+          <h5 class="card-title lh-sm bill-title mb-0">BILLBOARD</h5>
+          <p class="bn fw-light lh-sm m-0"><a href="">`+ post?.title +`</a></p>
+    </div>
+    <span class="d-flex  ">
+           <p class="text-light www ">`+ post?.likes?.length +` likes</p>
+           <p class="www">`+ post?.views +` views</p>
+          </span>
+           <div class="btns bg-black ">
+           <div class="left d-flex align-items-center ">`
+             +like_content+
+            
+             ` <div id="box`+post?._id+`" onclick="share_toogle('`+post?._id+`')" class="box">
+
+             <button id="btn1`+post?._id+`" class="btn1">
+               <i class="fa-regular fa-paper-plane"></i>
+             </button>
+           
+             <ul id="list">
+                 <li class="list-item ">
+                   <a class="list-item-link" onclick="copy_link('`+post?._id+`')">
+                     <span class="fas fa-link fsi "></span>
+                   </a>
+                 </li>
+                 <li class="list-item">
+                   <a class="list-item-link" onclick="share_post('`+post?._id+`', '`+ post?.title +`', '`+ post?.hashtags +`', 'whatsApp')">
+                     <span class="fab fa-whatsapp fsi"></span>
+                   </a>
+                 </li>
+                 <li class="list-item">
+                   <a class="list-item-link" onclick="share_post('`+post?._id+`', '`+ post?.title +`', '`+ post?.hashtags +`', 'facebook')">
+                     <span class="fab fa-facebook-f fsi"></span>
+                   </a>
+                 </li>
+                 <li class="list-item">
+                   <a class="list-item-link" onclick="share_post('`+post?._id+`', '`+ post?.title +`', '`+ post?.hashtags +`', 'twitter')">
+                     <span class="fab fa-twitter fsi"></span>
+                   </a>
+                 </li>
+               </ul>
+               </div>
+             </div>
+           <div class="right">`+
+           bookmark_content
+         +`</div>
+       </div>
+    </div>
+    </div>
+    <div class="hr mb-2"></div>
+      `)
+    }
+    if(post?.mode == 'billboard' && post?.size == 'big') {
+      return(`
+      <div class="col d-flex justify-content-center">
+    <div class="card  billy mb-3  ">
+      <img src="`+ post?.pic +`" class="card-img-top billyimg" alt="Fissure in Sandstone"/>
+      <div class="card-body bb ">
+        <h5 class="card-title lh-sm bill-title mb-0">BILLBOARD</h5>
+        <p class="bn fw-light lh-sm m-0"><a href="">`+ post?.title +`</a></p>
+  </div>
+  </div>
+  </div>
+  <div class="hr mb-2"></div>
+      `)
+    }
+
+    if(post?.mode == 'gossip') {
+      return (
+        `
+        <div class="hr mb-2"></div>
+    
+      <div class="col d-flex justify-content-center">
+    
+        <div class="card posts bg-black  ">
+          <span class="d-flex justify-content-between "> <div class="polls1 gossips" >GOSSIPS</div></span>
+          <div class="card-body cb1 bg-black">
+           <div class="gossipsbody">
+           <div class="gossipsimg">
+           <img src="img/logo1.png"" height="20px" >
+           <span >@odishavoice24</span>
+         </div>
+            <p class="card-text  lh-sm mb-4 ctext">`+ post?.body +`</p>
+            <p class="web">www.odishavoice24.com</p>
+           </div>
+           <span class="d-flex  ">
+           <p class="text-light www ">`+ post?.likes?.length +` likes</p>
+           <p class="www">`+ post?.views +` views</p>
+          </span>
+           <div class="btns bg-black ">
+           <div class="left d-flex align-items-center ">`
+             +like_content+
+            
+             ` <div id="box`+post?._id+`" onclick="share_toogle('`+post?._id+`')" class="box">
+
+             <button id="btn1`+post?._id+`" class="btn1">
+               <i class="fa-regular fa-paper-plane"></i>
+             </button>
+           
+             <ul id="list">
+                 <li class="list-item ">
+                   <a class="list-item-link" onclick="copy_link('`+post?._id+`')">
+                     <span class="fas fa-link fsi "></span>
+                   </a>
+                 </li>
+                 <li class="list-item">
+                   <a class="list-item-link" onclick="share_post('`+post?._id+`', '`+ post?.title +`', '`+ post?.hashtags +`', 'whatsApp')">
+                     <span class="fab fa-whatsapp fsi"></span>
+                   </a>
+                 </li>
+                 <li class="list-item">
+                   <a class="list-item-link" onclick="share_post('`+post?._id+`', '`+ post?.title +`', '`+ post?.hashtags +`', 'facebook')">
+                     <span class="fab fa-facebook-f fsi"></span>
+                   </a>
+                 </li>
+                 <li class="list-item">
+                   <a class="list-item-link" onclick="share_post('`+post?._id+`', '`+ post?.title +`', '`+ post?.hashtags +`', 'twitter')">
+                     <span class="fab fa-twitter fsi"></span>
+                   </a>
+                 </li>
+               </ul>
+               </div>
+             </div>
+           <div class="right">`+
+           bookmark_content
+         +`</div>
+       </div>
+     </div>
+     </div>
+    </div>
+        `
+      )
+    }
   } 
 
     ).join('');
 
 
-      let res2 = await fetch(SM_BD_API_URL, { method: 'GET' })
-      let billboards = await res2.json() ;
-      let html_content2 = billboards?.content.map ( billboard =>  `
-      
-      <div class="col d-flex justify-content-center">
-        <div class="card  billy-1 mb-3  ">
-          <img src="`+ billboard?.photo +`" class="card-img-top billyimg-1" alt="Fissure in Sandstone"/>
-          <div class="card-body bb ">
-            <h5 class="card-title lh-sm bill-title mb-0">BILLBOARD</h5>
-            <p class="bn fw-light lh-sm m-0"><a href="">`+ billboard?.title +`</a></p>
-      </div>
-      </div>
-      </div>
-      <div class="hr mb-2"></div>
-        `
-        ).join('') ;
-
-        let res3 = await fetch(BG_BD_API_URL, { method: 'GET' })
-  let billboards1 = await res3.json() ;
-  let html_content3 = billboards1?.content.map ( billboard =>  `
-  
-  <div class="col d-flex justify-content-center">
-    <div class="card  billy mb-3  ">
-      <img src="`+ billboard?.photo +`" class="card-img-top billyimg" alt="Fissure in Sandstone"/>
-      <div class="card-body bb ">
-        <h5 class="card-title lh-sm bill-title mb-0">BILLBOARD</h5>
-        <p class="bn fw-light lh-sm m-0"><a href="">`+ billboard?.title +`</a></p>
-  </div>
-  </div>
-  </div>
-  <div class="hr mb-2"></div>
-    `
-    ).join('') ;
-      html_content = html_content + html_content3  + html_content2 ;
+     
 
     document.getElementById('articles').innerHTML = html_content;
     
@@ -286,7 +494,7 @@ async function fetch_trending_post() {
  `
   <a href="Articles.html?id=`+post?._id+`" class="text-light">
   <div class="card rounded-9 bg-transparent text-white border border-3">
-  <img src="`+ post?.photo +`" class="card-img ci rounded-8" alt="`+ post?.caption +`"/>
+  <img src="`+ post?.photo[0] +`" class="card-img ci rounded-8" alt="`+ post?.caption +`"/>
   <h5 class="card-title cti">#`+i+`</h5>
   <div class="card-img-overlay cio d-flex align-items-end justify-content-center">
     <p class="card-text lh-sm para text-uppercase "> 
@@ -316,7 +524,7 @@ function ArrToStr(tags){
 
 async function fetch_nearby_post() {
   let nearby_post = [];
-  let res = await fetch(POST_API_URL, { method: 'GET' })
+  let res = await fetch(POST_API_URL+"/onlypost", { method: 'GET' })
   let posts_res = await res.json() ;
   let posts = posts_res.content;
   let other_post =[];
@@ -354,7 +562,7 @@ async function fetch_nearby_post() {
   let html_content = nearby_post.map ( post => `
   <a href="Articles.html?id=`+post?._id+`" class="text-light">
   <div class="card child bg-transparent ">
-  <img src="`+ post?.photo +`" class="card-img-top cit rounded-9 border-3 " alt="`+ post?.caption +`"/>
+  <img src="`+ post?.photo[0] +`" class="card-img-top cit rounded-9 border-3 " alt="`+ post?.caption +`"/>
   <p class="card-text lh-sm para1 ">`+ post?.title +`</p>
 </div>
 </a>
@@ -551,7 +759,7 @@ async function vote(opn, ans, pollId) {
   let res = await fetch(POLL_API_URL+'/vote/'+pollId, { method: 'PUT' ,headers : getHeaders(), body: JSON.stringify(poll_payload)})
   let poll = await res.json() ;
   console.log(poll);
-  fetch_poll();
+  fetch_posts();
 }
 
 

@@ -117,7 +117,7 @@
       src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.4.0/mdb.min.js"
     ></script>
 <script>
-  const HOST_API_URL = `http://odv24.com`;
+  const HOST_API_URL = `http://localhost:5000`;
   const POLL_API_URL = `${HOST_API_URL}/newsdekho/api/poll`;
   const getHeaders = () => {
             return {
@@ -136,7 +136,8 @@
             op1: op1,
             op2: op2,
             op3: op3,
-            op4: op4
+            op4: op4,
+            status: 'approved'
         }
     let res = await fetch(POLL_API_URL, { method: 'POST' , headers : getHeaders(), body: JSON.stringify(poll)});
     let poll_res = await res.json();

@@ -144,13 +144,13 @@
       "x-access-token": localStorage.getItem('jwt')
   }
 }
-  const HOST_API_URL = `http://odv24.com`;
+  const HOST_API_URL = `http://localhost:5000`;
 const POST_API_URL = `${HOST_API_URL}/newsdekho/api/post`;
 const BRAND_API_URL = `${HOST_API_URL}/newsdekho/api/brand`;
 const ADMIN_API_URL = `${HOST_API_URL}/newsdekho/api/admin`;
   async function fetch_post() {
 
-    let res = await fetch(BRAND_API_URL, { method: 'GET' })
+    let res = await fetch(BRAND_API_URL+"/raw", { method: 'GET' })
   let brands = await res.json() ;
   let ind =1;
   let html_content = brands?.content.map ((brand, index)  =>{
