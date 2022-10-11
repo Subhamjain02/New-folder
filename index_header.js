@@ -1,7 +1,7 @@
 //header js
 async function fetch_navbar() {
     let html_content = `
-    <nav class="navbar navbar-expand-lg navbar-dark bg-black sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-black fixed-top">
     <div class="container">
       <a class="navbar-brand ms-1 " href="index.html">
         <img src="img/logo1.png" height="30px" alt="MDB Logo" loading="lazy"/></a>
@@ -308,7 +308,7 @@ async function fetch_tag() {
       let res = await fetch(AUTHOR_API_URL+'/signup', { method: 'POST' ,headers : getHeaders(), body: JSON.stringify(author_payload)})
       let author = await res.json() ;
       console.log(author);
-      alert(author.message);
+
       if(author.status == 'success') {
         location.reload();
       }
@@ -332,7 +332,6 @@ async function fetch_tag() {
       let res = await fetch(AUTHOR_API_URL+'/signin', { method: 'POST' ,headers : getHeaders(), body: JSON.stringify(author_payload)})
       let author = await res.json() ;
       console.log(author);
-      alert(author.message);
       if(author.status == 'success') {
         // add code to close modal
         localStorage.setItem('name', author.content.author.name);
@@ -373,12 +372,12 @@ async function fetch_tag() {
             `
         }
         opt = opt +`
-        <li> <a class="dropdown-item text-light" href="bookmark.html"><i class="fa-regular fa-bookmark" style="margin-right: 5px; "></i> Bookmarks</a></li>
+        <li> <a class="dropdown-item text-light" href="bookmark.html"><i class="fa-regular fa-bookmark fw-bold" style="margin-right: 5px; "></i> Bookmarks</a></li>
        <li> <a class="dropdown-item text-light" onclick="logout()"> Logout</a></li>
         `
     }else {
         opt =`
-        <li><a class="dropdown-item text-light" href="#" class="text-white-50 fw-bold" data-mdb-target="#exampleModal" data-mdb-toggle="modal" data-mdb-dismiss="modal" > <span class="hp">  Login</span></a></li>
+        <li><a class="dropdown-item text-light mb-2" href="#" class="text-white-50 fw-bold" data-mdb-target="#exampleModal" data-mdb-toggle="modal" data-mdb-dismiss="modal" > <span class="hp">  Login</span></a></li>
         `
     }
     let html_content = `
@@ -399,14 +398,38 @@ async function fetch_tag() {
     <a class="dropdown-item text-light" href="type.html?type=Sports"><i class="fa fa-thin fa-volleyball  " style="margin-right: 10px ; padding-left: 1px"></i>Sports</a>
   </li>
   <div class="ha mb-2 mt-2"></div>
+  <li>
+     <a class="dropdown-item text-light" href="type.html?type=Newsroom"><i class="fa-solid fa-earth me-1"></i> Newsroom</a>
+  </li>
+  <li>
+   <a class="dropdown-item text-light" href="type.html?type=Talkshow"><i class="fa fa-thin fa-microphone me-2 " style="padding-left: 1px;"></i> Talkshow</a>
+ </li>
+  <div class="ha mb-2 mt-2"></div>
   
     <a class="dropdown-item text-light" href="index.html#poll"><i class="fas fa-regular fa-square-poll-vertical me-1 " style="margin-left: 2px;"></i>  Polls</a>
   </li>
   <li>
     <a class="dropdown-item text-light" href="index.html#gossip"><i class="fa-solid fa-comment me-1 " style="margin-left: 2px;"></i> Gossips</a>
   </li>
-  
   <div class="ha mb-2 mt-2"></div>
+  <li>
+  <a class="dropdown-item text-light" href="">V24 SPECIALS</a>
+</li>
+<li>
+  <div class="ha mb-2 mt-2"></div>
+<li>
+  <a class="dropdown-item text-light" href="type.html?type=Explains"><i class="fa fa-solid fa-circle-info me-1"></i>  Explains</a>
+</li>
+<li>
+  <a class="dropdown-item text-light" href="type.html?type=Films"><i class="fa fa-thin fa-film me-2"></i> Films</a>
+</li>
+<li> 
+  <a class="dropdown-item text-light" href="type.html?type=Explore"><i class="fa-solid fa-wand-magic-sparkles me-1"></i>  Explore</a>
+</li>
+<li>
+  <a class="dropdown-item text-light" href="type.html?type=Persuit"><i class="fa-solid fa-person-running me-2"></i>  Persuit</a>
+</li>
+<div class="ha mb-2 mt-2"></div>
     <a class="dropdown-item text-light" href="Categories.html">  DATABASE</a>
   </li>
   <div class="ha mb-2 mt-2"></div>

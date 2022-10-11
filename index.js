@@ -616,7 +616,7 @@ async function  fetch_gossips () {
     let like_content = (gossip?.likes.includes(author_id)) ? `<i class="fa-regular fa-heart me-3 fw-bold" onclick="unlike_gossip('`+gossip?._id+`')"></i> `: `<i class="fa-regular fa-heart me-3" onclick="like_gossip('`+gossip?._id+`')"></i>`
     return (
       `
-      <div class="hr mb-2"></div>
+      <div class="hr"></div>
     
       <div class="col d-flex justify-content-center">
     
@@ -704,9 +704,9 @@ async function fetch_poll() {
   let pr3=Math.round(ans3/total*100);
   let pr4=Math.round(ans4/total*100);
   let html_content =  `
-  <div class="col">
+  <div class="col d-flex justify-content-center">
   <div class="mar">
-  <div class="d-flex justify-content-between align-items-center polls ">
+  <div class="d-flex justify-content-between align-items-center polls">
     <div class="polls1">POLLS</div>
     <img src="img/logo1.png" height="25px">
   </div>
