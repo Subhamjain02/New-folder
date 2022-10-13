@@ -48,16 +48,16 @@
 
     </div>
     
-    
+
+
 
     <div class="container mt-4 ">
-      <div class="row row-cols-1 row-cols-sm-3 g-4" id="tag">
+      <div class="row row-cols-1 row-cols-sm-3 g-4" id="category">
      </div>
      </div>
 
 
-
-
+ 
 
 
 
@@ -94,9 +94,8 @@
             let res = await fetch(POST_API_URL+'/like', { method: 'PUT' ,headers : getHeaders(), body: JSON.stringify(id_payload)})
             let posts = await res.json() ;
             console.log(posts);
-            fetch_tagged_post();
+            fetch_category();
         }
-
         async function unlike(postId) {
           if(!logincheck()) {
           $("#exampleModal").modal('show');
@@ -109,7 +108,7 @@
   let res = await fetch(POST_API_URL+'/unlike', { method: 'PUT' ,headers : getHeaders(), body: JSON.stringify(id_payload)})
   let posts = await res.json() ;
   console.log(posts);
-  fetch_tagged_post();
+  fetch_category();
 }
 
 async function bookmark(postId) {
@@ -125,7 +124,7 @@ async function bookmark(postId) {
   let posts = await res.json() ;
   console.log(posts);
   localStorage.setItem("bookmarks",posts.content.bookmarks);
-  fetch_tagged_post();
+  fetch_category();
 }
 async function unbookmark(postId) {
   if(!logincheck()) {
@@ -140,25 +139,24 @@ async function unbookmark(postId) {
   let posts = await res.json() ;
   localStorage.setItem("bookmarks",posts.content.bookmarks);
   console.log(posts);
-  fetch_tagged_post();
+  fetch_category();
 }
-       async function fetch_tagged_post() {
-        console.log("fetchtag called")
-        var tag = location.search.split('tag=')[1];
-        console.log(tag);
-        console.log(POST_API_URL+'/tag/'+tag);
-        let res = await fetch(POST_API_URL+'/tag/'+tag, { method: 'GET' })
+
+       async function fetch_category() {
+        var postId = location.search.split('id=')[1];
+        let res = await fetch(POST_API_URL+'/'+postId, { method: 'GET' })
         let posts = await res.json() ;
         console.log(posts);
+        let post = posts.content;
         let bookmarks_arr = localStorage.getItem('bookmarks');
   let bookmarks = (bookmarks_arr) ? bookmarks_arr : [];
-  html_content = posts?.content.map ( post =>{
+  let html_content = ``;
     let author_id = localStorage.getItem('_id');
     let like_content = (post?.likes.includes(author_id)) ? `<i class="fa-regular fa-heart me-3 fw-bold" onclick="unlike('`+post?._id+`')"></i> `: `<i class="fa-regular fa-heart me-3" onclick="like('`+post?._id+`')"></i>`
     let bookmark_content = (bookmarks.includes(post?._id)) ? `<i class="fa-regular fa-bookmark fw-bold" onclick="unbookmark('`+post?._id+`')"></i> `: `<i class="fa-regular fa-bookmark text-light" onclick="bookmark('`+post?._id+`')"></i>`
 
     if(post?.mode == 'post'){
-    return (
+      html_content =
       `
       <div class="col d-flex justify-content-center">
       <a href="Articles.html?id=`+post?._id+`" class="text-light">
@@ -217,7 +215,7 @@ async function unbookmark(postId) {
     </div>  
     <div class="hr mt-4 mb-4"></div>
         `
-    )
+    
     }
 
     if(post?.mode == 'poll') {
@@ -232,7 +230,7 @@ async function unbookmark(postId) {
   let pr2=Math.round(ans2/total*100);
   let pr3=Math.round(ans3/total*100);
   let pr4=Math.round(ans4/total*100);
-  return(  `
+  html_content = `
   <div class="col">
   <div class="mar">
   <div class="d-flex justify-content-between align-items-center polls ">
@@ -317,11 +315,11 @@ async function unbookmark(postId) {
 </div>
 </div>
 
-    ` )
+    ` 
     }
 
     if(post?.mode == 'billboard' && post?.size == 'small') {
-      return(`
+      html_content = `
       <div class="col d-flex justify-content-center">
       <div class="card  billy-1 mb-3  ">
         <img src="`+ post?.pic +`" class="card-img-top billyimg-1" alt="Fissure in Sandstone"/>
@@ -333,10 +331,10 @@ async function unbookmark(postId) {
     </div>
     </div>
     <div class="hr mb-2"></div>
-      `)
+      `
     }
     if(post?.mode == 'billboard' && post?.size == 'big') {
-      return(`
+      html_content = `
       <div class="col d-flex justify-content-center">
     <div class="card  billy mb-3  ">
       <img src="`+ post?.pic +`" class="card-img-top billyimg" alt="Fissure in Sandstone"/>
@@ -347,12 +345,12 @@ async function unbookmark(postId) {
   </div>
   </div>
   <div class="hr mb-2"></div>
-      `)
+      `
     }
 
     if(post?.mode == 'gossip') {
-      return (
-        `
+      html_content = `
+        
         <div class="hr mb-2"></div>
     
       <div class="col d-flex justify-content-center">
@@ -414,15 +412,15 @@ async function unbookmark(postId) {
      </div>
     </div>
         `
-      )
+      
     }
-  } 
+   
 
-    ).join('');
+   
 
-    document.getElementById('tag').innerHTML = html_content;
+    document.getElementById('category').innerHTML = html_content;
       }
-
+      
       function share_toogle(suffix) {
             let id2 = 'box'+suffix;
                 document.getElementById(id2).classList.toggle("act");
@@ -439,9 +437,10 @@ async function unbookmark(postId) {
       const STATIC_API_URL = `${HOST_API_URL}/public`;
       const AUTHOR_API_URL = `${HOST_API_URL}/newsdekho/api/author`;
       const ADMIN_API_URL = `${HOST_API_URL}/newsdekho/api/admin`;
-        console.log("testing");
+              console.log("testing");
     
-        fetch_tagged_post();
+        fetch_category();
+
         function copy_link(id) {
         var base_url = window.location.origin;
         let postUrl = base_url+"/shared_item.html?id="+id;

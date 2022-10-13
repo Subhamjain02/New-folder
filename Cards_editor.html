@@ -99,11 +99,14 @@
               <option value="Normal">Normal</option>
               <option value="Trending">Trending</option>
             </select>
-
+            <label class="form-label " for="customFile">Frame Pic</label>
+            <div class="form-outline mb-4"><input type="file" class="form-control" id="customFile" /></div>
+            <label class="form-label " for="customFile21">Card Pic</label>
+            <div class="form-outline mb-4"><input type="file" class="form-control" id="customFile21" /></div>
     
       
         <!-- photo input -->
-        <label class="form-label " for="customFile1">Image</label>
+        <label class="form-label " for="customFile1">Images</label>
         
           <div class="form-outline mb-4"><input type="file" class="form-control" id="customFile1" /></div> 
           <div class="form-outline mb-4"><input type="file" class="form-control" id="customFile2" /></div>
@@ -358,6 +361,18 @@
         let body= document.getElementById("form6Example7").value;
         let hashtags= document.getElementById("form6Example45").value;
         let bussinessLink= document.getElementById("form6Example6").value;
+        let file1= document.getElementById("customFile").files[0];
+        const body1 = new FormData();
+        body1.append("image", file1);
+        let res1 = await fetch(UPLOAD_API_URL, { method: 'POST' , body: body1});
+        let photo1 = await res1.json();
+        let img_url1 = HOST_API_URL+'/newsdekho/api/public/images/'+photo1.content;
+        let file2= document.getElementById("customFile21").files[0];
+        const body2 = new FormData();
+        body2.append("image", file2);
+        let res2 = await fetch(UPLOAD_API_URL, { method: 'POST' , body: body2});
+        let photo2 = await res2.json();
+        let img_url2 = HOST_API_URL+'/newsdekho/api/public/images/'+photo2.content
   
        get_imgs();
        await sleep(5000);
@@ -372,12 +387,14 @@
             body: body,
             hashtags: tagArr,
             bussinessLink: bussinessLink,
-            photo: photo_global_arr
+            photo: photo_global_arr,
+            pic: img_url1,
+            cover: img_url2
         }
         console.log(post);
         photo_global_arr = []
-        let res1 = await fetch(POST_API_URL, { method: 'POST' , headers : getHeaders(), body: JSON.stringify(post)});
-        let post_details = await res1.json();
+        let res3 = await fetch(POST_API_URL, { method: 'POST' , headers : getHeaders(), body: JSON.stringify(post)});
+        let post_details = await res3.json();
         console.log(post_details);
         alert(post_details.message);
     }

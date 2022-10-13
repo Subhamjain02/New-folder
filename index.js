@@ -46,12 +46,21 @@ const STATIC_API_URL = `${HOST_API_URL}/public`;
 const AUTHOR_API_URL = `${HOST_API_URL}/newsdekho/api/author`;
 const ADMIN_API_URL = `${HOST_API_URL}/newsdekho/api/admin`;
 
-async function  fetch_posts () {
+
+var global_post = null;
+
+async function fetch_data() {
   let res = await fetch(POST_API_URL, { method: 'GET' })
   let posts = await res.json() ;
+  global_post = posts?.content;
+  return posts?.content;
+}
+
+async function  fetch_posts () {
+  let posts = await fetch_data() ;
   let bookmarks_arr = localStorage.getItem('bookmarks');
   let bookmarks = (bookmarks_arr) ? bookmarks_arr : [];
-  let html_content = posts?.content.map ( post =>{
+  let html_content = posts.map ( post =>{
     let author_id = localStorage.getItem('_id');
     let like_content = (post?.likes.includes(author_id)) ? `<i class="fa-regular fa-heart me-3 fw-bold" onclick="unlike('`+post?._id+`')"></i> `: `<i class="fa-regular fa-heart me-3" onclick="like('`+post?._id+`')"></i>`
     let bookmark_content = (bookmarks.includes(post?._id)) ? `<i class="fa-regular fa-bookmark fw-bold" onclick="unbookmark('`+post?._id+`')"></i> `: `<i class="fa-regular fa-bookmark text-light" onclick="bookmark('`+post?._id+`')"></i>`
@@ -228,48 +237,6 @@ async function  fetch_posts () {
           <h5 class="card-title lh-sm bill-title mb-0">BILLBOARD</h5>
           <p class="bn fw-light lh-sm m-0"><a href="">`+ post?.title +`</a></p>
     </div>
-    <span class="d-flex  ">
-           <p class="text-light www ">`+ post?.likes?.length +` likes</p>
-           <p class="www">`+ post?.views +` views</p>
-          </span>
-           <div class="btns bg-black ">
-           <div class="left d-flex align-items-center ">`
-             +like_content+
-            
-             ` <div id="box`+post?._id+`" onclick="share_toogle('`+post?._id+`')" class="box">
-
-             <button id="btn1`+post?._id+`" class="btn1">
-               <i class="fa-regular fa-paper-plane"></i>
-             </button>
-           
-             <ul id="list">
-                 <li class="list-item ">
-                   <a class="list-item-link" onclick="copy_link('`+post?._id+`')">
-                     <span class="fas fa-link fsi "></span>
-                   </a>
-                 </li>
-                 <li class="list-item">
-                   <a class="list-item-link" onclick="share_post('`+post?._id+`', '`+ post?.title +`', '`+ post?.hashtags +`', 'whatsApp')">
-                     <span class="fab fa-whatsapp fsi"></span>
-                   </a>
-                 </li>
-                 <li class="list-item">
-                   <a class="list-item-link" onclick="share_post('`+post?._id+`', '`+ post?.title +`', '`+ post?.hashtags +`', 'facebook')">
-                     <span class="fab fa-facebook-f fsi"></span>
-                   </a>
-                 </li>
-                 <li class="list-item">
-                   <a class="list-item-link" onclick="share_post('`+post?._id+`', '`+ post?.title +`', '`+ post?.hashtags +`', 'twitter')">
-                     <span class="fab fa-twitter fsi"></span>
-                   </a>
-                 </li>
-               </ul>
-               </div>
-             </div>
-           <div class="right">`+
-           bookmark_content
-         +`</div>
-       </div>
     </div>
     </div>
     <div class="hr mb-2"></div>
@@ -396,7 +363,7 @@ function share_toogle(suffix) {
 
 function copy_link(id) {
   var base_url = window.location.origin;
-  let postUrl = base_url+"/Articles.html?id="+id;
+  let postUrl = base_url+"/shared_item.html?id="+id;
   navigator.clipboard.writeText(postUrl).then(function() {
     console.log('Async: Copying to clipboard was successful!');
   }, function(err) {
@@ -408,7 +375,7 @@ function share_post (id, title, hashtags, media) {
   console.log(media);
   let hashTag = hashtags;
   var base_url = window.location.origin;
-  let postUrl = base_url+"/Articles.html?id="+id;
+  let postUrl = base_url+"/shared_item.html?id="+id;
   if (media == "twitter") {
     url = `https://twitter.com/share?url=${postUrl}&text=${title}&hashtags=${hashTag}`;
   } else if(media == "facebook") {
