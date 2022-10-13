@@ -34,7 +34,7 @@ const getHeaders = () => {
 }
 
 
-const HOST_API_URL = `http://localhost:5000`;
+const HOST_API_URL = `http://odv24.com`;
 const POST_API_URL = `${HOST_API_URL}/newsdekho/api/post`;
 const GOSSIP_API_URL = `${HOST_API_URL}/newsdekho/api/gossip`;
 const POLL_API_URL = `${HOST_API_URL}/newsdekho/api/poll`;
@@ -48,19 +48,33 @@ const ADMIN_API_URL = `${HOST_API_URL}/newsdekho/api/admin`;
 
 
 var global_post = null;
+var lmt = 3;
 
 async function fetch_data() {
-  let res = await fetch(POST_API_URL, { method: 'GET' })
-  let posts = await res.json() ;
-  global_post = posts?.content;
-  return posts?.content;
+  if(global_post == null) {
+    let res = await fetch(POST_API_URL+"/limit/"+lmt, { method: 'GET' })
+    let posts = await res.json() ;
+    global_post = posts?.content;
+  }
+  
 }
 
+window. addEventListener('scroll', () => {
+      const {scrollHeight, scrollTop, clientHeight} = document.documentElement
+      if($(window).scrollTop() + $(window).height() > $(document).height() -10) {
+          console. log('I am at bottom');
+          lmt= lmt +3;
+          global_post = null;
+          fetch_posts();
+    
+      }
+    })
+
 async function  fetch_posts () {
-  let posts = await fetch_data() ;
+  await fetch_data() ;
   let bookmarks_arr = localStorage.getItem('bookmarks');
   let bookmarks = (bookmarks_arr) ? bookmarks_arr : [];
-  let html_content = posts.map ( post =>{
+  let html_content = global_post.map ( post =>{
     let author_id = localStorage.getItem('_id');
     let like_content = (post?.likes.includes(author_id)) ? `<i class="fa-regular fa-heart me-3 fw-bold" onclick="unlike('`+post?._id+`')"></i> `: `<i class="fa-regular fa-heart me-3" onclick="like('`+post?._id+`')"></i>`
     let bookmark_content = (bookmarks.includes(post?._id)) ? `<i class="fa-regular fa-bookmark fw-bold" onclick="unbookmark('`+post?._id+`')"></i> `: `<i class="fa-regular fa-bookmark text-light" onclick="bookmark('`+post?._id+`')"></i>`
@@ -401,8 +415,23 @@ async function like(postId) {
   }
   let res = await fetch(POST_API_URL+'/like', { method: 'PUT' ,headers : getHeaders(), body: JSON.stringify(id_payload)})
   let posts = await res.json() ;
-  console.log(posts);
+  console.log(posts?.content);
+  let post = posts?.content;
+  update_post(post);
   fetch_posts();
+}
+
+function update_post(post) {
+  let new_arr = [];
+  for(let i=0;i<global_post.length;i++){
+    let old_post = global_post[i];
+    if(old_post._id == post._id) {
+      new_arr.push(post);
+    }else {
+      new_arr.push(old_post);
+    } 
+  }
+  global_post = new_arr;
 }
 async function unlike(postId) {
   if(!logincheck()) {
@@ -416,6 +445,8 @@ async function unlike(postId) {
   let res = await fetch(POST_API_URL+'/unlike', { method: 'PUT' ,headers : getHeaders(), body: JSON.stringify(id_payload)})
   let posts = await res.json() ;
   console.log(posts);
+  let post = posts?.content;
+  update_post(post);
   fetch_posts();
 }
 
@@ -431,6 +462,8 @@ async function bookmark(postId) {
   let res = await fetch(AUTHOR_API_URL+'/bookmark', { method: 'PUT' ,headers : getHeaders(), body: JSON.stringify(id_payload)})
   let posts = await res.json() ;
   console.log(posts);
+  let post = posts?.content;
+  update_post(post);
   localStorage.setItem("bookmarks",posts.content.bookmarks);
   fetch_posts();
 }
@@ -447,6 +480,8 @@ async function unbookmark(postId) {
   let posts = await res.json() ;
   localStorage.setItem("bookmarks",posts.content.bookmarks);
   console.log(posts);
+  let post = posts?.content;
+  update_post(post);
   fetch_posts();
 }
 
@@ -728,6 +763,10 @@ async function vote(opn, ans, pollId) {
   console.log(poll);
   fetch_posts();
 }
+
+
+
+
 
 
 
