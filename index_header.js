@@ -65,94 +65,106 @@ async function fetch_navbar() {
     </div>
   </div>
 
-  <div class="modal fade" id="exampleModalToggle22" aria-hidden="true" aria-labelledby="exampleModalToggleLabel22" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content bg-transparent">
-        <div class="card  text-white mcard" style="border-radius: 1rem;">
-          <button type="button" class="btn-close fs-6 btn-close-white mt-2 position-absolute end-0 mt-3 me-3" aria-label="Close" data-mdb-dismiss="modal"></button>
-          <div class="card-body p-5 text-center">
-            
-            <div class="mb-md-5 mt-md-4 pb-4">
-              
-              <span class="fw-bold mb-2 text-uppercase login pe-1">Sign-up</span>
-              <p class="text-white-50 pe-1">Please enter your Email and password!</p>
-              
-              <div class="form-outline form-white mb-3 ">
-                <input type="text" id="nameX" class="form-control form-control-lg" />
-                <label class="form-label" for="nameX">Name</label>
-              </div>
-
-              <div class="form-outline form-white mb-3 ">
-                <input type="email" id="typeEmailX" class="form-control form-control-lg" />
-                <label class="form-label" for="typeEmailX">Email</label>
-              </div>
-
-              <div class="form-outline form-white mb-3">
-                <input type="password" id="typePasswordX" class="form-control form-control-lg" />
-                <label class="form-label" for="typePasswordX">Password</label>
-              </div>
-              <div class="form-outline form-white mb-3">
-                <input type="password" id="typePasswordY" class="form-control form-control-lg" />
-                <label class="form-label" for="typePasswordY">Confirm Password</label>
-              </div>
-
-
-              <button class="btn btn-outline-light btn-lg px-5 mb-3" type="submit" onclick="signup()">Sign Up</button>
-
-            </div>
-
-            <div>
-              <p class="mb-2">Already have an account? <a href="#!" class="text-white-50 fw-bold" data-mdb-target="#exampleModal" data-mdb-toggle="modal" data-mdb-dismiss="modal">Login</a>
-              </p>
-            </div>
-
-          </div>
-        </div>
-    
-  </div>
-</div>
-</div>
-        
-  <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade " id="exampleModalToggle22" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered ">
       <div class="modal-content  bg-transparent ">  
-              
-      <div class="card  text-white mcard" style="border-radius: 1rem;">
+      <div class="card text-white mcard text-center inp" style="border-radius: 1rem;">
         <button type="button" class="btn-close fs-6 btn-close-white mt-2 position-absolute end-0 mt-3 me-3" aria-label="Close" data-mdb-dismiss="modal"></button>
-          <div class="card-body p-5 text-center ">
- 
-            <div class="mb-md-5 mt-md-4 ">
+           <img src="img/twitter-cover.jpg" height="24%" style="border-radius: 1rem 1rem 0rem 0rem;" alt="Loader" id="loader" loading="lazy"/></a>
 
-              <span class="fw-bold mb-2 text-uppercase login pe-1">Login</span>
-              <p class="text-white-50 mb-34 pe-1">Please enter your Email and password!</p>
+           <span class="fw-bold mb-3 mt-3 login px-3">Explore <span class="premium">Premium</span> Content</span>
+           <div class="mx-4 px-2">
+        <div class="bg-black google-1 d-flex justify-content-start align-items-center ps-3 mb-3 rounded-6" >
+          <img src="img/google.png" height="23px" width="23px">
+          <span class="ms-3" >Sign Up With Google</span>
+        </div>
+        <div class="d-flex justify-content-evenly align-items-center mb-3">
+          <div class="line me-2"></div>
+          <p class="mb-0">or Sign up with Email</p>
+          <div class="line ms-2"></div>
+        </div>
 
-              <div class="form-outline form-white mb-3 " >
-                <input type="email" id="typeEmailY" class="form-control form-control-lg " />
-                <label class="form-label" for="typeEmailY">Email</label>
+        <input type="name" placeholder="Name" id="typeEmailY" class=" bg-black">
+        <input type="email" placeholder="Email or Phone No." id="typeEmailY" class=" bg-black">
+        <input type="password" placeholder="Password" id="typeEmailY" class="bg-black">
+        <input type="password" placeholder="Confirm Password" id="typeEmailY" class="bg-black">
+      
+              <button class="btn bg-light text-black rounded-8 fw-bold mt-2" type="submit" onclick="signup()">Sign Up</button>
+              <div>
+                <p class="mt-3 mb-0 text-white-50">Already have an account? <a href="#!" class="text-white fw-bold" data-mdb-target="#exampleModal" data-mdb-toggle="modal" data-mdb-dismiss="modal">Login</a>
+                </p>
               </div>
-
-              <div class="form-outline form-white mb-4 ">
-                <input type="password" id="typePasswordZ" class="form-control form-control-lg " />
-                <label class="form-label" for="typePasswordZ">Password</label>
-              </div>
-
-              
-
-              <button class="btn btn-outline-light btn-lg px-5" type="submit" onclick="signin()">Login</button>
-              
-
-            </div>
-
-            <div>
-              <p class="mt-4 mb-0">Don't have an account? <a href="#!" class="text-white-50 fw-bold" data-mdb-target="#exampleModalToggle22" data-mdb-toggle="modal" data-mdb-dismiss="modal">Sign Up</a>
-              </p>
-            </div>
-
+      </div>
+           
           </div>
         </div>
       </div>
     </div>
-  </div>
+
+    <div class="modal fade " id="forgotpassword" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered ">
+      <div class="modal-content  bg-transparent ">  
+      <div class="card text-white mcard text-center fpass" style="border-radius: 1rem;">
+        <button type="button" class="btn-close fs-6 btn-close-white mt-2 position-absolute end-0 mt-3 me-3" aria-label="Close" data-mdb-dismiss="modal"></button>
+           <img src="img/twitter-cover.jpg" height="28%" style="border-radius: 1rem 1rem 0rem 0rem;" alt="Loader" id="loader" loading="lazy"/></a>
+
+           <span class="fw-bold mb-4 mt-4 login px-3">Explore <span class="premium">Premium</span> Content</span>
+           <div class="mx-4 px-2">
+        
+        <div class="d-flex justify-content-evenly align-items-center mb-4">
+          <div class="line me-2"></div>
+          <p class="mb-0">Type your Credetials</p>
+          <div class="line ms-2"></div>
+        </div>
+
+        <input type="email" placeholder="Email or Phone No." id="typeEmailY" class="mb-3 bg-black">
+
+              <button class="btn bg-light text-black rounded-8 fw-bold" type="submit" onclick="">Next</button>
+              <div>
+                <p class="mt-4 mb-0 text-white-50">Don't have an account? <a href="#!" class="text-white fw-bold" data-mdb-target="#exampleModalToggle22" data-mdb-toggle="modal" data-mdb-dismiss="modal">Sign Up</a>
+                </p>
+              </div>
+      </div>
+           
+          </div>
+        </div>
+      </div>
+    </div>
+        
+<div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered ">
+      <div class="modal-content  bg-transparent ">  
+      <div class="card text-white mcard text-center" style="border-radius: 1rem;">
+        <button type="button" class="btn-close fs-6 btn-close-white mt-2 position-absolute end-0 mt-3 me-3" aria-label="Close" data-mdb-dismiss="modal"></button>
+           <img src="img/twitter-cover.jpg" height="28%" style="border-radius: 1rem 1rem 0rem 0rem;" alt="Loader" id="loader" loading="lazy"/></a>
+
+           <span class="fw-bold mb-4 mt-4 login px-3">Explore <span class="premium">Premium</span> Content</span>
+           <div class="mx-4 px-2">
+        <div class="bg-black google d-flex justify-content-start align-items-center ps-3 mb-4 rounded-6" >
+          <img src="img/google.png" height="25px" width="25px">
+          <span class="ms-3" >Sign in With Google</span>
+        </div>
+        <div class="d-flex justify-content-evenly align-items-center mb-4">
+          <div class="line me-2"></div>
+          <p class="mb-0">or login with Email</p>
+          <div class="line ms-2"></div>
+        </div>
+
+        <input type="email" placeholder="Email or Phone No." id="typeEmailY" class="mb-3 bg-black">
+        <input type="email" placeholder="Password" id="typeEmailY" class="mb-3 bg-black">
+      
+        <p class="small mb-3 pb-lg-2"><a class="text-white-50" href="#!" data-mdb-target="#forgotpassword" data-mdb-toggle="modal" data-mdb-dismiss="modal">Forgot password?</a></p>
+              <button class="btn bg-light text-black rounded-8 fw-bold" type="submit" onclick="signin()">Login</button>
+              <div>
+                <p class="mt-4 mb-0 text-white-50">Don't have an account? <a href="#!" class="text-white fw-bold" data-mdb-target="#exampleModalToggle22" data-mdb-toggle="modal" data-mdb-dismiss="modal">Sign Up</a>
+                </p>
+              </div>
+      </div>
+           
+          </div>
+        </div>
+      </div>
+    </div>
     `
     document.getElementById('myheader').innerHTML = html_content;
 }
@@ -413,7 +425,7 @@ async function fetch_tag() {
   </li>
   <div class="ha mb-2 mt-2"></div>
   <li>
-  <a class="dropdown-item text-light" href="">V24 SPECIALS</a>
+  <span class="dropdown-item text-light" >V24 SPECIALS</span>
 </li>
 <li>
   <div class="ha mb-2 mt-2"></div>

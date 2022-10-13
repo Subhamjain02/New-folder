@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel = "icon" href="img/logo1.png" type = "image/x-icon">
+    <link href="index.css" rel="stylesheet" />
+ 
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <!-- <link href="http://fonts.cdnfonts.com/css/agency-fb?styles=17318"
+      rel="stylesheet"> -->
+                
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Teko:300,400,500,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto Condensed:300,400,500,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Zen Maru Gothic:300,400,500,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Oswald:300,400,500,700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" /> -->
+
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.4.0/mdb.min.css"
+      rel="stylesheet"
+    />
+   
+</head>
+<body>
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#exampleModal">
+    Launch demo modal
+  </button>
+  
+  <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered ">
+      <div class="modal-content  bg-transparent ">  
+      <div class="card text-white mcard text-center" style="border-radius: 1rem;">
+        <button type="button" class="btn-close fs-6 btn-close-white mt-2 position-absolute end-0 mt-3 me-3" aria-label="Close" data-mdb-dismiss="modal"></button>
+           <img src="img/twitter-cover.jpg" height="28%" style="border-radius: 1rem 1rem 0rem 0rem;" alt="Loader" id="loader" loading="lazy"/></a>
+
+           <span class="fw-bold mb-4 mt-4 login px-3">Explore <span class="premium">Premium</span> Content</span>
+           <div class="mx-4 px-2">
+        <div class="bg-black google d-flex justify-content-start align-items-center ps-3 mb-4 rounded-6" >
+          <img src="img/google.png" height="25px" width="25px">
+          <span class="ms-3" >Sign in With Google</span>
+        </div>
+        <div class="d-flex justify-content-evenly align-items-center mb-4">
+          <div class="line me-2"></div>
+          <p class="mb-0">or login with Email</p>
+          <div class="line ms-2"></div>
+        </div>
+
+        <input type="email" placeholder="Email or Phone No." id="typeEmailY" class="mb-3 bg-black">
+        <input type="email" placeholder="Password" id="typeEmailY" class="mb-3 bg-black">
+      
+        <p class="small mb-3 pb-lg-2"><a class="text-white-50" href="#!" data-mdb-target="#forgotpassword" data-mdb-toggle="modal" data-mdb-dismiss="modal">Forgot password?</a></p>
+              <button class="btn bg-light text-black rounded-8 fw-bold" type="submit" onclick="signin()">Login</button>
+              <div>
+                <p class="mt-4 mb-0 text-white-50">Don't have an account? <a href="#!" class="text-white fw-bold" data-mdb-target="#exampleModalToggle22" data-mdb-toggle="modal" data-mdb-dismiss="modal">Sign Up</a>
+                </p>
+              </div>
+      </div>
+           
+          </div>
+        </div>
+      </div>
+    </div>
+  <div class="modal fade " id="forgotpassword" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered ">
+      <div class="modal-content  bg-transparent ">  
+      <div class="card text-white mcard text-center fpass" style="border-radius: 1rem;">
+        <button type="button" class="btn-close fs-6 btn-close-white mt-2 position-absolute end-0 mt-3 me-3" aria-label="Close" data-mdb-dismiss="modal"></button>
+           <img src="img/twitter-cover.jpg" height="28%" style="border-radius: 1rem 1rem 0rem 0rem;" alt="Loader" id="loader" loading="lazy"/></a>
+
+           <span class="fw-bold mb-4 mt-4 login px-3">Explore <span class="premium">Premium</span> Content</span>
+           <div class="mx-4 px-2">
+        
+        <div class="d-flex justify-content-evenly align-items-center mb-4">
+          <div class="line me-2"></div>
+          <p class="mb-0">Type your Credetials</p>
+          <div class="line ms-2"></div>
+        </div>
+
+        <input type="email" placeholder="Email or Phone No." id="typeEmailY" class="mb-3 bg-black">
+
+              <button class="btn bg-light text-black rounded-8 fw-bold" type="submit" onclick="">Next</button>
+              <div>
+                <p class="mt-4 mb-0 text-white-50">Don't have an account? <a href="#!" class="text-white fw-bold" data-mdb-target="#exampleModalToggle22" data-mdb-toggle="modal" data-mdb-dismiss="modal">Sign Up</a>
+                </p>
+              </div>
+      </div>
+           
+          </div>
+        </div>
+      </div>
+    </div>
+ 
+<button type="button" class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#exampleModalToggle22">
+    Launch demo modal
+  </button>
+  
+  <div class="modal fade " id="exampleModalToggle22" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered ">
+      <div class="modal-content  bg-transparent ">  
+      <div class="card text-white mcard text-center inp" style="border-radius: 1rem;">
+        <button type="button" class="btn-close fs-6 btn-close-white mt-2 position-absolute end-0 mt-3 me-3" aria-label="Close" data-mdb-dismiss="modal"></button>
+           <img src="img/twitter-cover.jpg" height="24%" style="border-radius: 1rem 1rem 0rem 0rem;" alt="Loader" id="loader" loading="lazy"/></a>
+
+           <span class="fw-bold mb-3 mt-3 login px-3">Explore <span class="premium">Premium</span> Content</span>
+           <div class="mx-4 px-2">
+        <div class="bg-black google-1 d-flex justify-content-start align-items-center ps-3 mb-3 rounded-6" >
+          <img src="img/google.png" height="23px" width="23px">
+          <span class="ms-3" >Sign Up With Google</span>
+        </div>
+        <div class="d-flex justify-content-evenly align-items-center mb-3">
+          <div class="line me-2"></div>
+          <p class="mb-0">or Sign up with Email</p>
+          <div class="line ms-2"></div>
+        </div>
+
+        <input type="name" placeholder="Name" id="typeEmailY" class=" bg-black">
+        <input type="email" placeholder="Email or Phone No." id="typeEmailY" class=" bg-black">
+        <input type="password" placeholder="Password" id="typeEmailY" class="bg-black">
+        <input type="password" placeholder="Confirm Password" id="typeEmailY" class="bg-black">
+      
+              <button class="btn bg-light text-black rounded-8 fw-bold mt-2" type="submit" onclick="signup()">Sign Up</button>
+              <div>
+                <p class="mt-3 mb-0 text-white-50">Already have an account? <a href="#!" class="text-white fw-bold" data-mdb-target="#exampleModal" data-mdb-toggle="modal" data-mdb-dismiss="modal">Login</a>
+                </p>
+              </div>
+      </div>
+           
+          </div>
+        </div>
+      </div>
+    </div>
+ 
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="index.js"></script>
+<script src="index_header.js"></script>
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.4.0/mdb.min.js"
+    ></script>
+</body>
+</html>
