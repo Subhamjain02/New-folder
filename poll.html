@@ -136,7 +136,8 @@
             op1: op1,
             op2: op2,
             op3: op3,
-            op4: op4
+            op4: op4,
+            status: 'approved'
         }
     let res = await fetch(POLL_API_URL, { method: 'POST' , headers : getHeaders(), body: JSON.stringify(poll)});
     let poll_res = await res.json();

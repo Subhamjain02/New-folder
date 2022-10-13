@@ -232,7 +232,7 @@ async function fetch_tag() {
     <div class="hs mt-3"></div>
     <a href="Articles.html?id=`+post?._id+`" class="text-light">
     <div class="search-card d-flex mt-3  align-items-center">
-      <img src=" `+post?.photo+`" alt="`+post?.caption+`" width="120px" height="80px">
+      <img src=" `+post?.pic+`" alt="`+post?.caption+`" width="120px" height="80px">
       <div class="search-body ms-2 lh-sm">
         <span class="txt">`+post?.title+`</span>
       </div>
@@ -250,7 +250,7 @@ async function fetch_tag() {
   
   // Search states.json and filter it
   const searchStates = async searchText => {
-    const res = await fetch(POST_API_URL, { method: 'GET' })
+    const res = await fetch(POST_API_URL+"/onlypost", { method: 'GET' })
     const states = await res.json() ;
   
     
@@ -274,7 +274,7 @@ async function fetch_tag() {
       <a href="Articles.html?id=`+match?._id+`" class="text-light">
       <div class=" d-flex mt-3  align-items-center">
                 <div class="image-search">
-              <img src="`+ match.photo +`" alt="`+ match.caption +`" width="120px" height="80px">
+              <img src="`+ match.pic +`" alt="`+ match.caption +`" width="120px" height="80px">
               </div>
               <div class="ms-2 lh-sm">
                 <span class="txt">`+ match.title +`</span>

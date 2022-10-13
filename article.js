@@ -66,7 +66,7 @@ const ADMIN_API_URL = `${HOST_API_URL}/newsdekho/api/admin`;
         let temp = `
         <div class="card bg-dark text-white card-article">
       <img
-        src="`+ post?.photo +`"
+        src="`+ post?.cover +`"
         class="card-img cardimg"
         alt="`+ post?.caption +`"
       />
@@ -87,6 +87,7 @@ const ADMIN_API_URL = `${HOST_API_URL}/newsdekho/api/admin`;
     let temp1 ='';
     let lt =0;
     let bk = 0;
+    let imgd =0;
 for(let i=0 ;i<post?.body.length;i+=800 ) {
      lt =i+800;
     if((i+800) > (post?.body.length -1)) {
@@ -97,7 +98,7 @@ for(let i=0 ;i<post?.body.length;i+=800 ) {
     <div class="article-lg">
     <div class="card bg-dark text-white card-article card-article-lg">
       <img
-      src="`+ post?.photo +`"
+      src="`+ post?.photo[imgd] +`"
       class="card-img cardimg"
       alt="`+ post?.caption +`"
     />
@@ -132,6 +133,7 @@ for(let i=0 ;i<post?.body.length;i+=800 ) {
         if(bk == 1) {
           break;
         }
+        imgd = imgd +1;
   }
   temp+=temp2;
         document.getElementById('article').innerHTML = temp;
@@ -152,66 +154,266 @@ for(let i=0 ;i<post?.body.length;i+=800 ) {
           let author_id = localStorage.getItem('_id');
           let like_content = (post?.likes.includes(author_id)) ? `<i class="fa-regular fa-heart me-3 fw-bold" onclick="unlike('`+post?._id+`')"></i> `: `<i class="fa-regular fa-heart me-3" onclick="like('`+post?._id+`')"></i>`
           let bookmark_content = (bookmarks.includes(post?._id)) ? `<i class="fa-regular fa-bookmark fw-bold" onclick="unbookmark('`+post?._id+`')"></i> `: `<i class="fa-regular fa-bookmark text-light" onclick="bookmark('`+post?._id+`')"></i>`
+      
+          if(post?.mode == 'post'){
           return (
             `
             <div class="col d-flex justify-content-center">
             <a href="Articles.html?id=`+post?._id+`" class="text-light">
             <div class="card bg-black posts">
               <span class="d-flex justify-content-start text-uppercase"> <h6>`+ post?.category +`</h6></span>
-              <img src="`+ post?.photo +`" class="card-img-top cito" alt="`+ post?.caption +`"/>
+              <img src="`+ post?.photo[0] +`" class="card-img-top cito" alt="`+ post?.caption +`"/>
               <div class="card-body cb bg-black">
                 <h5 class="card-title lh-sm ctitle">`+ post?.title +`</h5></a>
-                <a href="Articles.html?id=`+post?._id+`" class="text-light"><p class="card-text  lh-sm ctext">`+ post?.body.slice(0,150) +`</p>
-              </a>
+                <a href="Articles.html?id=`+post?._id+`" class="text-light">
+                   <p class="card-text  lh-sm ctext">`+ post?.body.slice(0,150) +`</p>
+                </a>
                <span class="d-flex  ">
-                <p class="text-light www ">`+ post?.likes?.length +` likes</p>
-                 <p class="www">`+ post?.views +` views</p></span>
+                 <p class="text-light www ">`+ post?.likes?.length +` likes</p>
+                 <p class="www">`+ post?.views +` views</p>
+                </span>
                  <div class="btns bg-black ">
-           <div class="left d-flex align-items-center ">`
-             +like_content+
-            
-             ` <div id="box`+post?._id+`" onclick="share_toogle('`+post?._id+`')" class="box">
-
-             <button id="btn1`+post?._id+`" class="btn1">
-               <i class="fa-regular fa-paper-plane"></i>
-             </button>
-           
-             <ul id="list">
-                 <li class="list-item ">
-                   <a class="list-item-link" onclick="copy_link('`+post?._id+`')">
-                     <span class="fas fa-link fsi "></span>
-                   </a>
-                 </li>
-                 <li class="list-item">
-                   <a class="list-item-link" onclick="share_post('`+post?._id+`', '`+ post?.title +`', '`+ post?.hashtags +`', 'whatsApp')">
-                     <span class="fab fa-whatsapp fsi"></span>
-                   </a>
-                 </li>
-                 <li class="list-item">
-                   <a class="list-item-link" onclick="share_post('`+post?._id+`', '`+ post?.title +`', '`+ post?.hashtags +`', 'facebook')">
-                     <span class="fab fa-facebook-f fsi"></span>
-                   </a>
-                 </li>
-                 <li class="list-item">
-                   <a class="list-item-link" onclick="share_post('`+post?._id+`', '`+ post?.title +`', '`+ post?.hashtags +`', 'twitter')">
-                     <span class="fab fa-twitter fsi"></span>
-                   </a>
-                 </li>
-               </ul>
-               </div>
+                 <div class="left d-flex align-items-center ">`
+                   +like_content+
+                  
+                   ` <div id="box`+post?._id+`" onclick="share_toogle('`+post?._id+`')" class="box">
+      
+                   <button id="btn1`+post?._id+`" class="btn1">
+                     <i class="fa-regular fa-paper-plane"></i>
+                   </button>
+                 
+                   <ul id="list">
+                       <li class="list-item ">
+                         <a class="list-item-link" onclick="copy_link('`+post?._id+`')">
+                           <span class="fas fa-link fsi "></span>
+                         </a>
+                       </li>
+                       <li class="list-item">
+                         <a class="list-item-link" onclick="share_post('`+post?._id+`', '`+ post?.title +`', '`+ post?.hashtags +`', 'whatsApp')">
+                           <span class="fab fa-whatsapp fsi"></span>
+                         </a>
+                       </li>
+                       <li class="list-item">
+                         <a class="list-item-link" onclick="share_post('`+post?._id+`', '`+ post?.title +`', '`+ post?.hashtags +`', 'facebook')">
+                           <span class="fab fa-facebook-f fsi"></span>
+                         </a>
+                       </li>
+                       <li class="list-item">
+                         <a class="list-item-link" onclick="share_post('`+post?._id+`', '`+ post?.title +`', '`+ post?.hashtags +`', 'twitter')">
+                           <span class="fab fa-twitter fsi"></span>
+                         </a>
+                       </li>
+                     </ul>
+                     </div>
+                   </div>
+                 <div class="right">`+
+                 bookmark_content
+               +`</div>
              </div>
-           <div class="right">`+
-           bookmark_content
-         +`</div>
-       </div>
           </div>
           </div>
           </div>  
           <div class="hr mt-4 mb-4"></div>
-          
-          
               `
           )
+          }
+      
+          if(post?.mode == 'poll') {
+            let poll = post;
+        console.log(poll);
+        let ans1 = poll?.ans1+1;
+        let ans2 = poll?.ans2+1;
+        let ans3 = poll?.ans3+1;
+        let ans4 = poll?.ans4+1;
+        let total = ans1+ans2+ans3+ans4;
+        let pr1=Math.round(ans1/total*100);
+        let pr2=Math.round(ans2/total*100);
+        let pr3=Math.round(ans3/total*100);
+        let pr4=Math.round(ans4/total*100);
+        return(  `
+        <div class="col">
+        <div class="mar">
+        <div class="d-flex justify-content-between align-items-center polls ">
+          <div class="polls1">POLLS</div>
+          <img src="img/logo1.png" height="25px">
+        </div>
+        <div class="text-wrap mb-4">
+          <h4>`+poll.qsn+`</h4>
+         </div>
+      <div class="ctnr d-flex justify-content-evenly">
+        <div class="per " onclick="vote('1', '`+poll?.ans1+`', '`+poll?._id+`')">
+        <div class="loadbar ">
+        <div class="bar " style='height:`+pr1+`%;'></div>
+        <h5>`+poll.op1+`</h5>
+      </div>
+      <p class="text-center percent">`+pr1+`%</p>
+      </div>
+        <div class="per " onclick="vote('2', '`+poll?.ans2+`', '`+poll?._id+`')">
+        <div class="loadbar ">
+        <div class="bar " style='height:`+pr2+`%;'></div>
+        <h5>`+poll.op2+`</h5>
+      </div>
+      <p class="text-center percent">`+pr2+`%</p>
+      </div>
+      <div class="per " onclick="vote('3', '`+poll?.ans3+`', '`+poll?._id+`')">
+        <div class="loadbar ">
+        <div class="bar " style='height:`+pr3+`%;'></div>
+        <h5>`+poll.op3+`</h5>
+      </div>
+      <p class="text-center percent">`+pr3+`%</p>
+      </div>
+       <div class="per " onclick="vote('4', '`+poll?.ans4+`', '`+poll?._id+`')">
+        <div class="loadbar ">
+        <div class="bar " style='height:`+pr4+`%;'></div>
+        <h5>`+poll.op4+`</h5>
+      </div>
+      <p class="text-center percent">`+pr4+`%</p>
+      </div>
+      </div>
+      <span class="d-flex  ">
+                 <p class="text-light www ">`+ poll?.likes?.length +` likes</p>
+                 <p class="www">`+ poll?.views +` views</p>
+                </span>
+                 <div class="btns bg-black ">
+                 <div class="left d-flex align-items-center ">`
+                   +like_content+
+                  
+                   ` <div id="box`+poll?._id+`" onclick="share_toogle('`+poll?._id+`')" class="box">
+      
+                   <button id="btn1`+poll?._id+`" class="btn1">
+                     <i class="fa-regular fa-paper-plane"></i>
+                   </button>
+                 
+                   <ul id="list">
+                       <li class="list-item ">
+                         <a class="list-item-link" onclick="copy_link('`+poll?._id+`')">
+                           <span class="fas fa-link fsi "></span>
+                         </a>
+                       </li>
+                       <li class="list-item">
+                         <a class="list-item-link" onclick="share_post('`+poll?._id+`', '`+ poll?.title +`', '`+ poll?.hashtags +`', 'whatsApp')">
+                           <span class="fab fa-whatsapp fsi"></span>
+                         </a>
+                       </li>
+                       <li class="list-item">
+                         <a class="list-item-link" onclick="share_post('`+poll?._id+`', '`+ poll?.title +`', '`+ poll?.hashtags +`', 'facebook')">
+                           <span class="fab fa-facebook-f fsi"></span>
+                         </a>
+                       </li>
+                       <li class="list-item">
+                         <a class="list-item-link" onclick="share_post('`+poll?._id+`', '`+ poll?.title +`', '`+ poll?.hashtags +`', 'twitter')">
+                           <span class="fab fa-twitter fsi"></span>
+                         </a>
+                       </li>
+                     </ul>
+                     </div>
+                   </div>
+                 <div class="right">`+
+                 bookmark_content
+               +`</div>
+             </div>
+      </div>
+      </div>
+      
+          ` )
+          }
+      
+          if(post?.mode == 'billboard' && post?.size == 'small') {
+            return(`
+            <div class="col d-flex justify-content-center">
+            <div class="card  billy-1 mb-3  ">
+              <img src="`+ post?.pic +`" class="card-img-top billyimg-1" alt="Fissure in Sandstone"/>
+              <div class="card-body bb ">
+                <h5 class="card-title lh-sm bill-title mb-0">BILLBOARD</h5>
+                <p class="bn fw-light lh-sm m-0"><a href="">`+ post?.title +`</a></p>
+          </div>
+          
+          </div>
+          </div>
+          <div class="hr mb-2"></div>
+            `)
+          }
+          if(post?.mode == 'billboard' && post?.size == 'big') {
+            return(`
+            <div class="col d-flex justify-content-center">
+          <div class="card  billy mb-3  ">
+            <img src="`+ post?.pic +`" class="card-img-top billyimg" alt="Fissure in Sandstone"/>
+            <div class="card-body bb ">
+              <h5 class="card-title lh-sm bill-title mb-0">BILLBOARD</h5>
+              <p class="bn fw-light lh-sm m-0"><a href="">`+ post?.title +`</a></p>
+        </div>
+        </div>
+        </div>
+        <div class="hr mb-2"></div>
+            `)
+          }
+      
+          if(post?.mode == 'gossip') {
+            return (
+              `
+              <div class="hr mb-2"></div>
+          
+            <div class="col d-flex justify-content-center">
+          
+              <div class="card posts bg-black  ">
+                <span class="d-flex justify-content-between "> <div class="polls1 gossips" >GOSSIPS</div></span>
+                <div class="card-body cb1 bg-black">
+                 <div class="gossipsbody">
+                 <div class="gossipsimg">
+                 <img src="img/logo1.png"" height="20px" >
+                 <span >@odishavoice24</span>
+               </div>
+                  <p class="card-text  lh-sm mb-4 ctext">`+ post?.body +`</p>
+                  <p class="web">www.odishavoice24.com</p>
+                 </div>
+                 <span class="d-flex  ">
+                 <p class="text-light www ">`+ post?.likes?.length +` likes</p>
+                 <p class="www">`+ post?.views +` views</p>
+                </span>
+                 <div class="btns bg-black ">
+                 <div class="left d-flex align-items-center ">`
+                   +like_content+
+                  
+                   ` <div id="box`+post?._id+`" onclick="share_toogle('`+post?._id+`')" class="box">
+      
+                   <button id="btn1`+post?._id+`" class="btn1">
+                     <i class="fa-regular fa-paper-plane"></i>
+                   </button>
+                 
+                   <ul id="list">
+                       <li class="list-item ">
+                         <a class="list-item-link" onclick="copy_link('`+post?._id+`')">
+                           <span class="fas fa-link fsi "></span>
+                         </a>
+                       </li>
+                       <li class="list-item">
+                         <a class="list-item-link" onclick="share_post('`+post?._id+`', '`+ post?.title +`', '`+ post?.hashtags +`', 'whatsApp')">
+                           <span class="fab fa-whatsapp fsi"></span>
+                         </a>
+                       </li>
+                       <li class="list-item">
+                         <a class="list-item-link" onclick="share_post('`+post?._id+`', '`+ post?.title +`', '`+ post?.hashtags +`', 'facebook')">
+                           <span class="fab fa-facebook-f fsi"></span>
+                         </a>
+                       </li>
+                       <li class="list-item">
+                         <a class="list-item-link" onclick="share_post('`+post?._id+`', '`+ post?.title +`', '`+ post?.hashtags +`', 'twitter')">
+                           <span class="fab fa-twitter fsi"></span>
+                         </a>
+                       </li>
+                     </ul>
+                     </div>
+                   </div>
+                 <div class="right">`+
+                 bookmark_content
+               +`</div>
+             </div>
+           </div>
+           </div>
+          </div>
+              `
+            )
+          }
         } 
       
           ).join('');
@@ -226,7 +428,7 @@ for(let i=0 ;i<post?.body.length;i+=800 ) {
       }
       function copy_link(id) {
         var base_url = window.location.origin;
-        let postUrl = base_url+"/Articles.html?id="+id;
+        let postUrl = base_url+"/shared_item.html?id="+id;
         navigator.clipboard.writeText(postUrl).then(function() {
           console.log('Async: Copying to clipboard was successful!');
         }, function(err) {
@@ -238,7 +440,7 @@ for(let i=0 ;i<post?.body.length;i+=800 ) {
         console.log(media);
         let hashTag = hashtags;
         var base_url = window.location.origin;
-        let postUrl = base_url+"/Articles.html?id="+id;
+        let postUrl = base_url+"/shared_item.html?id="+id;
         if (media == "twitter") {
           url = `https://twitter.com/share?url=${postUrl}&text=${title}&hashtags=${hashTag}`;
         } else if(media == "facebook") {

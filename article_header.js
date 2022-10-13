@@ -170,190 +170,188 @@ async function fetch_navbar() {
 }
 fetch_navbar()
 async function fetch_tag() {
-  let res = await fetch(POST_API_URL+'/hashtags', { method: 'GET' })
-  let tag_res = await res.json() ;
-  let tags = tag_res.content;
-  console.log(tag_res);
-  let html_content = ``;
-  if(tags.length  > 0 ) {
-       html_content = `
-      <div class="col">
-      <div class="d-flex justify-content-evenly" >
-      <div class="chip mt-3 ">
-        <a href="tag.html?tag=`+tags[0].slice(1)+`" class="text-light">`+tags[0]+`</a>
-        <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
-        </div>
-      <div class="chip mt-3 ">
-        <!-- <img src="https://iexperimen.github.io/assets/icon/icon.png" alt="iExperimen" width="96" height="96"> -->
-        <a href="tag.html?tag=`+tags[1].slice(1)+`"  class="text-light">`+tags[1]+`</a>
-        <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
-        </div>
-      <div class="chip mt-3">
-        <!-- <img src="https://iexperimen.github.io/assets/icon/icon.png" alt="iExperimen" width="96" height="96"> -->
-        <a href="tag.html?tag=`+tags[2].slice(1)+`"  class="text-light">`+tags[2]+`</a>
-        <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
-        </div>
-        
-      </div>
-      </div>
-      <div class="col">
-      <div class="d-flex justify-content-evenly">
-      <div class="chip mt-3">
-        <!-- <img src="https://iexperimen.github.io/assets/icon/icon.png" alt="iExperimen" width="96" height="96"> -->
-        <a href="tag.html?tag=`+tags[3].slice(1)+`"  class="text-light">`+tags[3]+`</a>
-        <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
-        </div>
-      <div class="chip mt-3 ">
-        <!-- <img src="https://iexperimen.github.io/assets/icon/icon.png" alt="iExperimen" width="96" height="96"> -->
-        <a href="tag.html?tag=`+tags[4].slice(1)+`"  class="text-light">`+tags[4]+`</a>
-        <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
-        </div>
-      <div class="chip mt-3 ">
-        <!-- <img src="https://iexperimen.github.io/assets/icon/icon.png" alt="iExperimen" width="96" height="96"> -->
-        <a href="tag.html?tag=`+tags[5].slice(1)+`"  class="text-light">`+tags[5]+`</a>
-        <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
-        </div>
-      
-      </div>
-      </div> 
-      `
-      
-  }
-
-  document.getElementById('hashtags').innerHTML = html_content;
-}
-
-fetch_tag()
-
-async function fetch_recomendent() {
-  let res = await fetch(POST_API_URL+'/type/Trending', { method: 'GET' })
-  let posts = await res.json() ;
-  let html_content = posts?.content.map ( post =>  `
-  <div class="hs mt-3"></div>
-  <a href="Articles.html?id=`+post?._id+`" class="text-light">
-  <div class="search-card d-flex mt-3  align-items-center">
-    <img src=" `+post?.photo+`" alt="`+post?.caption+`" width="120px" height="80px">
-    <div class="search-body ms-2 lh-sm">
-      <span class="txt">`+post?.title+`</span>
-    </div>
-  </div>
-  </a>
-    `
-    ).join('') ;
-  document.getElementById('recommended').innerHTML = html_content;
-}
-
-fetch_recomendent()
-
-const search = document.getElementById('Search-news');
-const matchList = document.getElementById('match-list');
-
-// Search states.json and filter it
-const searchStates = async searchText => {
-  const res = await fetch(POST_API_URL, { method: 'GET' })
-  const states = await res.json() ;
-
-  
-  // get matches to your input
-  let matches = states.content.filter(state => {
-    const regex = new RegExp(`${searchText}`,'gi');
-    return state.title.match(regex);
-  });
-  if ( searchText.length === 0 ) {
-    matches = [] ;
-    matchList.innerHTML='';
-  }
-
-  outputHtml(matches);
-} ;
-
-// Show results in HTML
-const outputHtml = matches => {
-  if ( matches.length > 0 ) {
-    const html = matches.map ( match => `
-    <a href="Articles.html?id=`+match?._id+`" class="text-light">
-    <div class=" d-flex mt-3  align-items-center">
-              <div class="image-search">
-            <img src="`+ match.photo +`" alt="`+ match.caption +`" width="120px" height="80px">
-            </div>
-            <div class="ms-2 lh-sm">
-              <span class="txt">`+ match.title +`</span>
-            </div>
+    let res = await fetch(POST_API_URL+'/hashtags', { method: 'GET' })
+    let tag_res = await res.json() ;
+    let tags = tag_res.content;
+    console.log(tag_res);
+    let html_content = ``;
+    if(tags.length  > 0 ) {
+         html_content = `
+        <div class="col">
+        <div class="d-flex justify-content-evenly" >
+        <div class="chip mt-3 ">
+          <a href="tag.html?tag=`+tags[0].slice(1)+`">`+tags[0]+`</a>
+          <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
           </div>
-          </a>
-    `
-    ).join('') ;
+        <div class="chip mt-3 ">
+          <!-- <img src="https://iexperimen.github.io/assets/icon/icon.png" alt="iExperimen" width="96" height="96"> -->
+          <a href="tag.html?tag=`+tags[1].slice(1)+`">`+tags[1]+`</a>
+          <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
+          </div>
+        <div class="chip mt-3">
+          <!-- <img src="https://iexperimen.github.io/assets/icon/icon.png" alt="iExperimen" width="96" height="96"> -->
+          <a href="tag.html?tag=`+tags[2].slice(1)+`">`+tags[2]+`</a>
+          <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
+          </div>
+          
+        </div>
+        </div>
+        <div class="col">
+        <div class="d-flex justify-content-evenly">
+        <div class="chip mt-3">
+          <!-- <img src="https://iexperimen.github.io/assets/icon/icon.png" alt="iExperimen" width="96" height="96"> -->
+          <a href="tag.html?tag=`+tags[3].slice(1)+`">`+tags[3]+`</a>
+          <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
+          </div>
+        <div class="chip mt-3 ">
+          <!-- <img src="https://iexperimen.github.io/assets/icon/icon.png" alt="iExperimen" width="96" height="96"> -->
+          <a href="tag.html?tag=`+tags[4].slice(1)+`">`+tags[4]+`</a>
+          <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
+          </div>
+        <div class="chip mt-3 ">
+          <!-- <img src="https://iexperimen.github.io/assets/icon/icon.png" alt="iExperimen" width="96" height="96"> -->
+          <a href="tag.html?tag=`+tags[5].slice(1)+`">`+tags[5]+`</a>
+          <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
+          </div>
+        
+        </div>
+        </div> 
+        `
+        
+    }
+    document.getElementById('hashtags').innerHTML = html_content;
+  }
+  
+  fetch_tag()
+  
+  async function fetch_recomendent() {
+    let res = await fetch(POST_API_URL+'/type/Trending', { method: 'GET' })
+    let posts = await res.json() ;
+    let html_content = posts?.content.map ( post =>  `
+    <div class="hs mt-3"></div>
+    <a href="Articles.html?id=`+post?._id+`" class="text-light">
+    <div class="search-card d-flex mt-3  align-items-center">
+      <img src=" `+post?.photo+`" alt="`+post?.caption+`" width="120px" height="80px">
+      <div class="search-body ms-2 lh-sm">
+        <span class="txt">`+post?.title+`</span>
+      </div>
+    </div>
+    </a>
+      `
+      ).join('') ;
+    document.getElementById('recommended').innerHTML = html_content;
+  }
+  
+  fetch_recomendent()
+  
+  const search = document.getElementById('Search-news');
+  const matchList = document.getElementById('match-list');
+  
+  // Search states.json and filter it
+  const searchStates = async searchText => {
+    const res = await fetch(POST_API_URL, { method: 'GET' })
+    const states = await res.json() ;
+  
     
-    matchList.innerHTML = html;
-
-}
-};
-    
-search.addEventListener('input',()=>searchStates(search.value))
-
-
-search.addEventListener('input',()=>searchStates(search.value))
-
-async function signup () {
-  let name = document.getElementById("nameX").value;
-  let email = document.getElementById("typeEmailX").value;
-  let password = document.getElementById("typePasswordX").value;
-  let repassword = document.getElementById("typePasswordY").value;
-  console.log(email);
-  console.log(password);
-  console.log(repassword);
-  if (email == '' || password == '' || repassword == '') {
-    alert("Please enter all the fields");
-    return;
+    // get matches to your input
+    let matches = states.content.filter(state => {
+      const regex = new RegExp(`${searchText}`,'gi');
+      return state.title.match(regex);
+    });
+    if ( searchText.length === 0 ) {
+      matches = [] ;
+      matchList.innerHTML='';
+    }
+  
+    outputHtml(matches);
+  } ;
+  
+  // Show results in HTML
+  const outputHtml = matches => {
+    if ( matches.length > 0 ) {
+      const html = matches.map ( match => `
+      <a href="Articles.html?id=`+match?._id+`" class="text-light">
+      <div class=" d-flex mt-3  align-items-center">
+                <div class="image-search">
+              <img src="`+ match.photo +`" alt="`+ match.caption +`" width="120px" height="80px">
+              </div>
+              <div class="ms-2 lh-sm">
+                <span class="txt">`+ match.title +`</span>
+              </div>
+            </div>
+            </a>
+      `
+      ).join('') ;
+      
+      matchList.innerHTML = html;
+  
   }
-  if(password != repassword ) {
-    alert("Password is not matching");
-    return;
+  };
+      
+  search.addEventListener('input',()=>searchStates(search.value))
+  
+  
+  search.addEventListener('input',()=>searchStates(search.value))
+  
+  async function signup () {
+    let name = document.getElementById("nameX").value;
+    let email = document.getElementById("typeEmailX").value;
+    let password = document.getElementById("typePasswordX").value;
+    let repassword = document.getElementById("typePasswordY").value;
+    console.log(email);
+    console.log(password);
+    console.log(repassword);
+    if (email == '' || password == '' || repassword == '') {
+      alert("Please enter all the fields");
+      return;
+    }
+    if(password != repassword ) {
+      alert("Password is not matching");
+      return;
+    }
+  
+    let author_payload = {
+      name: name,
+      email : email,
+      password: password
+      }
+  
+      let res = await fetch(AUTHOR_API_URL+'/signup', { method: 'POST' ,headers : getHeaders(), body: JSON.stringify(author_payload)})
+      let author = await res.json() ;
+      console.log(author);
+      if(author.status == 'success') {
+        // add code to close modal
+      }
   }
-
-  let author_payload = {
-    name: name,
-    email : email,
-    password: password
+  
+  async function signin() {
+    let email = document.getElementById("typeEmailY").value;
+    let password = document.getElementById("typePasswordZ").value;
+    console.log(email);
+    console.log(password);
+    if (email == '' || password == '') {
+      alert("Please enter all the fields");
+      return;
     }
-
-    let res = await fetch(AUTHOR_API_URL+'/signup', { method: 'POST' ,headers : getHeaders(), body: JSON.stringify(author_payload)})
-    let author = await res.json() ;
-    console.log(author);
-
-    if(author.status == 'success') {
-      location.reload();
-    }
-}
-
-async function signin() {
-  let email = document.getElementById("typeEmailY").value;
-  let password = document.getElementById("typePasswordZ").value;
-  console.log(email);
-  console.log(password);
-  if (email == '' || password == '') {
-    alert("Please enter all the fields");
-    return;
-  }
-
-  let author_payload = {
-    email : email,
-    password: password
-    }
-
-    let res = await fetch(AUTHOR_API_URL+'/signin', { method: 'POST' ,headers : getHeaders(), body: JSON.stringify(author_payload)})
-    let author = await res.json() ;
-    console.log(author);
-    if(author.status == 'success') {
-      // add code to close modal
-      localStorage.setItem('name', author.content.author.name);
-      localStorage.setItem('_id', author.content.author._id);
-      localStorage.setItem('email', author.content.author.email);
-      localStorage.setItem('isAdmin', author.content.author.isAdmin);
-      localStorage.setItem('jwt', author.content.token);
-      localStorage.setItem('bookmarks', author.content.author.bookmarks);
-      location.reload();
-    }
+  
+    let author_payload = {
+      email : email,
+      password: password
+      }
+  
+      let res = await fetch(AUTHOR_API_URL+'/signin', { method: 'POST' ,headers : getHeaders(), body: JSON.stringify(author_payload)})
+      let author = await res.json() ;
+      console.log(author);
+      if(author.status == 'success') {
+        // add code to close modal
+        localStorage.setItem('name', author.content.author.name);
+        localStorage.setItem('_id', author.content.author._id);
+        localStorage.setItem('email', author.content.author.email);
+        localStorage.setItem('isAdmin', author.content.author.isAdmin);
+        localStorage.setItem('jwt', author.content.token);
+        localStorage.setItem('bookmarks', author.content.author.bookmarks);
+        location.reload();
+      }
 
 }
 function logout() {
