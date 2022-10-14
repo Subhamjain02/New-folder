@@ -99,15 +99,36 @@
               <option value="Normal">Normal</option>
               <option value="Trending">Trending</option>
             </select>
-
+            <label class="form-label " for="customFile">Frame Pic</label>
+            <div class="form-outline mb-4"><input type="file" class="form-control" id="customFile" /></div>
+            <label class="form-label " for="customFile21">Card Pic</label>
+            <div class="form-outline mb-4"><input type="file" class="form-control" id="customFile21" /></div>
     
       
         <!-- photo input -->
-        <label class="form-label " for="customFile">Image</label>
-        <div class="form-outline mb-4">
-            
-          <input type="file" class="form-control" id="customFile" />
-          </div> 
+        <label class="form-label " for="customFile1">Images</label>
+        
+          <div class="form-outline mb-4"><input type="file" class="form-control" id="customFile1" /></div> 
+          <div class="form-outline mb-4"><input type="file" class="form-control" id="customFile2" /></div>
+          <div class="form-outline mb-4"><input type="file" class="form-control" id="customFile3" /></div>
+          <div class="form-outline mb-4"><input type="file" class="form-control" id="customFile4" /></div>
+          <div class="form-outline mb-4"><input type="file" class="form-control" id="customFile5" /></div>
+          <div class="form-outline mb-4"><input type="file" class="form-control" id="customFile6" /></div>
+          <div class="form-outline mb-4"><input type="file" class="form-control" id="customFile7" /></div>
+          <div class="form-outline mb-4"><input type="file" class="form-control" id="customFile8" /></div>
+          <div class="form-outline mb-4"><input type="file" class="form-control" id="customFile9" /></div>
+          <div class="form-outline mb-4"><input type="file" class="form-control" id="customFile10" /></div>
+          <div class="form-outline mb-4"><input type="file" class="form-control" id="customFile11" /></div>
+          <div class="form-outline mb-4"><input type="file" class="form-control" id="customFile12" /></div>
+          <div class="form-outline mb-4"><input type="file" class="form-control" id="customFile13" /></div>
+          <div class="form-outline mb-4"><input type="file" class="form-control" id="customFile14" /></div>
+          <div class="form-outline mb-4"><input type="file" class="form-control" id="customFile15" /></div>
+          <div class="form-outline mb-4"><input type="file" class="form-control" id="customFile16" /></div>
+          <div class="form-outline mb-4"><input type="file" class="form-control" id="customFile17" /></div>
+          <div class="form-outline mb-4"><input type="file" class="form-control" id="customFile18" /></div>
+          <div class="form-outline mb-4"><input type="file" class="form-control" id="customFile19" /></div>
+          <div class="form-outline mb-4"><input type="file" class="form-control" id="customFile20" /></div>
+
           
           <div class="form-outline mb-4">
             <input type="text" id="form6Example3" class="form-control" />
@@ -285,7 +306,7 @@
     const STATIC_API_URL = `${HOST_API_URL}/public`;
     const AUTHOR_API_URL = `${HOST_API_URL}/newsdekho/api/author`;
     const ADMIN_API_URL = `${HOST_API_URL}/newsdekho/api/admin`;
-
+    let photo_global_arr = []
     function prepareTags(tagString) {
     let tags  = tagString.split(' ');
     return tags;
@@ -295,6 +316,40 @@
                 "Content-Type": "application/json",
                 "x-access-token": localStorage.getItem('jwt')
             }
+        }
+        function sleep(ms) {
+               return new Promise(resolve => setTimeout(resolve, ms));
+        }
+        async function get_url(id) {
+            let file = document.getElementById(id).files[0];
+            let url = null;
+            if(file) {
+              let data = new FormData();
+              data.append("image", file);
+              fetch(UPLOAD_API_URL, { method: 'POST' , body: data})
+              .then((res) => {
+                res.json()
+                 .then((photo)=> {
+                  photo_global_arr.push(HOST_API_URL+'/newsdekho/api/public/images/'+photo.content)
+                 })
+              })
+
+              
+            }
+            
+        }
+        async function get_imgs() {
+          let photo_arr = [];
+          for(let i=1;i<=20;i++) {
+            let id = 'customFile'+i;
+            let url = get_url(id);
+            if(url){
+              photo_arr.push(url);
+            }
+            
+            
+          }
+          return photo_arr;
         }
     async function create_post() {
         let title = document.getElementById("form6Example9").value;
@@ -306,12 +361,21 @@
         let body= document.getElementById("form6Example7").value;
         let hashtags= document.getElementById("form6Example45").value;
         let bussinessLink= document.getElementById("form6Example6").value;
-        let file = document.getElementById("customFile").files[0];
-        const data = new FormData();
-        data.append("image", file);
-        let res = await fetch(UPLOAD_API_URL, { method: 'POST' , body: data});
-        let photo = await res.json();
-        let url = HOST_API_URL+'/newsdekho/api/public/images/'+photo.content;
+        let file1= document.getElementById("customFile").files[0];
+        const body1 = new FormData();
+        body1.append("image", file1);
+        let res1 = await fetch(UPLOAD_API_URL, { method: 'POST' , body: body1});
+        let photo1 = await res1.json();
+        let img_url1 = HOST_API_URL+'/newsdekho/api/public/images/'+photo1.content;
+        let file2= document.getElementById("customFile21").files[0];
+        const body2 = new FormData();
+        body2.append("image", file2);
+        let res2 = await fetch(UPLOAD_API_URL, { method: 'POST' , body: body2});
+        let photo2 = await res2.json();
+        let img_url2 = HOST_API_URL+'/newsdekho/api/public/images/'+photo2.content
+  
+       get_imgs();
+       await sleep(5000);
         let tagArr = prepareTags(hashtags);
         let post = {
             title: title,
@@ -323,11 +387,14 @@
             body: body,
             hashtags: tagArr,
             bussinessLink: bussinessLink,
-            photo: url
+            photo: photo_global_arr,
+            pic: img_url1,
+            cover: img_url2
         }
         console.log(post);
-        let res1 = await fetch(POST_API_URL, { method: 'POST' , headers : getHeaders(), body: JSON.stringify(post)});
-        let post_details = await res1.json();
+        photo_global_arr = []
+        let res3 = await fetch(POST_API_URL, { method: 'POST' , headers : getHeaders(), body: JSON.stringify(post)});
+        let post_details = await res3.json();
         console.log(post_details);
         alert(post_details.message);
     }
