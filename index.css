@@ -30,7 +30,9 @@ html *{
      height: 100vh;;
 }
 
-
+.nvb{
+  position: sticky;
+}
 
 .scard{
     background-color: rgba(255, 255, 255, .95) !important;  
@@ -437,6 +439,7 @@ a:hover {
     color: #ffff;
     border-color: #000 !important;
     background-color: #151419;
+    
 
 }
     
@@ -449,6 +452,7 @@ a:hover {
     box-shadow: -1px -1px 8px -2px #e7e7e7 !important;
     border-radius: 1.3rem;
     width: 360px;
+    height: fit-content;
 }
 .billy-1{
     background-color:#151419 !important ;

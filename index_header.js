@@ -1,7 +1,7 @@
 //header js
 async function fetch_navbar() {
   let html_content = `
-  <nav class="navbar navbar-expand-lg navbar-light fixed-top " style="background: rgb(0, 0, 0,0.1);">
+  <nav class="navbar navbar-expand-lg navbar-dark nvb sticky-top bg-black " style="background: rgb(0, 0, 0,0.1);">
   <div class="container">
     <a class="navbar-brand ms-1 " href="index.html">
       <img src="img/logo1.png" height="30px" alt="MDB Logo" loading="lazy"/></a>
@@ -150,7 +150,7 @@ async function fetch_navbar() {
     </div>
 
     <input type="email" placeholder="Email or Phone No." id="typeEmailY" class="mb-3 bg-black">
-    <input type="email" placeholder="Password" id="typePasswordZ" class="mb-3 bg-black">
+    <input type="password" placeholder="Password" id="typePasswordZ" class="mb-3 bg-black">
   
     <p class="small mb-3 pb-lg-2"><a class="text-white-50" href="#!" data-mdb-target="#forgotpassword" data-mdb-toggle="modal" data-mdb-dismiss="modal">Forgot password?</a></p>
           <button class="btn bg-light text-black rounded-8 fw-bold" type="submit" onclick="signin()">Login</button>

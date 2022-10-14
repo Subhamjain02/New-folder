@@ -194,11 +194,11 @@ async function  fetch_posts () {
 <p class="text-center percent">`+pr4+`%</p>
 </div>
 </div>
-<span class="d-flex  ">
+<span class="d-flex px-4 ">
            <p class="text-light www ">`+ poll?.likes?.length +` likes</p>
            <p class="www">`+ poll?.views +` views</p>
           </span>
-           <div class="btns bg-black ">
+           <div class="btns bg-black px-4">
            <div class="left d-flex align-items-center ">`
              +like_content+
             
@@ -238,7 +238,7 @@ async function  fetch_posts () {
        </div>
 </div>
 </div>
-
+<div class="hr mt-4 "></div>
     ` )
     }
 
