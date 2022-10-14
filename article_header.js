@@ -391,11 +391,11 @@ async function fetch_option() {
 }
   let html_content = `
  
-<li>
+  <li>
   <a class="dropdown-item text-light" href="type.html?type=Government"><i class="fa fa-thin fa-landmark  me-1 "></i> Government</a>
 </li>
 <li>
-  <a class="dropdown-item text-light" href="type.html?type=Buisness"><i class="fa fa-duotone fa-user-tie  me-2"></i> Business</a>
+  <a class="dropdown-item text-light" href="type.html?type=Buisnesses"><i class="fa fa-duotone fa-user-tie  me-2"></i> Buisnesses</a>
 </li>
 <li>
   <a class="dropdown-item text-light ps-2" href="type.html?type=Public"><i class=" fa fa-solid fa-users me-1" style="margin-left: 7px ;"></i> Public</a>
@@ -406,9 +406,39 @@ async function fetch_option() {
 <li>
   <a class="dropdown-item text-light" href="type.html?type=Sports"><i class="fa fa-thin fa-volleyball  " style="margin-right: 10px ; padding-left: 1px"></i>Sports</a>
 </li>
-
 <div class="ha mb-2 mt-2"></div>
 <li>
+   <a class="dropdown-item text-light" href="type.html?type=Newsroom"><i class="fa-solid fa-earth me-1"></i> Newsroom</a>
+</li>
+<li>
+ <a class="dropdown-item text-light" href="type.html?type=Talkshow"><i class="fa fa-thin fa-microphone me-2 " style="padding-left: 1px;"></i> Talkshow</a>
+</li>
+<div class="ha mb-2 mt-2"></div>
+
+  <a class="dropdown-item text-light" href="index.html#poll"><i class="fas fa-regular fa-square-poll-vertical me-1 " style="margin-left: 2px;"></i>  Polls</a>
+</li>
+<li>
+  <a class="dropdown-item text-light" href="index.html#gossip"><i class="fa-solid fa-comment me-1 " style="margin-left: 2px;"></i> Gossips</a>
+</li>
+<div class="ha mb-2 mt-2"></div>
+<li>
+<a class="dropdown-item text-light" href="">V24 SPECIALS</a>
+</li>
+<li>
+<div class="ha mb-2 mt-2"></div>
+<li>
+<a class="dropdown-item text-light" href="type.html?type=Explains"><i class="fa fa-solid fa-circle-info me-1"></i>  Explains</a>
+</li>
+<li>
+<a class="dropdown-item text-light" href="type.html?type=Films"><i class="fa fa-thin fa-film me-2"></i> Films</a>
+</li>
+<li> 
+<a class="dropdown-item text-light" href="type.html?type=Explore"><i class="fa-solid fa-wand-magic-sparkles me-1"></i>  Explore</a>
+</li>
+<li>
+<a class="dropdown-item text-light" href="type.html?type=Persuit"><i class="fa-solid fa-person-running me-2"></i>  Persuit</a>
+</li>
+<div class="ha mb-2 mt-2"></div>
   <a class="dropdown-item text-light" href="Categories.html">  DATABASE</a>
 </li>
 <div class="ha mb-2 mt-2"></div>
@@ -417,8 +447,6 @@ async function fetch_option() {
 </li>
 <div class="ha mb-2 mt-2"></div>
 `+opt+`
-
-
 
   `
   document.getElementById('navoption').innerHTML = html_content;

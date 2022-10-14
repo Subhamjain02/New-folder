@@ -192,6 +192,7 @@ const ADMIN_API_URL = `${HOST_API_URL}/newsdekho/api/admin`;
     let post = await res.json() ;
   console.log(post);
     fetch_post();
+    $("#exampleModal").modal('hide');
   }
   async function unapprove_post() {
     let billboardId = localStorage.getItem('billboardId');
@@ -202,6 +203,7 @@ const ADMIN_API_URL = `${HOST_API_URL}/newsdekho/api/admin`;
     let post = await res.json() ;
   console.log(post);
     fetch_post();
+    $("#exampleModal3").modal('hide');
   }
   async function delete_post() {
     let billboardId = localStorage.getItem('billboardId');
@@ -209,6 +211,7 @@ const ADMIN_API_URL = `${HOST_API_URL}/newsdekho/api/admin`;
     let post = await res.json() ;
     console.log(post);
     fetch_post();
+    $("#exampleModal2").modal('hide');
   }
   fetch_post();
   function login_check() {
