@@ -155,7 +155,7 @@ async function  fetch_posts () {
   let pr3=Math.round(ans3/total*100);
   let pr4=Math.round(ans4/total*100);
   return(  `
-  <div class="col">
+  <div class="col d-flex justify-content-center">
   <div class="mar">
   <div class="d-flex justify-content-between align-items-center polls ">
     <div class="polls1">POLLS</div>
