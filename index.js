@@ -609,149 +609,7 @@ function successfulLookup(position) {
 
 
 
-async function  fetch_gossips () {
-  let res1 = await fetch(GOSSIP_API_URL, { method: 'GET' })
-  let gossips = await res1.json() ;
-  let author_id = localStorage.getItem('_id');
-  let hashtags = '#odishavoice24 #gossip'
-  let html_content1 = gossips?.content.map ( gossip => {
-    let like_content = (gossip?.likes.includes(author_id)) ? `<i class="fa-regular fa-heart me-3 fw-bold" onclick="unlike_gossip('`+gossip?._id+`')"></i> `: `<i class="fa-regular fa-heart me-3" onclick="like_gossip('`+gossip?._id+`')"></i>`
-    return (
-      `
-      <div class="hr"></div>
-    
-      <div class="col d-flex justify-content-center">
-    
-        <div class="card posts bg-black  ">
-          <span class="d-flex justify-content-between "> <div class="polls1 gossips" >GOSSIPS</div></span>
-          <div class="card-body cb1 bg-black">
-           <div class="gossipsbody">
-           <div class="gossipsimg">
-           <img src="img/logo1.png"" height="20px" >
-           <span >@odishavoice24</span>
-         </div>
-            <p class="card-text  lh-sm mb-4 ctext">`+ gossip?.body +`</p>
-            <p class="web">www.odishavoice24.com</p>
-           </div>
-           <span class="d-flex ">
-             <p class="text-light www">`+ gossip?.likes.length +` likes</p>
-            </span>
-            <div class="btns bg-black ">
-            <div class="left d-flex align-items-center ">
-              `+like_content+`
-             
-            
-              </div>
-        </div>
-     </div>
-     </div>
-    </div>
-        `
-    )
-  }
-    
 
-    ).join('');
-
-    document.getElementById('gossip').innerHTML = html_content1;
-  
-}
-
-fetch_gossips()
-
-
-
-async function like_gossip(gossipId) {
-  if(!logincheck()) {
-    $("#exampleModal").modal('show');
-    return;
-  }
-  console.log(gossipId);
-  let id_payload = {
-    _id : gossipId
-  }
-  let res = await fetch(GOSSIP_API_URL+'/like', { method: 'PUT' ,headers : getHeaders(), body: JSON.stringify(id_payload)})
-  let gossips = await res.json() ;
-  console.log(gossips);
-  fetch_gossips();
-}
-
-async function unlike_gossip(gossipId) {
-  if(!logincheck()) {
-    $("#exampleModal").modal('show');
-    return;
-  }
-  console.log(gossipId);
-  let id_payload = {
-    _id : gossipId
-  }
-  let res = await fetch(GOSSIP_API_URL+'/unlike', { method: 'PUT' ,headers : getHeaders(), body: JSON.stringify(id_payload)})
-  let gossips = await res.json() ;
-  console.log(gossips);
-  fetch_gossips();
-}
-
-async function fetch_poll() {
-  let res = await fetch(LATEST_POLL_API_URL, { method: 'GET' })
-  let poll_res = await res.json() ;
-  let poll = poll_res.content[0];
-  console.log(poll);
-  let ans1 = poll?.ans1+1;
-  let ans2 = poll?.ans2+1;
-  let ans3 = poll?.ans3+1;
-  let ans4 = poll?.ans4+1;
-  let total = ans1+ans2+ans3+ans4;
-  let pr1=Math.round(ans1/total*100);
-  let pr2=Math.round(ans2/total*100);
-  let pr3=Math.round(ans3/total*100);
-  let pr4=Math.round(ans4/total*100);
-  let html_content =  `
-  <div class="col d-flex justify-content-center">
-  <div class="mar">
-  <div class="d-flex justify-content-between align-items-center polls">
-    <div class="polls1">POLLS</div>
-    <img src="img/logo1.png" height="25px">
-  </div>
-  <div class="text-wrap mb-4">
-    <h4>`+poll.qsn+`</h4>
-</div>
-<div class="ctnr d-flex justify-content-evenly">
-  <div class="per " onclick="vote('1', '`+poll?.ans1+`', '`+poll?._id+`')">
-  <div class="loadbar ">
-  <div class="bar " style='height:`+pr1+`%;'></div>
-  <h5>`+poll.op1+`</h5>
-</div>
-<p class="text-center percent">`+pr1+`%</p>
-</div>
-  <div class="per " onclick="vote('2', '`+poll?.ans2+`', '`+poll?._id+`')">
-  <div class="loadbar ">
-  <div class="bar " style='height:`+pr2+`%;'></div>
-  <h5>`+poll.op2+`</h5>
-</div>
-<p class="text-center percent">`+pr2+`%</p>
-</div>
-  <div class="per " onclick="vote('3', '`+poll?.ans3+`', '`+poll?._id+`')">
-  <div class="loadbar ">
-  <div class="bar " style='height:`+pr3+`%;'></div>
-  <h5>`+poll.op3+`</h5>
-</div>
-<p class="text-center percent">`+pr3+`%</p>
-</div>
-  <div class="per " onclick="vote('4', '`+poll?.ans4+`', '`+poll?._id+`')">
-  <div class="loadbar ">
-  <div class="bar " style='height:`+pr4+`%;'></div>
-  <h5>`+poll.op4+`</h5>
-</div>
-<p class="text-center percent">`+pr4+`%</p>
-</div>
-</div>
-</div>
-</div>
-    ` ;
-
-    document.getElementById('poll').innerHTML = html_content;
-}
-fetch_poll()
 async function vote(opn, ans, pollId) {
   console.log(opn, ans, pollId);
   let poll_payload = {
@@ -760,7 +618,8 @@ async function vote(opn, ans, pollId) {
   }
   let res = await fetch(POLL_API_URL+'/vote/'+pollId, { method: 'PUT' ,headers : getHeaders(), body: JSON.stringify(poll_payload)})
   let poll = await res.json() ;
-  console.log(poll);
+  let post = poll?.content;
+  update_post(post);
   fetch_posts();
 }
 
