@@ -73,18 +73,14 @@ async function fetch_navbar() {
 
        <span class="fw-bold mb-3 mt-3 login px-3">Explore <span class="premium">Premium</span> Content</span>
        <div class="mx-4 px-2">
-    <div class="bg-black google-1 d-flex justify-content-start align-items-center ps-3 mb-3 rounded-6" >
-      <img src="img/google.png" height="23px" width="23px">
-      <span class="ms-3" >Sign Up With Google</span>
-    </div>
     <div class="d-flex justify-content-evenly align-items-center mb-3">
       <div class="line me-2"></div>
-      <p class="mb-0">or Sign up with Email</p>
+      <p class="mb-0">Sign up with Phone no.</p>
       <div class="line ms-2"></div>
     </div>
 
     <input type="name" placeholder="Name" id="nameX" class=" bg-black">
-    <input type="email" placeholder="Email or Phone No." id="typeEmailX" class=" bg-black">
+    <input type="email" placeholder=" Phone No." id="typeEmailX" class=" bg-black">
     <input type="password" placeholder="Password" id="typePasswordX" class="bg-black">
     <input type="password" placeholder="Confirm Password" id="typePasswordY" class="bg-black">
   
@@ -116,7 +112,7 @@ async function fetch_navbar() {
       <div class="line ms-2"></div>
     </div>
 
-    <input type="email" placeholder="Email or Phone No." id="typeEmail" class="mb-3 bg-black">
+    <input type="email" placeholder="Phone No." id="typeEmail" class="mb-3 bg-black">
 
           <button class="btn bg-light text-black rounded-8 fw-bold" type="submit" onclick="">Next</button>
           <div>
@@ -139,17 +135,13 @@ async function fetch_navbar() {
 
        <span class="fw-bold mb-4 mt-4 login px-3">Explore <span class="premium">Premium</span> Content</span>
        <div class="mx-4 px-2">
-    <div class="bg-black google d-flex justify-content-start align-items-center ps-3 mb-4 rounded-6" >
-      <img src="img/google.png" height="25px" width="25px">
-      <span class="ms-3" >Sign in With Google</span>
-    </div>
     <div class="d-flex justify-content-evenly align-items-center mb-4">
       <div class="line me-2"></div>
-      <p class="mb-0">or login with Email</p>
+      <p class="mb-0">login with Phone no.</p>
       <div class="line ms-2"></div>
     </div>
 
-    <input type="email" placeholder="Email or Phone No." id="typeEmailY" class="mb-3 bg-black">
+    <input type="email" placeholder="Phone No." id="typeEmailY" class="mb-3 bg-black">
     <input type="email" placeholder="Password" id="typePasswordZ" class="mb-3 bg-black">
   
     <p class="small mb-3 pb-lg-2"><a class="text-white-50" href="#!" data-mdb-target="#forgotpassword" data-mdb-toggle="modal" data-mdb-dismiss="modal">Forgot password?</a></p>
@@ -319,7 +311,9 @@ async function signup () {
     let author = await res.json() ;
     console.log(author);
     if(author.status == 'success') {
-      // add code to close modal
+      location.reload();
+    }else{
+      alert(author.message) 
     }
 }
 
