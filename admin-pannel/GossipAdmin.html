@@ -150,7 +150,7 @@ const Gossip_API_URL = `${HOST_API_URL}/newsdekho/api/gossip`;
 const ADMIN_API_URL = `${HOST_API_URL}/newsdekho/api/admin`;
   async function fetch_post() {
 
-    let res = await fetch(Gossip_API_URL+"/raw", { method: 'GET' })
+    let res = await fetch(Gossip_API_URL+"/raw", { method: 'GET',headers : getHeaders() })
   let gossips = await res.json() ;
   let ind =1;
   console.log(gossips);
@@ -166,6 +166,7 @@ const ADMIN_API_URL = `${HOST_API_URL}/newsdekho/api/admin`;
             <li class="list-group-item st bg-dark text-white d-flex align-items-center justify-content-center">`+ gossip?.status +`</li>
             <li class="list-group-item ac bg-dark text-white d-flex align-items-center justify-content-center"><div class="btn-group" role="group" aria-label="Basic example">
                 `+appove_opt+`
+                <button type="button" class="btn btn-primary" data-mdb-toggle="modal"  onclick="editPost('`+ gossip?._id +`')"><i class="fa-solid fa-pen-to-square"></i></button>
                 <button type="button" class="btn btn-danger" data-mdb-toggle="modal" data-mdb-target="#exampleModal2" onclick="setId('`+ gossip?._id +`')"><i class="fa-solid fa-trash"></i></button>
               </div></li>
           </ul>
@@ -178,8 +179,8 @@ const ADMIN_API_URL = `${HOST_API_URL}/newsdekho/api/admin`;
   }
 
   function editPost(postId) {
-    localStorage.setItem('postId', postId);
-    document.location = 'Admin_Cards_Editor.html'
+    localStorage.setItem('gossipId', postId);
+    document.location = 'EditGossip.html'
   }
   function setId(postId) {
     localStorage.setItem('gossipId', postId);
@@ -212,13 +213,23 @@ const ADMIN_API_URL = `${HOST_API_URL}/newsdekho/api/admin`;
     fetch_post();
   }
   fetch_post();
-  function login_check() {
+  async function login_check() {
+      let res = await fetch(ADMIN_API_URL+'/isAdmin', { method: 'GET', headers : getHeaders() });
+        let author = await res.json() ;
+      console.log(author);
+      let isAdmin = author?.content?.isAdmin;
         let email = localStorage.getItem("email");
-        if(email) {
-          console.log("user Is logged in");
+        if(author?.status == 'success') {
+          if(isAdmin) {
+            console.log("logedin successful");
+          }else {
+            alert("You are not autherized");
+            document.location = 'index.html';
+          }
         } else {
           alert("Please login");
-          document.location = '../index.html';
+          localStorage.clear();
+          document.location = 'index.html';
         }
     }
     login_check()
