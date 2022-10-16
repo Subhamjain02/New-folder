@@ -42,7 +42,7 @@
 <body  class="bg-black">
     <nav class="navbar navbar-light bg-black">
         <div class="container justify-content-center">
-          <a class="navbar-brand" href="#">
+          <a class="navbar-brand" href="http://odv24.com/index.html">
             <img
               src="../img/logo2.png"
               height="40"
@@ -52,23 +52,28 @@
           </a>
         </div>
       </nav>
-      <div class="modal top fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-mdb-backdrop="true" data-mdb-keyboard="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Confirm</h5>
-              <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">Do you want to approve?</div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">
-                Close
-              </button>
-              <button type="button" class="btn btn-success" onclick="approve_post()">Approve</button>
+     
+
+      <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered ">
+          <div class="modal-content  bg-transparent ">  
+          <div class="card text-white mcard text-center" style="border-radius: 1rem;">
+            <button type="button" class="btn-close fs-6 btn-close-white mt-2 position-absolute end-0 mt-3 me-3" aria-label="Close" data-mdb-dismiss="modal"></button>
+               <div class="mx-4 px-2">        
+            <input type="text" placeholder="like no" id="like" class="mb-3 bg-black">
+            <input type="text" placeholder="view no" id="view" class="mb-3 bg-black">
+          
+            <p class="small mb-3 pb-lg-2"><a class="text-white-50" href="#!" data-mdb-target="#forgotpassword" data-mdb-toggle="modal" data-mdb-dismiss="modal">Forgot password?</a></p>
+                  <button class="btn bg-light text-black rounded-8 fw-bold" type="submit" onclick="update_number()">Manipulate</button>
+
+          </div>
+               
+              </div>
             </div>
           </div>
         </div>
-      </div>
+
+
       <div class="modal top fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-mdb-backdrop="true" data-mdb-keyboard="true">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -146,26 +151,22 @@
 }
   const HOST_API_URL = `http://odv24.com`;
 const POST_API_URL = `${HOST_API_URL}/newsdekho/api/post`;
-const BILLBOARD_API_URL = `${HOST_API_URL}/newsdekho/api/billboard`;
 const ADMIN_API_URL = `${HOST_API_URL}/newsdekho/api/admin`;
   async function fetch_post() {
 
-    let res = await fetch(BILLBOARD_API_URL+"/raw", { method: 'GET',headers : getHeaders() })
-  let billboards = await res.json() ;
+    let res = await fetch(POST_API_URL+"/raw", { method: 'GET',headers : getHeaders() })
+  let posts = await res.json() ;
   let ind =1;
-  let html_content = billboards?.content.map ((billboard, index)  =>{
+  let html_content = posts?.content.map ((post, index)  =>{
     ind = ind + 1;
-    let appove_opt = (billboard?.status == 'pending') ? `<button type="button" class="btn btn-success" data-mdb-toggle="modal" data-mdb-target="#exampleModal" onclick="setId('`+ billboard?._id +`')"><i class="fa-solid fa-check"></i></button>`
-     : `<button type="button" class="btn btn-info" data-mdb-toggle="modal" data-mdb-target="#exampleModal3" onclick="setId('`+ billboard?._id +`')"><i class="fa-solid fa-remove"></i></button>`
     return (
       `
           <ul class="list-group list-group-horizontal  mb-1">
             <li class="list-group-item sl bg-dark text-white">`+ ind +`</li>
-            <li class="list-group-item ti bg-dark text-white">`+ billboard?.title +`</li>
-            <li class="list-group-item st bg-dark text-white d-flex align-items-center justify-content-center">`+ billboard?.status +`</li>
+            <li class="list-group-item ti bg-dark text-white">`+ post?.title +`</li>
+            <li class="list-group-item st bg-dark text-white d-flex align-items-center justify-content-center">`+ post?.mode +`</li>
             <li class="list-group-item ac bg-dark text-white d-flex align-items-center justify-content-center"><div class="btn-group" role="group" aria-label="Basic example">
-                `+appove_opt+`
-                <button type="button" class="btn btn-danger" data-mdb-toggle="modal" data-mdb-target="#exampleModal2" onclick="setId('`+ billboard?._id +`')"><i class="fa-solid fa-trash"></i></button>
+                <button type="button" class="btn btn-primary" data-mdb-toggle="modal"  onclick="manipulate('`+ post?._id +`')"><i class="fa-solid fa-pen-to-square"></i></button>
               </div></li>
           </ul>
     `
@@ -175,39 +176,59 @@ const ADMIN_API_URL = `${HOST_API_URL}/newsdekho/api/admin`;
   ).join('');
     document.getElementById('post').innerHTML = html_content;
   }
+  async function update_number() {
+   let postId = localStorage.getItem("manipulateId");
+   let like = document.getElementById("like").value;
+   let view = document.getElementById("view").value;
+   let post_payload = {
+    like: like,
+    view: view,
+    _id: postId
+   }
+   console.log(post_payload);
+   let res = await fetch(POST_API_URL+'/manipulate', { method: 'PUT' ,headers : getHeaders(), body: JSON.stringify(post_payload)})
+   let post = await res.json() ;
+  console.log(post);
+    
+    $("#exampleModal").modal('hide');  
+}
+  function manipulate(postId){
+    localStorage.setItem("manipulateId", postId);
+    $("#exampleModal").modal('show');
+  }
 
   function editPost(postId) {
     localStorage.setItem('postId', postId);
     document.location = 'Admin_Cards_Editor.html'
   }
   function setId(postId) {
-    localStorage.setItem('billboardId', postId);
+    localStorage.setItem('postId', postId);
   }
   async function approve_post() {
-    let billboardId = localStorage.getItem('billboardId');
+    let postId = localStorage.getItem('postId');
     let id_payload = {
-      _id: billboardId
+      _id: postId
     }
-    let res = await fetch(BILLBOARD_API_URL+'/approve', { method: 'PUT' ,headers : getHeaders(), body: JSON.stringify(id_payload)})
+    let res = await fetch(ADMIN_API_URL+'/approve', { method: 'PUT' ,headers : getHeaders(), body: JSON.stringify(id_payload)})
     let post = await res.json() ;
   console.log(post);
     fetch_post();
     $("#exampleModal").modal('hide');
   }
   async function unapprove_post() {
-    let billboardId = localStorage.getItem('billboardId');
+    let postId = localStorage.getItem('postId');
     let id_payload = {
-      _id: billboardId
+      _id: postId
     }
-    let res = await fetch(BILLBOARD_API_URL+'/unapprove', { method: 'PUT' ,headers : getHeaders(), body: JSON.stringify(id_payload)})
+    let res = await fetch(ADMIN_API_URL+'/unapprove', { method: 'PUT' ,headers : getHeaders(), body: JSON.stringify(id_payload)})
     let post = await res.json() ;
   console.log(post);
     fetch_post();
     $("#exampleModal3").modal('hide');
   }
   async function delete_post() {
-    let billboardId = localStorage.getItem('billboardId');
-    let res = await fetch(BILLBOARD_API_URL+'/'+billboardId, { method: 'DELETE' ,headers : getHeaders()})
+    let postId = localStorage.getItem('postId');
+    let res = await fetch(ADMIN_API_URL+'/post/'+postId, { method: 'DELETE' ,headers : getHeaders()})
     let post = await res.json() ;
     console.log(post);
     fetch_post();

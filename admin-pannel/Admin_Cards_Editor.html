@@ -104,12 +104,7 @@
       
     
       
-        <!-- photo input -->
-        <label class="form-label " for="customFile">Image</label>
-        <div class="form-outline mb-4">
-            
-          <input type="file" class="form-control" id="customFile" />
-          </div> 
+       
           
           <div class="form-outline mb-4">
             <input type="text" id="form6Example19" class="form-control" />
@@ -304,18 +299,6 @@
         let body= document.getElementById("form6Example7").value;
         let hashtags= document.getElementById("form6Example3").value;
         let bussinessLink= document.getElementById("form6Example6").value;
-        let file = document.getElementById("customFile").files[0];
-        console.log(file);
-        let url = '';
-        if(file) {
-          const data = new FormData();
-          data.append("image", file);
-          let res = await fetch(UPLOAD_API_URL, { method: 'POST' , body: data});
-          let photo = await res.json();
-           url = HOST_API_URL+'/newsdekho/api/public/images/'+photo.content;
-        } else {
-           url = localStorage.getItem("photo");
-        }
         let tagArr = prepareTags(hashtags);
         let post = {
             title: title,
@@ -326,8 +309,7 @@
             location: location,
             body: body,
             hashtags: tagArr,
-            bussinessLink: bussinessLink,
-            photo: url
+            bussinessLink: bussinessLink
         }
         console.log(post);
         let res1 = await fetch(POST_API_URL+'/'+postId, { method: 'PUT' , headers : getHeaders(), body: JSON.stringify(post)});
@@ -356,7 +338,6 @@
         let post_details = await res.json();
         let post = post_details.content;
         let tags = ArrToStr(post?.hashtags);
-        localStorage.setItem("photo", post?.photo);
         console.log(tags);
         console.log(post);
         document.getElementById("form6Example9").value = post?.title;
@@ -370,13 +351,23 @@
         document.getElementById("form6Example6").value = post?.bussinessLink;
     }
     edit_form_ready();
-    function login_check() {
+    async function login_check() {
+      let res = await fetch(ADMIN_API_URL+'/isAdmin', { method: 'GET', headers : getHeaders() });
+        let author = await res.json() ;
+      console.log(author);
+      let isAdmin = author?.content?.isAdmin;
         let email = localStorage.getItem("email");
-        if(email) {
-          console.log("user Is logged in");
+        if(author?.status == 'success') {
+          if(isAdmin) {
+            console.log("logedin successful");
+          }else {
+            alert("You are not autherized");
+            document.location = 'index.html';
+          }
         } else {
           alert("Please login");
-          document.location = '../index.html';
+          localStorage.clear();
+          document.location = 'index.html';
         }
     }
     login_check()

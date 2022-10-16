@@ -119,6 +119,7 @@
 <script>
   const HOST_API_URL = `http://odv24.com`;
   const POLL_API_URL = `${HOST_API_URL}/newsdekho/api/poll`;
+  const ADMIN_API_URL = `${HOST_API_URL}/newsdekho/api/admin`;
   const LATEST_POLL_API_URL = `${POLL_API_URL}/latest`;
   const getHeaders = () => {
             return {
@@ -144,12 +145,14 @@
     let poll_res = await res.json();
     console.log(poll_res);
     alert(poll_res.message);
+    document.location = 'PollAdmin.html'
   }
 
   async function edit_poll() {
-    let res = await fetch(LATEST_POLL_API_URL, { method: 'GET' })
+    let pollId = localStorage.getItem("pollId");
+    let res = await fetch(POLL_API_URL+"/"+pollId, { method: 'GET' })
     let poll_res = await res.json() ;
-    let poll = poll_res.content[0];
+    let poll = poll_res?.content;
     console.log(poll);
     localStorage.setItem("pollId", poll?._id);
     document.getElementById('form6Example').value = poll.qsn;
@@ -159,13 +162,23 @@
     document.getElementById('form6Example4').value = poll.op4;
   }
   edit_poll();
-  function login_check() {
+  async function login_check() {
+      let res = await fetch(ADMIN_API_URL+'/isAdmin', { method: 'GET', headers : getHeaders() });
+        let author = await res.json() ;
+      console.log(author);
+      let isAdmin = author?.content?.isAdmin;
         let email = localStorage.getItem("email");
-        if(email) {
-          console.log("user Is logged in");
+        if(author?.status == 'success') {
+          if(isAdmin) {
+            console.log("logedin successful");
+          }else {
+            alert("You are not autherized");
+            document.location = 'index.html';
+          }
         } else {
           alert("Please login");
-          document.location = '../index.html';
+          localStorage.clear();
+          document.location = 'index.html';
         }
     }
     login_check()
