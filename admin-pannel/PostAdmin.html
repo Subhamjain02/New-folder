@@ -149,7 +149,7 @@ const POST_API_URL = `${HOST_API_URL}/newsdekho/api/post`;
 const ADMIN_API_URL = `${HOST_API_URL}/newsdekho/api/admin`;
   async function fetch_post() {
 
-    let res = await fetch(POST_API_URL+"/raw", { method: 'GET' })
+    let res = await fetch(POST_API_URL+"/raw", { method: 'GET',headers : getHeaders() })
   let posts = await res.json() ;
   let ind =1;
   let html_content = posts?.content.map ((post, index)  =>{
@@ -214,13 +214,23 @@ const ADMIN_API_URL = `${HOST_API_URL}/newsdekho/api/admin`;
     $("#exampleModal2").modal('hide');
   }
   fetch_post();
-  function login_check() {
+  async function login_check() {
+      let res = await fetch(ADMIN_API_URL+'/isAdmin', { method: 'GET', headers : getHeaders() });
+        let author = await res.json() ;
+      console.log(author);
+      let isAdmin = author?.content?.isAdmin;
         let email = localStorage.getItem("email");
-        if(email) {
-          console.log("user Is logged in");
+        if(author?.status == 'success') {
+          if(isAdmin) {
+            console.log("logedin successful");
+          }else {
+            alert("You are not autherized");
+            document.location = 'index.html';
+          }
         } else {
           alert("Please login");
-          document.location = '../index.html';
+          localStorage.clear();
+          document.location = 'index.html';
         }
     }
     login_check()

@@ -173,14 +173,28 @@
         let res1 = await fetch(BILLBOARD_API_URL, { method: 'POST' , headers : getHeaders(), body: JSON.stringify(Billboards)});
         let bill = await res1.json();
         console.log(bill);
-        alert("Billboard created successfully");
+        alert(bill?.message);
+        if(bill?.status == 'success') {
+          document.location = 'index.html';
+        }
+        
     }
-    function login_check() {
+    async function login_check() {
+      let res = await fetch(ADMIN_API_URL+'/isAdmin', { method: 'GET', headers : getHeaders() });
+        let author = await res.json() ;
+      console.log(author);
+      let isAdmin = author?.content?.isAdmin;
         let email = localStorage.getItem("email");
-        if(email) {
-          console.log("user Is logged in");
+        if(author?.status == 'success') {
+          if(isAdmin) {
+            console.log("logedin successful");
+          }else {
+            alert("You are not autherized");
+            document.location = 'index.html';
+          }
         } else {
           alert("Please login");
+          localStorage.clear();
           document.location = 'index.html';
         }
     }

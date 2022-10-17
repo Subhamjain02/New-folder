@@ -65,93 +65,75 @@
           </a>
         </div>
       </nav>
-      <div class="container mt-4" >
+<div class="container mt-3">
+ 
+        <!-- 2 column grid layout with text inputs for the first and last names -->
+        <h1>Gossips</h1>
+
+    
+          
+        <!-- Message input -->
+        <div class="form-outline mb-5">
+          <textarea class="form-control" id="form6Example7" rows="2"></textarea>
+          <label class="form-label" for="form6Example7">Title </label>
+          <div class="form-helper">Keep within 15 words </div>
+        </div>
+    
+        <div class="form-outline mb-4">
+          <textarea class="form-control" id="form6Example8" rows="8"></textarea>
+          <label class="form-label" for="form6Example8">Body </label>
+        </div>
+      
+        <button  class="btn btn-primary btn-block mb-4" onclick="create_gossip()">Submit</button>
+    
+    </div>
 
     </div>
-        <div class="container">
-            <div class="form-check form-check-inline">
-                <h1>Polls</h1>
-            </div>
-            <div class="form-outline mb-4">
-              <input type="text" id="form6Example5" class="form-control" />
-              <label class="form-label" for="form6Example5">title</label>
-            </div>
-            <div class="form-outline mb-5">
-                <textarea class="form-control" id="form6Example" rows="2"></textarea>
-                <label class="form-label" for="form6Example">Question </label>
-                <div class="form-helper">Keep within 15 words </div>
-              </div>
-    
-              <div class="form-outline mb-4">
-                <input type="text" id="form6Example1" class="form-control" />
-                <label class="form-label" for="form6Example1">Option 1</label>
-              </div>
-              <div class="form-outline mb-4">
-                <input type="text" id="form6Example2" class="form-control" />
-                <label class="form-label" for="form6Example2">Option 2</label>
-              </div>
-              <div class="form-outline mb-4">
-                <input type="text" id="form6Example3" class="form-control" />
-                <label class="form-label" for="form6Example3">Option 3</label>
-              </div>
-              <div class="form-outline mb-4">
-                <input type="text" id="form6Example4" class="form-control" />
-                <label class="form-label" for="form6Example4">Option 4</label>
-              </div>
-              <button type="submit" class="btn btn-primary btn-block mb-4 " onclick="create_poll()">Submit</button>
-            </div>
-    
-            
-        </div>
-        </div>
-        </div>
-          </div>
-        </div>
-        
-        
-
-    
-
-    
-
 </body>
 <script
       type="text/javascript"
       src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.4.0/mdb.min.js"
     ></script>
-<script>
-  const HOST_API_URL = `http://odv24.com`;
-  const POLL_API_URL = `${HOST_API_URL}/newsdekho/api/poll`;
-  const getHeaders = () => {
+    <script>
+      const HOST_API_URL = `http://odv24.com`;
+      const Gossip_API_URL = `${HOST_API_URL}/newsdekho/api/gossip`;
+      const getHeaders = () => {
             return {
                 "Content-Type": "application/json",
                 "x-access-token": localStorage.getItem('jwt')
             }
         }
-  async function create_poll() {
-    let qsn = document.getElementById('form6Example').value;
-    let op1 = document.getElementById('form6Example1').value;
-    let op2 = document.getElementById('form6Example2').value;
-    let op3 = document.getElementById('form6Example3').value;
-    let op4 = document.getElementById('form6Example4').value;
-    let title = document.getElementById('form6Example5').value;
-    let poll = {
-            title: title,
-            qsn: qsn,
-            op1: op1,
-            op2: op2,
-            op3: op3,
-            op4: op4
-        }
-    let res = await fetch(POLL_API_URL, { method: 'POST' , headers : getHeaders(), body: JSON.stringify(poll)});
-    let poll_res = await res.json();
-    console.log(poll_res);
-    alert(poll_res?.message);
-    if(poll_res?.status == 'success') {
-      document.location = 'index.html';
-    }
+
+        async function edit_gossip() {
+    let gossipId = localStorage.getItem("gossipId");
+    let res = await fetch(Gossip_API_URL+"/"+gossipId, { method: 'GET' })
+    let poll_res = await res.json() ;
+    let poll = poll_res?.content;
+    console.log(poll);
+    localStorage.setItem("pollId", poll?._id);
+    document.getElementById('form6Example7').value = poll.title;
+    document.getElementById('form6Example8').value = poll.body;
   }
-  async function login_check() {
+  edit_gossip();
+      async function create_gossip() {
+        let title = document.getElementById('form6Example7').value;
+        let body = document.getElementById('form6Example8').value;
+        if(title == '' || body =='') {
+          alert("Please enter all the fields");
+          return;
+        }
+        let gossip_payload = {
+          title: title,
+          body: body
+        }
+        let gossipId = localStorage.getItem("gossipId");
+        let res = await fetch(Gossip_API_URL+'/'+gossipId, { method: 'PUT' ,headers : getHeaders(), body: JSON.stringify(gossip_payload)});
+        let gossip = await res.json() ;
+        console.log(gossip);
+        alert(gossip.message);
+        document.location = 'GossipAdmin.html'
+      }
+      async function login_check() {
       let res = await fetch(ADMIN_API_URL+'/isAdmin', { method: 'GET', headers : getHeaders() });
         let author = await res.json() ;
       console.log(author);
@@ -171,9 +153,7 @@
         }
     }
     login_check()
-</script>
+    </script>
 
   </body>
-</html>
-
 </html>

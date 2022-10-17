@@ -134,9 +134,41 @@ async function fetch_navbar() {
       <div class="line ms-2"></div>
     </div>
 
-    <input type="email" placeholder="Phone No." id="typeEmail" class="mb-3 bg-black">
+    <input type="email" placeholder="Phone No." id="emailverify" class="mb-3 bg-black">
 
-          <button class="btn bg-light text-black rounded-8 fw-bold" type="submit" onclick="">Next</button>
+          <button class="btn bg-light text-black rounded-8 fw-bold" type="submit" onclick="verify_email()">Next</button>
+          <div>
+            <p class="mt-4 mb-0 text-white-50">Don't have an account? <a href="#!" class="text-white fw-bold" data-mdb-target="#exampleModalToggle22" data-mdb-toggle="modal" data-mdb-dismiss="modal">Sign Up</a>
+            </p>
+          </div>
+  </div>
+       
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade " id="updatepassword" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered ">
+  <div class="modal-content  bg-transparent ">  
+  <div class="card text-white mcard text-center fpass" style="border-radius: 1rem;">
+    <button type="button" class="btn-close fs-6 btn-close-white mt-2 position-absolute end-0 mt-3 me-3" aria-label="Close" data-mdb-dismiss="modal"></button>
+       <img src="img/twitter-cover.jpg" height="28%" style="border-radius: 1rem 1rem 0rem 0rem;" alt="Loader" id="loader" loading="lazy"/></a>
+
+       <span class="fw-bold mb-4 mt-4 login px-3">Explore <span class="premium">Premium</span> Content</span>
+       <div class="mx-4 px-2">
+    
+    <div class="d-flex justify-content-evenly align-items-center mb-4">
+      <div class="line me-2"></div>
+      <p class="mb-0">Enter your password</p>
+      <div class="line ms-2"></div>
+    </div>
+
+    <input type="string" placeholder="Enter OTP" id="otp" class="mb-3 bg-black">
+    <input type="password" placeholder="Password" id="pass" class="mb-3 bg-black">
+    <input type="password" placeholder="Repassword" id="repass" class="mb-3 bg-black">
+
+          <button class="btn bg-light text-black rounded-8 fw-bold" type="submit" onclick="update_password()">Update Password</button>
           <div>
             <p class="mt-4 mb-0 text-white-50">Don't have an account? <a href="#!" class="text-white fw-bold" data-mdb-target="#exampleModalToggle22" data-mdb-toggle="modal" data-mdb-dismiss="modal">Sign Up</a>
             </p>
@@ -183,6 +215,55 @@ async function fetch_navbar() {
   document.getElementById('myheader').innerHTML = html_content;
 }
 fetch_navbar()
+
+async function verify_email() {
+  console.log("verify called");
+  let email = document.getElementById("emailverify").value;
+  if(!email) {
+    alert("Please enter a phone no.");
+    return;
+  }
+  let author_payload = {
+    email: email
+  }
+  let res = await fetch(AUTHOR_API_URL+'/notify', { method: 'POST',headers : getHeaders(), body: JSON.stringify(author_payload) })
+  let author = await res.json() ;
+  console.log(author);
+  if(author.status == 'success'){
+    localStorage.setItem("resetEmail",email);
+    $("#updatepassword").modal('show');
+  }else {
+    alert("Please enter valid username");
+  }
+}
+
+async function update_password() {
+  var otp = document.getElementById("otp").value;
+  var pass = document.getElementById("pass").value;
+  var repass = document.getElementById("repass").value;
+  if(!otp && !pass && !repass) {
+    alert("Please enter all the fields");
+    return;
+  }
+  console.l
+  if(pass != repass){
+    alert("paswword is not matching");
+    return;
+    }
+    let email = localStorage.getItem("resetEmail");
+    let salt = "qwertyuiop";
+    var hash = CryptoJS.HmacSHA256(pass, salt);
+    var encrypted_password = CryptoJS.enc.Base64.stringify(hash);
+    let author_payload = {
+      otp: otp,
+      email: email,
+      pass: encrypted_password
+    }
+    console.log(author_payload);
+  let res = await fetch(AUTHOR_API_URL+'/update-password', { method: 'PUT',headers : getHeaders(), body: JSON.stringify(author_payload) });
+  let author = await res.json() ;
+  console.log(author);
+}
 async function fetch_tag() {
   let res = await fetch(POST_API_URL+'/hashtags', { method: 'GET' })
   let tag_res = await res.json() ;
@@ -324,10 +405,13 @@ async function signup () {
     return;
   }
 
+  let salt = "qwertyuiop";
+  var hash = CryptoJS.HmacSHA256(password, salt);
+  var encrypted_password = CryptoJS.enc.Base64.stringify(hash);
   let author_payload = {
     name: name,
     email : email,
-    password: password
+    password: encrypted_password
     }
 
     let res = await fetch(AUTHOR_API_URL+'/signup', { method: 'POST' ,headers : getHeaders(), body: JSON.stringify(author_payload)})
@@ -348,9 +432,12 @@ async function signin() {
     return;
   }
 
+  let salt = "qwertyuiop";
+  var hash = CryptoJS.HmacSHA256(password, salt);
+  var encrypted_password = CryptoJS.enc.Base64.stringify(hash);
   let author_payload = {
     email : email,
-    password: password
+    password: encrypted_password
     }
 
     let res = await fetch(AUTHOR_API_URL+'/signin', { method: 'POST' ,headers : getHeaders(), body: JSON.stringify(author_payload)})
@@ -374,15 +461,15 @@ function logout() {
 }
 async function fetch_option() {
 
-  let logedin = localStorage.getItem("email");
-  console.log(logedin);
+  let res = await fetch(ADMIN_API_URL+'/isAdmin', { method: 'GET', headers : getHeaders() });
+  let author = await res.json() ;
+ console.log(author);
+ let isAdmin = author?.content?.isAdmin;
   let opt =``;
-  if(logedin != null) {
-    let isAdmin = localStorage.getItem('isAdmin');
-    if (isAdmin == 'true') {
-        opt = `
-        
-        
+  if(author?.status == 'success') {
+
+    if (isAdmin == true) {
+        opt = `  
    <li> <a class="dropdown-item text-light" href="Cards_editor.html">Write Post</a></li>
    <li> <a class="dropdown-item text-light" href="gossips.html"> Write Gossip</a></li>
    <li> <a class="dropdown-item text-light" href="billboard.html"> Add Billboard</a></li>
@@ -392,7 +479,7 @@ async function fetch_option() {
    <li> <a class="dropdown-item text-light" href="./admin-pannel/BrandAdmin.html">Brand AdminPannel</a></li>
    <li> <a class="dropdown-item text-light" href="./admin-pannel/GossipAdmin.html">Gossip AdminPannel</a></li>
    <li> <a class="dropdown-item text-light" href="./admin-pannel/BillboardAdmin.html">Billboards AdminPannel</a></li>
-  <li> <a class="dropdown-item text-light" href="./admin-pannel/EditPoll.html">Edit Poll</a></li>
+   <li> <a class="dropdown-item text-light" href="./admin-pannel/PollAdmin.html">PollAdmin</a></li>
         `
     }
     opt = opt +`
