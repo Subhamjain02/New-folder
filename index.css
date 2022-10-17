@@ -47,7 +47,14 @@ html *{
     overflow: hidden;
     text-overflow: ellipsis;
 }
+.scroll-section {
+  max-height: 100px;
+  overflow-y: auto;
+  z-index: 2;
+  background-color: #151419 ;
+  margin-right: 70px;
 
+}
 
 .login{
     font-family: 'Montserrat';
@@ -70,7 +77,7 @@ html *{
   width: 120px;
 }
 
-.mcard input
+.snp>input
 {
   border: 1px solid black ;
   border-radius: 15px ;
@@ -78,8 +85,9 @@ html *{
   height: 54px;
   color: white;
   padding-left: 16px;
+  background-color: #000000;
 }
-.inp input{
+.inp>input{
   height: 50px;
   margin-bottom: 12px;
 }

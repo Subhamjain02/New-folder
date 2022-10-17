@@ -67,24 +67,46 @@ async function fetch_navbar() {
 <div class="modal fade " id="exampleModalToggle22" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 <div class="modal-dialog modal-dialog-centered ">
   <div class="modal-content  bg-transparent ">  
-  <div class="card text-white mcard text-center inp" style="border-radius: 1rem;">
+  <div class="card text-white mcard text-center" style="border-radius: 1rem;">
     <button type="button" class="btn-close fs-6 btn-close-white mt-2 position-absolute end-0 mt-3 me-3" aria-label="Close" data-mdb-dismiss="modal"></button>
        <img src="img/twitter-cover.jpg" height="24%" style="border-radius: 1rem 1rem 0rem 0rem;" alt="Loader" id="loader" loading="lazy"/></a>
 
        <span class="fw-bold mb-3 mt-3 login px-3">Explore <span class="premium">Premium</span> Content</span>
-       <div class="mx-4 px-2">
+       <div class="mx-4 px-2 snp inp">
     <div class="d-flex justify-content-evenly align-items-center mb-3">
       <div class="line me-2"></div>
       <p class="mb-0">Sign up with Phone no.</p>
       <div class="line ms-2"></div>
     </div>
 
-    <input type="name" placeholder="Name" id="nameX" class=" bg-black">
-    <input type="email" placeholder=" Phone No." id="typeEmailX" class=" bg-black">
-    <input type="password" placeholder="Password" id="typePasswordX" class="bg-black">
-    <input type="password" placeholder="Confirm Password" id="typePasswordY" class="bg-black">
+    <input type="name" placeholder="Name" id="nameX" >
+    <input type="email" placeholder="Phone No." id="typeEmailX" >
+    <input type="password" placeholder="Password" id="typePasswordX">
+    <input type="password" placeholder="Confirm Password" id="typePasswordY">
+    <div class="form-check px-3 ms-3">
+  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked/>
+  <label class="form-check-label" for="flexCheckChecked">
+    <span> I accept the Terms and Conditions. <a
+    data-mdb-toggle="collapse"
+    href="#collapseWithScrollbar"
+    role="button"
+    aria-expanded="false"
+    aria-controls="collapseExample"
+  >
+    Learn More
+  </a></span>
+  <div class="collapse scroll-section position-absolute" id="collapseWithScrollbar"  style="max-width: 500px">
+  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
+  squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente
+  ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer
+  farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them
+  accusamus labore sustainable VHS. 3 wolf moon officia aute, non cupidatat skateboard dolor
+  brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua
+  put a bird on it squid single-origin coffee nulla assumenda shoreditch et.
+</div></label>
+</div>
   
-          <button class="btn bg-light text-black rounded-8 fw-bold mt-2" type="submit" onclick="signup()">Sign Up</button>
+          <button class="btn bg-light text-black rounded-8 fw-bold mt-3" type="submit" onclick="signup()">Sign Up</button>
           <div>
             <p class="mt-3 mb-0 text-white-50">Already have an account? <a href="#!" class="text-white fw-bold" data-mdb-target="#exampleModal" data-mdb-toggle="modal" data-mdb-dismiss="modal">Login</a>
             </p>
@@ -104,7 +126,7 @@ async function fetch_navbar() {
        <img src="img/twitter-cover.jpg" height="28%" style="border-radius: 1rem 1rem 0rem 0rem;" alt="Loader" id="loader" loading="lazy"/></a>
 
        <span class="fw-bold mb-4 mt-4 login px-3">Explore <span class="premium">Premium</span> Content</span>
-       <div class="mx-4 px-2">
+       <div class="mx-4 px-2 snp">
     
     <div class="d-flex justify-content-evenly align-items-center mb-4">
       <div class="line me-2"></div>
@@ -134,17 +156,17 @@ async function fetch_navbar() {
        <img src="img/twitter-cover.jpg" height="28%" style="border-radius: 1rem 1rem 0rem 0rem;" alt="Loader" id="loader" loading="lazy"/></a>
 
        <span class="fw-bold mb-4 mt-4 login px-3">Explore <span class="premium">Premium</span> Content</span>
-       <div class="mx-4 px-2">
+       <div class="mx-4 px-2 snp">
     <div class="d-flex justify-content-evenly align-items-center mb-4">
       <div class="line me-2"></div>
-      <p class="mb-0">login with Phone no.</p>
+      <p class="mb-0">Login with Phone no.</p>
       <div class="line ms-2"></div>
     </div>
 
     <input type="email" placeholder="Phone No." id="typeEmailY" class="mb-3 bg-black">
-    <input type="email" placeholder="Password" id="typePasswordZ" class="mb-3 bg-black">
+    <input type="password" placeholder="Password" id="typePasswordZ" class="mb-3 bg-black">
   
-    <p class="small mb-3 pb-lg-2"><a class="text-white-50" href="#!" data-mdb-target="#forgotpassword" data-mdb-toggle="modal" data-mdb-dismiss="modal">Forgot password?</a></p>
+    <p class="small mb-2 pb-lg-2"><a class="text-white-50" href="#!" data-mdb-target="#forgotpassword" data-mdb-toggle="modal" data-mdb-dismiss="modal">Forgot password?</a></p>
           <button class="btn bg-light text-black rounded-8 fw-bold" type="submit" onclick="signin()">Login</button>
           <div>
             <p class="mt-4 mb-0 text-white-50">Don't have an account? <a href="#!" class="text-white fw-bold" data-mdb-target="#exampleModalToggle22" data-mdb-toggle="modal" data-mdb-dismiss="modal">Sign Up</a>
@@ -156,6 +178,7 @@ async function fetch_navbar() {
     </div>
   </div>
 </div>
+
   `
   document.getElementById('myheader').innerHTML = html_content;
 }
