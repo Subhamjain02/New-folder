@@ -452,6 +452,8 @@ async function signin() {
       localStorage.setItem('jwt', author.content.token);
       localStorage.setItem('bookmarks', author.content.author.bookmarks);
       location.reload();
+    }else {
+      alert(author?.message)
     }
 
 }
