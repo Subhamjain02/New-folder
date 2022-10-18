@@ -393,9 +393,17 @@ async function signup () {
   let email = document.getElementById("typeEmailX").value;
   let password = document.getElementById("typePasswordX").value;
   let repassword = document.getElementById("typePasswordY").value;
+  var term_checked = document.getElementById("flexCheckChecked");
+  let term ="";
+  if(term_checked.checked == true){
+    term = "checked"
+  } else {
+    term ="notchecked"
+  }
   console.log(email);
   console.log(password);
   console.log(repassword);
+  console.log(term);
   if (email == '' || password == '' || repassword == '') {
     alert("Please enter all the fields");
     return;
@@ -410,7 +418,8 @@ async function signup () {
   let author_payload = {
     name: name,
     email : email,
-    password: encrypted_password
+    password: encrypted_password,
+    term: term
     }
    console.log(author_payload);
     let res = await fetch(AUTHOR_API_URL+'/signup', { method: 'POST' ,headers : getHeaders(), body: JSON.stringify(author_payload)})
