@@ -137,7 +137,7 @@ async function  fetch_posts () {
     </div>
     </div>
     </div>  
-    <div class="hr mt-4 mb-4"></div>
+    <div class="hr mt-4"></div>
         `
     )
     }
@@ -245,7 +245,7 @@ async function  fetch_posts () {
     if(post?.mode == 'billboard' && post?.size == 'small') {
       return(`
       <div class="col d-flex justify-content-center">
-      <div class="card  billy-1 mb-3  ">
+      <div class="card  billy-1   ">
         <img src="`+ post?.pic +`" class="card-img-top billyimg-1" alt="Fissure in Sandstone"/>
         <div class="card-body bb ">
           <h5 class="card-title lh-sm bill-title mb-0">BILLBOARD</h5>
@@ -253,13 +253,13 @@ async function  fetch_posts () {
     </div>
     </div>
     </div>
-    <div class="hr mb-2"></div>
+    <div class="hr "></div>
       `)
     }
     if(post?.mode == 'billboard' && post?.size == 'big') {
       return(`
       <div class="col d-flex justify-content-center">
-    <div class="card  billy mb-3  ">
+    <div class="card  billy  ">
       <img src="`+ post?.pic +`" class="card-img-top billyimg" alt="Fissure in Sandstone"/>
       <div class="card-body bb ">
         <h5 class="card-title lh-sm bill-title mb-0">BILLBOARD</h5>
@@ -267,14 +267,14 @@ async function  fetch_posts () {
   </div>
   </div>
   </div>
-  <div class="hr mb-2"></div>
+  <div class="hr"></div>
       `)
     }
 
     if(post?.mode == 'gossip') {
       return (
         `
-        <div class="hr mb-2"></div>
+        
     
       <div class="col d-flex justify-content-center">
     
@@ -334,6 +334,7 @@ async function  fetch_posts () {
      </div>
      </div>
     </div>
+    <div class="hr mt-2"></div>
         `
       )
     }
