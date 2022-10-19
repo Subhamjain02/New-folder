@@ -612,6 +612,10 @@ function successfulLookup(position) {
 
 
 async function vote(opn, ans, pollId) {
+  if(!logincheck()) {
+    $("#exampleModal").modal('show');
+    return;
+  }
   console.log(opn, ans, pollId);
   let poll_payload = {
     opt : opn,
@@ -620,6 +624,10 @@ async function vote(opn, ans, pollId) {
   let res = await fetch(POLL_API_URL+'/vote/'+pollId, { method: 'PUT' ,headers : getHeaders(), body: JSON.stringify(poll_payload)})
   let poll = await res.json() ;
   let post = poll?.content;
+  let userId = localStorage.getItem("_id")
+  if(post?.vote.includes(userId)){
+    return;
+  }
   update_post(post);
   fetch_posts();
 }
