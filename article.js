@@ -82,7 +82,16 @@ const ADMIN_API_URL = `${HOST_API_URL}/newsdekho/api/admin`;
       </div> 
       <div class="card-img-overlay d-flex align-items-end justify-content-start">
       </div>
-    </div>`
+    </div>
+    
+    `
+    let temp3 = `
+    <iframe class="ytvid"src="`+post?.bussinessLink+`">
+    </iframe>
+    `
+    if(post?.bussinessLink) {
+      temp = temp+temp3;
+    }
     let temp2 = '';
     let temp1 ='';
     let lt =0;
@@ -102,7 +111,7 @@ for(let i=0 ;i<post?.body.length;i+=800 ) {
       class="card-img cardimg"
       alt="`+ post?.caption +`"
     />
-
+    
       <div class="card-img-overlay d-flex align-items-end justify-content-start cover" >
         <div class="card-body cbody">
           <h5 class="card-title lh-sm A-card-title">
