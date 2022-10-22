@@ -326,7 +326,9 @@ async function fetch_recomendent() {
   <div class="hs mt-3"></div>
   <a href="Articles.html?id=`+post?._id+`" class="text-light">
   <div class="search-card d-flex mt-3  align-items-center">
-    <img src=" `+post?.pic+`" alt="`+post?.caption+`" width="120px" height="80px">
+  <div class="search-img">
+    <img src=" `+post?.pic+`" alt="`+post?.caption+`" width="100%" height="100%">
+    </div>
     <div class="search-body ms-2 lh-sm">
       <span class="txt">`+post?.title+`</span>
     </div>
