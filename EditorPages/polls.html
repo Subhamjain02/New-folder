@@ -140,7 +140,6 @@
         }
     let res = await fetch(POLL_API_URL, { method: 'POST' , headers : getHeaders(), body: JSON.stringify(poll)});
     let poll_res = await res.json();
-    console.log(poll_res);
   }
 </script>
 

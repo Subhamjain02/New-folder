@@ -93,8 +93,8 @@ async function  fetch_posts () {
              <p class="card-text  lh-sm ctext">`+ post?.body.slice(0,150) +`</p>
           </a>
          <span class="d-flex  ">
-           <p class="text-light www ">`+ post?.likes?.length +` likes</p>
-           <p class="www">`+ post?.views +` views</p>
+           <p class="text-light www ">`+ (post?.likes?.length+post?.ml) +` likes</p>
+           <p class="www">`+ (post?.views+post?.mv) +` views</p>
           </span>
            <div class="btns bg-black ">
            <div class="left d-flex align-items-center ">`
@@ -144,7 +144,6 @@ async function  fetch_posts () {
 
     if(post?.mode == 'poll') {
       let poll = post;
-  console.log(poll);
   let ans1 = poll?.ans1+1;
   let ans2 = poll?.ans2+1;
   let ans3 = poll?.ans3+1;
@@ -195,8 +194,8 @@ async function  fetch_posts () {
 </div>
 </div>
 <span class="d-flex px-4 ">
-           <p class="text-light www ">`+ poll?.likes?.length +` likes</p>
-           <p class="www">`+ poll?.views +` views</p>
+           <p class="text-light www ">`+ (poll?.likes?.length+poll?.ml) +` likes</p>
+           <p class="www">`+ (poll?.views+poll?.mv) +` views</p>
           </span>
            <div class="btns bg-black px-4">
            <div class="left d-flex align-items-center ">`
@@ -290,8 +289,8 @@ async function  fetch_posts () {
             <p class="web">www.odishavoice24.com</p>
            </div>
            <span class="d-flex  ">
-           <p class="text-light www ">`+ post?.likes?.length +` likes</p>
-           <p class="www">`+ post?.views +` views</p>
+           <p class="text-light www ">`+ (post?.likes?.length+post?.ml) +` likes</p>
+           <p class="www">`+ (post?.views+post?.mv) +` views</p>
           </span>
            <div class="btns bg-black ">
            <div class="left d-flex align-items-center ">`
@@ -387,7 +386,6 @@ function copy_link(id) {
 }
 
 function share_post (id, title, hashtags, media) {
-  console.log(media);
   let hashTag = hashtags;
   var base_url = window.location.origin;
   let postUrl = base_url+"/shared_item.html?id="+id;
@@ -410,13 +408,11 @@ async function like(postId) {
     $("#exampleModal").modal('show');
     return;
   }
-  console.log(postId);
   let id_payload = {
     _id : postId
   }
   let res = await fetch(POST_API_URL+'/like', { method: 'PUT' ,headers : getHeaders(), body: JSON.stringify(id_payload)})
   let posts = await res.json() ;
-  console.log(posts?.content);
   let post = posts?.content;
   update_post(post);
   fetch_posts();
@@ -439,13 +435,11 @@ async function unlike(postId) {
     $("#exampleModal").modal('show');
     return;
   }
-  console.log(postId);
   let id_payload = {
     _id : postId
   }
   let res = await fetch(POST_API_URL+'/unlike', { method: 'PUT' ,headers : getHeaders(), body: JSON.stringify(id_payload)})
   let posts = await res.json() ;
-  console.log(posts);
   let post = posts?.content;
   update_post(post);
   fetch_posts();
@@ -456,13 +450,11 @@ async function bookmark(postId) {
     $("#exampleModal").modal('show');
     return;
   }
-  console.log(postId, "bookmark");
   let id_payload = {
     _id : postId
   }
   let res = await fetch(AUTHOR_API_URL+'/bookmark', { method: 'PUT' ,headers : getHeaders(), body: JSON.stringify(id_payload)})
   let posts = await res.json() ;
-  console.log(posts);
   let post = posts?.content;
   update_post(post);
   localStorage.setItem("bookmarks",posts.content.bookmarks);
@@ -473,14 +465,12 @@ async function unbookmark(postId) {
     $("#exampleModal").modal('show');
     return;
   }
-  console.log(postId, "unbookmark");
   let id_payload = {
     _id : postId
   }
   let res = await fetch(AUTHOR_API_URL+'/unbookmark', { method: 'PUT' ,headers : getHeaders(), body: JSON.stringify(id_payload)})
   let posts = await res.json() ;
   localStorage.setItem("bookmarks",posts.content.bookmarks);
-  console.log(posts);
   let post = posts?.content;
   update_post(post);
   fetch_posts();
@@ -489,7 +479,6 @@ async function unbookmark(postId) {
 async function fetch_trending_post() {
   let res = await fetch(POST_API_URL+'/type/Trending', { method: 'GET' })
   let posts = await res.json() ;
-  console.log(posts);
   let i=0;
   let html_content = posts?.content.map ( post =>{
     i++;
@@ -497,7 +486,7 @@ async function fetch_trending_post() {
  `
   <a href="Articles.html?id=`+post?._id+`" class="text-light">
   <div class="card rounded-9 bg-transparent text-white border border-3">
-  <img src="`+ post?.photo[0] +`" class="card-img ci rounded-8" alt="`+ post?.caption +`"/>
+  <img src="`+ post?.pic +`" class="card-img ci rounded-8" alt="`+ post?.caption +`"/>
   <h5 class="card-title cti">#`+i+`</h5>
   <div class="card-img-overlay cio d-flex align-items-end justify-content-center">
     <p class="card-text lh-sm para text-uppercase "> 
@@ -534,7 +523,6 @@ async function fetch_nearby_post() {
   let location_str = localStorage.getItem('location');
   if(location_str) {
     let location_arr = prepareTags(location_str);
-    console.log(location_arr);
     for(let i =0; i<posts.length ;i++) {
       let post = posts[i];
       let flag = 1;
@@ -565,7 +553,7 @@ async function fetch_nearby_post() {
   let html_content = nearby_post.map ( post => `
   <a href="Articles.html?id=`+post?._id+`" class="text-light">
   <div class="card child bg-transparent ">
-  <img src="`+ post?.photo[0] +`" class="card-img-top cit rounded-9 border-3 " alt="`+ post?.caption +`"/>
+  <img src="`+ post?.near +`" class="card-img-top cit rounded-9 border-3 " alt="`+ post?.caption +`"/>
   <p class="card-text lh-sm para1 ">`+ post?.title +`</p>
 </div>
 </a>
@@ -592,7 +580,6 @@ function successfulLookup(position) {
   fetch(`https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=dce9404db6624c18a851862c2453d008`)
     .then(response => response.json())
     .then(res => {
-      console.log(res);
       let location_obj = res.results?.[0].components;
       let location = [];
       location.push(location_obj.state_district);
@@ -616,7 +603,6 @@ async function vote(opn, ans, pollId) {
     $("#exampleModal").modal('show');
     return;
   }
-  console.log(opn, ans, pollId);
   let poll_payload = {
     opt : opn,
     ans: ans

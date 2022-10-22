@@ -30,33 +30,28 @@ const ADMIN_API_URL = `${HOST_API_URL}/newsdekho/api/admin`;
           $("#exampleModal").modal('show');
           return;
         }
-        console.log(postId);
         let id_payload = {
           _id : postId
         }
         let res = await fetch(POST_API_URL+'/like', { method: 'PUT' ,headers : getHeaders(), body: JSON.stringify(id_payload)})
         let posts = await res.json() ;
-        console.log(posts);
         fetch_post(postId);
         fetch_suggestion(postId);
         
       }
 
       async function view(postId) {
-          console.log(postId);
           let id_payload = {
             _id : postId
           }
           let res = await fetch(POST_API_URL+'/view', { method: 'PUT' ,headers : getHeaders(), body: JSON.stringify(id_payload)})
           let posts = await res.json() ;
-          console.log(posts);
           fetch_post(postId);
         }
 
       async function fetch_post(postId) {
         let res = await fetch(POST_API_URL+'/'+postId, { method: 'GET' })
         let posts = await res.json() ;
-        console.log(posts);
         let post = posts.content;
         let bookmarks_arr = localStorage.getItem('bookmarks');
         let bookmarks = (bookmarks_arr) ? bookmarks_arr : [];
@@ -75,9 +70,9 @@ const ADMIN_API_URL = `${HOST_API_URL}/newsdekho/api/admin`;
       </div>
       <div class="lss position-absolute d-flex align-items-center flex-column ">
         `+like_content+`
-        <p class="text-light www mb-5 ">`+ post?.likes?.length +` likes</p>
+        <p class="text-light www mb-5 ">`+ (post?.likes?.length+post?.ml) +` likes</p>
         <i class="fa-regular fa-eye  fs-1"></i>
-        <p class="www mb-5">`+ post?.views +` views</p>
+        <p class="www mb-5">`+ (post?.views+post?.mv) +` views</p>
         `+bookmark_content+`
       </div> 
       <div class="card-img-overlay d-flex align-items-end justify-content-start">
@@ -151,15 +146,21 @@ for(let i=0 ;i<post?.body.length;i+=800 ) {
       async function fetch_suggestion(postId) {
         let res1 = await fetch(POST_API_URL+'/'+postId, { method: 'GET' })
         let posts1 = await res1.json() ;
-        console.log(posts1);
         let post1 = posts1.content;
         let category = post1.category;
         let res = await fetch(POST_API_URL+'/category/'+category, { method: 'GET' })
         let posts = await res.json() ;
         let bookmarks_arr = localStorage.getItem('bookmarks');
         let bookmarks = (bookmarks_arr) ? bookmarks_arr : [];
+        let org_posts = [];
+        for(let i=0;i<posts.length;i++) {
+          if(posts[i]?._id !=postId) {
+            org_posts.push(posts[i]);
+          }
+          
+        }
         
-        let html_content = posts?.content.map ( post =>{
+        let html_content = org_posts?.content.map ( post =>{
           let author_id = localStorage.getItem('_id');
           let like_content = (post?.likes.includes(author_id)) ? `<i class="fa-regular fa-heart me-3 fw-bold" onclick="unlike('`+post?._id+`')"></i> `: `<i class="fa-regular fa-heart me-3" onclick="like('`+post?._id+`')"></i>`
           let bookmark_content = (bookmarks.includes(post?._id)) ? `<i class="fa-regular fa-bookmark fw-bold" onclick="unbookmark('`+post?._id+`')"></i> `: `<i class="fa-regular fa-bookmark text-light" onclick="bookmark('`+post?._id+`')"></i>`
@@ -178,8 +179,8 @@ for(let i=0 ;i<post?.body.length;i+=800 ) {
                    <p class="card-text  lh-sm ctext">`+ post?.body.slice(0,150) +`</p>
                 </a>
                <span class="d-flex  ">
-                 <p class="text-light www ">`+ post?.likes?.length +` likes</p>
-                 <p class="www">`+ post?.views +` views</p>
+                 <p class="text-light www ">`+ (post?.likes?.length+post?.ml) +` likes</p>
+                 <p class="www">`+ (post?.views+post?.mv) +` views</p>
                 </span>
                  <div class="btns bg-black ">
                  <div class="left d-flex align-items-center ">`
@@ -229,7 +230,6 @@ for(let i=0 ;i<post?.body.length;i+=800 ) {
       
           if(post?.mode == 'poll') {
             let poll = post;
-        console.log(poll);
         let ans1 = poll?.ans1+1;
         let ans2 = poll?.ans2+1;
         let ans3 = poll?.ans3+1;
@@ -439,14 +439,12 @@ for(let i=0 ;i<post?.body.length;i+=800 ) {
         var base_url = window.location.origin;
         let postUrl = base_url+"/shared_item.html?id="+id;
         navigator.clipboard.writeText(postUrl).then(function() {
-          console.log('Async: Copying to clipboard was successful!');
         }, function(err) {
           console.error('Async: Could not copy text: ', err);
         });
       }
       
       function share_post (id, title, hashtags, media) {
-        console.log(media);
         let hashTag = hashtags;
         var base_url = window.location.origin;
         let postUrl = base_url+"/shared_item.html?id="+id;
@@ -465,10 +463,7 @@ for(let i=0 ;i<post?.body.length;i+=800 ) {
       }
       
       $(function () {
-        console.log("testing");
         var postId = location.search.split('id=')[1];
-        
-        console.log(postId);
         fetch_post(postId);
         view(postId);
         fetch_suggestion(postId);
@@ -479,13 +474,11 @@ for(let i=0 ;i<post?.body.length;i+=800 ) {
           $("#exampleModal").modal('show');
           return;
         }
-        console.log(postId, "unlike");
         let id_payload = {
           _id : postId
         }
         let res = await fetch(POST_API_URL+'/unlike', { method: 'PUT' ,headers : getHeaders(), body: JSON.stringify(id_payload)})
         let posts = await res.json() ;
-        console.log(posts);
         fetch_post(postId);
         fetch_suggestion(postId);
 
@@ -496,13 +489,11 @@ for(let i=0 ;i<post?.body.length;i+=800 ) {
           $("#exampleModal").modal('show');
           return;
         }
-        console.log(postId, "bookmark");
         let id_payload = {
           _id : postId
         }
         let res = await fetch(AUTHOR_API_URL+'/bookmark', { method: 'PUT' ,headers : getHeaders(), body: JSON.stringify(id_payload)})
         let posts = await res.json() ;
-        console.log(posts);
         localStorage.setItem("bookmarks",posts.content.bookmarks);
         fetch_suggestion(postId);
         fetch_post(postId);
@@ -512,14 +503,12 @@ for(let i=0 ;i<post?.body.length;i+=800 ) {
           $("#exampleModal").modal('show');
           return;
         }
-        console.log(postId, "unbookmark");
         let id_payload = {
           _id : postId
         }
         let res = await fetch(AUTHOR_API_URL+'/unbookmark', { method: 'PUT' ,headers : getHeaders(), body: JSON.stringify(id_payload)})
         let posts = await res.json() ;
         localStorage.setItem("bookmarks",posts.content.bookmarks);
-        console.log(posts);
         fetch_suggestion(postId);
         fetch_post(postId);
       }

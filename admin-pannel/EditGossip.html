@@ -109,7 +109,6 @@
     let res = await fetch(Gossip_API_URL+"/"+gossipId, { method: 'GET' })
     let poll_res = await res.json() ;
     let poll = poll_res?.content;
-    console.log(poll);
     localStorage.setItem("pollId", poll?._id);
     document.getElementById('form6Example7').value = poll.title;
     document.getElementById('form6Example8').value = poll.body;
@@ -129,14 +128,12 @@
         let gossipId = localStorage.getItem("gossipId");
         let res = await fetch(Gossip_API_URL+'/'+gossipId, { method: 'PUT' ,headers : getHeaders(), body: JSON.stringify(gossip_payload)});
         let gossip = await res.json() ;
-        console.log(gossip);
         alert(gossip.message);
         document.location = 'GossipAdmin.html'
       }
       async function login_check() {
       let res = await fetch(ADMIN_API_URL+'/isAdmin', { method: 'GET', headers : getHeaders() });
         let author = await res.json() ;
-      console.log(author);
       let isAdmin = author?.content?.isAdmin;
         let email = localStorage.getItem("email");
         if(author?.status == 'success') {

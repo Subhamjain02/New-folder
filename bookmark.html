@@ -94,13 +94,11 @@
           $("#exampleModal").modal('show');
           return;
         }
-            console.log(postId);
             let id_payload = {
                 _id : postId
             }
             let res = await fetch(POST_API_URL+'/like', { method: 'PUT' ,headers : getHeaders(), body: JSON.stringify(id_payload)})
             let posts = await res.json() ;
-            console.log(posts);
             fetch_bookmark();
         }
 
@@ -109,13 +107,11 @@
           $("#exampleModal").modal('show');
           return;
         }
-  console.log(postId);
   let id_payload = {
     _id : postId
   }
   let res = await fetch(POST_API_URL+'/unlike', { method: 'PUT' ,headers : getHeaders(), body: JSON.stringify(id_payload)})
   let posts = await res.json() ;
-  console.log(posts);
   fetch_bookmark();
 }
 
@@ -124,13 +120,11 @@ async function bookmark(postId) {
           $("#exampleModal").modal('show');
           return;
         }
-  console.log(postId, "bookmark");
   let id_payload = {
     _id : postId
   }
   let res = await fetch(AUTHOR_API_URL+'/bookmark', { method: 'PUT' ,headers : getHeaders(), body: JSON.stringify(id_payload)})
   let posts = await res.json() ;
-  console.log(posts);
   localStorage.setItem("bookmarks",posts.content.bookmarks);
   fetch_bookmark();
 }
@@ -139,14 +133,12 @@ async function unbookmark(postId) {
           $("#exampleModal").modal('show');
           return;
         }
-  console.log(postId, "unbookmark");
   let id_payload = {
     _id : postId
   }
   let res = await fetch(AUTHOR_API_URL+'/unbookmark', { method: 'PUT' ,headers : getHeaders(), body: JSON.stringify(id_payload)})
   let posts = await res.json() ;
   localStorage.setItem("bookmarks",posts.content.bookmarks);
-  console.log(posts);
   fetch_bookmark();
 }
        async function fetch_bookmark() {
@@ -156,10 +148,8 @@ async function unbookmark(postId) {
         let html_content = ``;
         if (bookmarks_list){
             let bookmarks = bookmarks_list.split(',');
-            console.log(bookmarks);
         for(let i=0;i<bookmarks.length; i++) {
             let postId = bookmarks[i];
-            console.log(postId);
             let res = await fetch(POST_API_URL+'/'+postId, { method: 'GET' });
             let posts_res = await res.json() ;
             if(posts_res?.content) {
@@ -168,7 +158,6 @@ async function unbookmark(postId) {
             
         }
         
-        console.log(posts);
         html_content = posts.map ( post =>{
     let author_id = localStorage.getItem('_id');
     let like_content = (post?.likes.includes(author_id)) ? `<i class="fa-regular fa-heart me-3 fw-bold" onclick="unlike('`+post?._id+`')"></i> `: `<i class="fa-regular fa-heart me-3" onclick="like('`+post?._id+`')"></i>`
@@ -188,8 +177,8 @@ async function unbookmark(postId) {
              <p class="card-text  lh-sm ctext">`+ post?.body.slice(0,150) +`</p>
           </a>
          <span class="d-flex  ">
-           <p class="text-light www ">`+ post?.likes?.length +` likes</p>
-           <p class="www">`+ post?.views +` views</p>
+           <p class="text-light www ">`+ (post?.likes?.length+post?.ml) +` likes</p>
+           <p class="www">`+ (post?.views+post?.mv) +` views</p>
           </span>
            <div class="btns bg-black ">
            <div class="left d-flex align-items-center ">`
@@ -239,7 +228,6 @@ async function unbookmark(postId) {
 
     if(post?.mode == 'poll') {
       let poll = post;
-  console.log(poll);
   let ans1 = poll?.ans1+1;
   let ans2 = poll?.ans2+1;
   let ans3 = poll?.ans3+1;
@@ -290,8 +278,8 @@ async function unbookmark(postId) {
 </div>
 </div>
 <span class="d-flex  ">
-           <p class="text-light www ">`+ poll?.likes?.length +` likes</p>
-           <p class="www">`+ poll?.views +` views</p>
+           <p class="text-light www ">`+ (poll?.likes?.length+poll?.ml) +` likes</p>
+           <p class="www">`+ (poll?.views+poll?.mv) +` views</p>
           </span>
            <div class="btns bg-black ">
            <div class="left d-flex align-items-center ">`
@@ -386,8 +374,8 @@ async function unbookmark(postId) {
             <p class="web">www.odishavoice24.com</p>
            </div>
            <span class="d-flex  ">
-           <p class="text-light www ">`+ post?.likes?.length +` likes</p>
-           <p class="www">`+ post?.views +` views</p>
+           <p class="text-light www ">`+( post?.likes?.length+post?.ml) +` likes</p>
+           <p class="www">`+ (post?.views+post?.mv) +` views</p>
           </span>
            <div class="btns bg-black ">
            <div class="left d-flex align-items-center ">`
@@ -461,7 +449,6 @@ const UPLOAD_API_URL = `${HOST_API_URL}/upload`;
 const STATIC_API_URL = `${HOST_API_URL}/public`;
 const AUTHOR_API_URL = `${HOST_API_URL}/newsdekho/api/author`;
 const ADMIN_API_URL = `${HOST_API_URL}/newsdekho/api/admin`;
-        console.log("testing");
     
         fetch_bookmark();
         function copy_link(id) {
@@ -475,7 +462,6 @@ const ADMIN_API_URL = `${HOST_API_URL}/newsdekho/api/admin`;
       }
       
       function share_post (id, title, hashtags, media) {
-        console.log(media);
         let hashTag = hashtags;
         var base_url = window.location.origin;
         let postUrl = base_url+"/shared_item.html?id="+id;

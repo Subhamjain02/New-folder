@@ -311,10 +311,8 @@
           img5: img5,
           img6: img6
          }
-         console.log(brand);
          let res = await fetch(BRAND_API_URL, { method: 'POST' , headers : getHeaders(), body: JSON.stringify(brand)});
         let brand_details = await res.json();
-        console.log(brand_details);
         alert(brand_details?.message);
         if(brand_details?.status == 'success') {
           document.location = 'index.html';
@@ -324,7 +322,6 @@
          async function login_check() {
       let res = await fetch(ADMIN_API_URL+'/isAdmin', { method: 'GET', headers : getHeaders() });
         let author = await res.json() ;
-      console.log(author);
       let isAdmin = author?.content?.isAdmin;
         let email = localStorage.getItem("email");
         if(author?.status == 'success') {
