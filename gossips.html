@@ -116,7 +116,6 @@
         }
         let res = await fetch(Gossip_API_URL, { method: 'POST' ,headers : getHeaders(), body: JSON.stringify(gossip_payload)})
         let gossip = await res.json() ;
-        console.log(gossip);
         alert(gossip?.message);
         if(gossip?.status == 'success') {
           document.location = 'index.html';
@@ -125,7 +124,6 @@
       async function login_check() {
       let res = await fetch(ADMIN_API_URL+'/isAdmin', { method: 'GET', headers : getHeaders() });
         let author = await res.json() ;
-      console.log(author);
       let isAdmin = author?.content?.isAdmin;
         let email = localStorage.getItem("email");
         if(author?.status == 'success') {

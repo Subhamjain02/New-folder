@@ -79,13 +79,19 @@
           const HOST_API_URL = `http://odv24.com`;
           const POST_API_URL = `${HOST_API_URL}/newsdekho/api/post`;
           const BRAND_API_URL = `${HOST_API_URL}/newsdekho/api/brand`;
+          const ADMIN_API_URL = `${HOST_API_URL}/newsdekho/api/admin`;
+          const getHeaders = () => {
+  return {
+      "Content-Type": "application/json",
+      "x-access-token": localStorage.getItem('jwt')
+  }
+}
           async function fetch_category () {
             
            
            let res = await fetch(BRAND_API_URL, { method: 'GET' })
            let brands_res = await res.json() ; 
            let brands = brands_res?.content;
-           console.log(brands);
            let cat_map = {};
           for(let i=0; i< brands.length ;i++) {
               let brand = brands[i];
@@ -96,9 +102,7 @@
               cat_map[brand.category].push(brand);
              
             }
-            console.log(cat_map);
             let html_content = ``;
-            console.log(typeof(cat_map));
             let i=0;
             for (let [category, v] of Object.entries(cat_map)) {
               i++;

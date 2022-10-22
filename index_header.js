@@ -216,7 +216,6 @@ async function fetch_navbar() {
 fetch_navbar()
 
 async function verify_email() {
-  console.log("verify called");
   let email = document.getElementById("emailverify").value;
   if(!email) {
     alert("Please enter a phone no.");
@@ -227,7 +226,6 @@ async function verify_email() {
   }
   let res = await fetch(AUTHOR_API_URL+'/notify', { method: 'POST',headers : getHeaders(), body: JSON.stringify(author_payload) })
   let author = await res.json() ;
-  console.log(author);
   if(author.status == 'success'){
     localStorage.setItem("resetEmail",email);
     $("#updatepassword").modal('show');
@@ -258,17 +256,14 @@ async function update_password() {
       email: email,
       pass: encrypted_password
     }
-    console.log(author_payload);
   let res = await fetch(AUTHOR_API_URL+'/update-password', { method: 'PUT',headers : getHeaders(), body: JSON.stringify(author_payload) });
   let author = await res.json() ;
-  console.log(author);
 }
 
 async function fetch_tag() {
   let res = await fetch(POST_API_URL+'/hashtags', { method: 'GET' })
   let tag_res = await res.json() ;
   let tags = tag_res.content;
-  console.log(tag_res);
   let html_content = ``;
   if(tags.length  > 0 ) {
        html_content = `
@@ -402,10 +397,6 @@ async function signup () {
   } else {
     term ="notchecked"
   }
-  console.log(email);
-  console.log(password);
-  console.log(repassword);
-  console.log(term);
   if (email == '' || password == '' || repassword == '') {
     alert("Please enter all the fields");
     return;
@@ -423,10 +414,8 @@ async function signup () {
     password: encrypted_password,
     term: term
     }
-   console.log(author_payload);
     let res = await fetch(AUTHOR_API_URL+'/signup', { method: 'POST' ,headers : getHeaders(), body: JSON.stringify(author_payload)})
     let author = await res.json() ;
-    console.log(author);
     if(author?.status == 'success') {
       document.location = 'index.html';
     }
@@ -435,9 +424,6 @@ async function signup () {
 async function signin() {
   let email = document.getElementById("typeEmailY").value;
   let password = document.getElementById("typePasswordZ").value;
-  
-  console.log(email);
-  console.log(password);
   if (email == '' || password == '') {
     alert("Please enter all the fields");
     return;
@@ -449,10 +435,8 @@ async function signin() {
     email : email,
     password: encrypted_password
     }
-    console.log(author_payload);
     let res = await fetch(AUTHOR_API_URL+'/signin', { method: 'POST' ,headers : getHeaders(), body: JSON.stringify(author_payload)})
     let author = await res.json() ;
-    console.log(author);
     if(author.status == 'success') {
       // add code to close modal
       localStorage.setItem('name', author.content.author.name);
@@ -474,7 +458,6 @@ function logout() {
 async function fetch_option() {
   let res = await fetch(ADMIN_API_URL+'/isAdmin', { method: 'GET', headers : getHeaders() });
   let author = await res.json() ;
- console.log(author);
  let isAdmin = author?.content?.isAdmin;
   let opt =``;
   if(author?.status == 'success') {
@@ -528,13 +511,6 @@ async function fetch_option() {
 </li>
 <li>
  <a class="dropdown-item text-light" href="type.html?type=Talkshow"><i class="fa fa-thin fa-microphone me-2 " style="padding-left: 1px;"></i> Talkshow</a>
-</li>
-<div class="ha mb-2 mt-2"></div>
-
-  <a class="dropdown-item text-light" href="index.html#poll"><i class="fas fa-regular fa-square-poll-vertical me-1 " style="margin-left: 2px;"></i>  Polls</a>
-</li>
-<li>
-  <a class="dropdown-item text-light" href="index.html#gossip"><i class="fa-solid fa-comment me-1 " style="margin-left: 2px;"></i> Gossips</a>
 </li>
 <div class="ha mb-2 mt-2"></div>
 <li>

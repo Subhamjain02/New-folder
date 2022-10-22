@@ -129,7 +129,7 @@
         <ul class="list-group list-group-horizontal mb-3">
             <li class="list-group-item sl bg-dark text-white">Sl.No.</li>
             <li class="list-group-item ti bg-dark text-white">Title</li>
-            <li class="list-group-item st bg-dark text-white text-center">Status</li>
+            <li class="list-group-item st bg-dark text-white text-center">Type</li>
             <li class="list-group-item ac bg-dark text-white text-center">Action</li>
         </ul>
           <div id="post">
@@ -154,7 +154,7 @@ const POST_API_URL = `${HOST_API_URL}/newsdekho/api/post`;
 const ADMIN_API_URL = `${HOST_API_URL}/newsdekho/api/admin`;
   async function fetch_post() {
 
-    let res = await fetch(POST_API_URL+"/raw", { method: 'GET',headers : getHeaders() })
+    let res = await fetch(POST_API_URL, { method: 'GET',headers : getHeaders() })
   let posts = await res.json() ;
   let ind =1;
   let html_content = posts?.content.map ((post, index)  =>{
@@ -185,10 +185,8 @@ const ADMIN_API_URL = `${HOST_API_URL}/newsdekho/api/admin`;
     view: view,
     _id: postId
    }
-   console.log(post_payload);
    let res = await fetch(POST_API_URL+'/manipulate', { method: 'PUT' ,headers : getHeaders(), body: JSON.stringify(post_payload)})
    let post = await res.json() ;
-  console.log(post);
     
     $("#exampleModal").modal('hide');  
 }
@@ -211,7 +209,6 @@ const ADMIN_API_URL = `${HOST_API_URL}/newsdekho/api/admin`;
     }
     let res = await fetch(ADMIN_API_URL+'/approve', { method: 'PUT' ,headers : getHeaders(), body: JSON.stringify(id_payload)})
     let post = await res.json() ;
-  console.log(post);
     fetch_post();
     $("#exampleModal").modal('hide');
   }
@@ -222,7 +219,6 @@ const ADMIN_API_URL = `${HOST_API_URL}/newsdekho/api/admin`;
     }
     let res = await fetch(ADMIN_API_URL+'/unapprove', { method: 'PUT' ,headers : getHeaders(), body: JSON.stringify(id_payload)})
     let post = await res.json() ;
-  console.log(post);
     fetch_post();
     $("#exampleModal3").modal('hide');
   }
@@ -230,7 +226,6 @@ const ADMIN_API_URL = `${HOST_API_URL}/newsdekho/api/admin`;
     let postId = localStorage.getItem('postId');
     let res = await fetch(ADMIN_API_URL+'/post/'+postId, { method: 'DELETE' ,headers : getHeaders()})
     let post = await res.json() ;
-    console.log(post);
     fetch_post();
     $("#exampleModal2").modal('hide');
   }
@@ -238,7 +233,6 @@ const ADMIN_API_URL = `${HOST_API_URL}/newsdekho/api/admin`;
   async function login_check() {
       let res = await fetch(ADMIN_API_URL+'/isAdmin', { method: 'GET', headers : getHeaders() });
         let author = await res.json() ;
-      console.log(author);
       let isAdmin = author?.content?.isAdmin;
         let email = localStorage.getItem("email");
         if(author?.status == 'success') {

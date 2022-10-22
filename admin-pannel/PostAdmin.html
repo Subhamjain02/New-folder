@@ -190,7 +190,6 @@ const ADMIN_API_URL = `${HOST_API_URL}/newsdekho/api/admin`;
     }
     let res = await fetch(ADMIN_API_URL+'/approve', { method: 'PUT' ,headers : getHeaders(), body: JSON.stringify(id_payload)})
     let post = await res.json() ;
-  console.log(post);
     fetch_post();
     $("#exampleModal").modal('hide');
   }
@@ -201,7 +200,6 @@ const ADMIN_API_URL = `${HOST_API_URL}/newsdekho/api/admin`;
     }
     let res = await fetch(ADMIN_API_URL+'/unapprove', { method: 'PUT' ,headers : getHeaders(), body: JSON.stringify(id_payload)})
     let post = await res.json() ;
-  console.log(post);
     fetch_post();
     $("#exampleModal3").modal('hide');
   }
@@ -209,7 +207,6 @@ const ADMIN_API_URL = `${HOST_API_URL}/newsdekho/api/admin`;
     let postId = localStorage.getItem('postId');
     let res = await fetch(ADMIN_API_URL+'/post/'+postId, { method: 'DELETE' ,headers : getHeaders()})
     let post = await res.json() ;
-    console.log(post);
     fetch_post();
     $("#exampleModal2").modal('hide');
   }
@@ -217,7 +214,6 @@ const ADMIN_API_URL = `${HOST_API_URL}/newsdekho/api/admin`;
   async function login_check() {
       let res = await fetch(ADMIN_API_URL+'/isAdmin', { method: 'GET', headers : getHeaders() });
         let author = await res.json() ;
-      console.log(author);
       let isAdmin = author?.content?.isAdmin;
         let email = localStorage.getItem("email");
         if(author?.status == 'success') {

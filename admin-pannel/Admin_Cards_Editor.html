@@ -311,10 +311,8 @@
             hashtags: tagArr,
             bussinessLink: bussinessLink
         }
-        console.log(post);
         let res1 = await fetch(POST_API_URL+'/'+postId, { method: 'PUT' , headers : getHeaders(), body: JSON.stringify(post)});
         let post_details = await res1.json();
-        console.log(post_details);
         alert(post_details.message);
         document.location = 'PostAdmin.html'
     }
@@ -338,8 +336,6 @@
         let post_details = await res.json();
         let post = post_details.content;
         let tags = ArrToStr(post?.hashtags);
-        console.log(tags);
-        console.log(post);
         document.getElementById("form6Example9").value = post?.title;
         document.getElementById("form6Example5").value = post?.subtitle;
         document.getElementById("form6Example19").value = post?.caption;
@@ -354,7 +350,6 @@
     async function login_check() {
       let res = await fetch(ADMIN_API_URL+'/isAdmin', { method: 'GET', headers : getHeaders() });
         let author = await res.json() ;
-      console.log(author);
       let isAdmin = author?.content?.isAdmin;
         let email = localStorage.getItem("email");
         if(author?.status == 'success') {

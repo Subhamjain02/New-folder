@@ -143,7 +143,6 @@
         }
     let res = await fetch(POLL_API_URL+'/'+pollId, { method: 'PUT' , headers : getHeaders(), body: JSON.stringify(poll)});
     let poll_res = await res.json();
-    console.log(poll_res);
     alert(poll_res.message);
     document.location = 'PollAdmin.html'
   }
@@ -153,7 +152,6 @@
     let res = await fetch(POLL_API_URL+"/"+pollId, { method: 'GET' })
     let poll_res = await res.json() ;
     let poll = poll_res?.content;
-    console.log(poll);
     localStorage.setItem("pollId", poll?._id);
     document.getElementById('form6Example').value = poll.qsn;
     document.getElementById('form6Example1').value = poll.op1;
@@ -165,7 +163,6 @@
   async function login_check() {
       let res = await fetch(ADMIN_API_URL+'/isAdmin', { method: 'GET', headers : getHeaders() });
         let author = await res.json() ;
-      console.log(author);
       let isAdmin = author?.content?.isAdmin;
         let email = localStorage.getItem("email");
         if(author?.status == 'success') {

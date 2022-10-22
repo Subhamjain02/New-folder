@@ -190,7 +190,6 @@ const ADMIN_API_URL = `${HOST_API_URL}/newsdekho/api/admin`;
     }
     let res = await fetch(BRAND_API_URL+'/approve', { method: 'PUT' ,headers : getHeaders(), body: JSON.stringify(id_payload)})
     let post = await res.json() ;
-  console.log(post);
     fetch_post();
   }
   async function unapprove_post() {
@@ -200,21 +199,18 @@ const ADMIN_API_URL = `${HOST_API_URL}/newsdekho/api/admin`;
     }
     let res = await fetch(BRAND_API_URL+'/unapprove', { method: 'PUT' ,headers : getHeaders(), body: JSON.stringify(id_payload)})
     let post = await res.json() ;
-  console.log(post);
     fetch_post();
   }
   async function delete_post() {
     let brandId = localStorage.getItem('brandId');
     let res = await fetch(BRAND_API_URL+'/'+brandId, { method: 'DELETE' ,headers : getHeaders()})
     let post = await res.json() ;
-    console.log(post);
     fetch_post();
   }
   fetch_post();
   async function login_check() {
       let res = await fetch(ADMIN_API_URL+'/isAdmin', { method: 'GET', headers : getHeaders() });
         let author = await res.json() ;
-      console.log(author);
       let isAdmin = author?.content?.isAdmin;
         let email = localStorage.getItem("email");
         if(author?.status == 'success') {

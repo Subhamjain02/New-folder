@@ -79,13 +79,11 @@
             }
         }
         async function like(postId) {
-            console.log(postId);
             let id_payload = {
                 _id : postId
             }
             let res = await fetch(POST_API_URL+'/like', { method: 'PUT' ,headers : getHeaders(), body: JSON.stringify(id_payload)})
             let posts = await res.json() ;
-            console.log(posts);
             fetch_tag();
         }
        async function fetch_bookmark() {
@@ -95,10 +93,8 @@
         let html_content = ``;
         if (bookmarks_list){
             let bookmarks = bookmarks_list.split(',');
-            console.log(bookmarks);
         for(let i=0;i<bookmarks.length; i++) {
             let postId = bookmarks[i];
-            console.log(postId);
             let res = await fetch(POST_API_URL+'/'+postId, { method: 'GET' })
             let posts_res = await res.json() ;;
             posts.push(posts_res.content) ;
@@ -188,7 +184,6 @@ const UPLOAD_API_URL = `${HOST_API_URL}/upload`;
 const STATIC_API_URL = `${HOST_API_URL}/public`;
 const AUTHOR_API_URL = `${HOST_API_URL}/newsdekho/api/author`;
 const ADMIN_API_URL = `${HOST_API_URL}/newsdekho/api/admin`;
-        console.log("testing");
     
         fetch_bookmark();
         function copy_link(id) {
@@ -202,7 +197,6 @@ const ADMIN_API_URL = `${HOST_API_URL}/newsdekho/api/admin`;
       }
       
       function share_post (id, title, hashtags, media) {
-        console.log(media);
         let hashTag = hashtags;
         var base_url = window.location.origin;
         let postUrl = base_url+"/shared_item.html?id="+id;
