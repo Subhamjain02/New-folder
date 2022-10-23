@@ -2,7 +2,7 @@
 .cardimg{
     opacity: 0.5;
     height: 100%;
-    object-fit: cover;
+    object-fit: fill;
     border-radius: 0px;
     z-index: 0;
 }
@@ -14,6 +14,7 @@ video{
 {
     box-shadow: inset 0px -266px 90px 0px  rgba(0, 0, 0, 0.5);
 }
+
 .cbody{
     padding: 12px !important;
 }
@@ -22,6 +23,8 @@ video{
     height: 100vh;
     border-radius: 0px !important;
 }
+
+
 .vws{
     font-family: 'Montserrat';
     font-size: 13px;
@@ -33,6 +36,7 @@ video{
     font-family: 'Zen Maru Gothic' ;
     font-size : 3.3vh;
     font-weight: bolder;
+    margin-bottom: 13px !important;
 
 }
 

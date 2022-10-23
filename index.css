@@ -225,19 +225,20 @@ html *{
     font-weight: bolder;
     
 }
+
 h1{
     font-family: 'Montserrat';
     color: white;
     margin-left: 10px;
     font-size: 30px !important;
-    text-shadow: 0px 0px 3px ;
+    /* text-shadow: 0px 0px 3px ; */
 
 }
 h2{
     color: white;
     margin-left: 25px;
     font-size: 30px !important;
-    text-shadow: 0px 0px 3px ;
+    /* text-shadow: 0px 0px 3px ; */
     font-family: 'Montserrat';
 
 }
