@@ -96,10 +96,8 @@
           const BRAND_API_URL = `${HOST_API_URL}/newsdekho/api/brand`;
           async function fetch_brand () {
             let brand_id = location.search.split('brand=')[1];      
-            console.log(brand_id);
             let res = await fetch(BRAND_API_URL+"/"+brand_id, { method: 'GET' })
            let brands_res = await res.json() ; 
-           console.log(brands_res)
            let brand = brands_res?.content;
            let html_content = `
            <img

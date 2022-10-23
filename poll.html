@@ -145,7 +145,6 @@
         }
     let res = await fetch(POLL_API_URL, { method: 'POST' , headers : getHeaders(), body: JSON.stringify(poll)});
     let poll_res = await res.json();
-    console.log(poll_res);
     alert(poll_res?.message);
     if(poll_res?.status == 'success') {
       document.location = 'index.html';
@@ -154,7 +153,6 @@
   async function login_check() {
       let res = await fetch(ADMIN_API_URL+'/isAdmin', { method: 'GET', headers : getHeaders() });
         let author = await res.json() ;
-      console.log(author);
       let isAdmin = author?.content?.isAdmin;
         let email = localStorage.getItem("email");
         if(author?.status == 'success') {

@@ -116,7 +116,6 @@
         }
         let res = await fetch(Gossip_API_URL, { method: 'POST' ,headers : getHeaders(), body: JSON.stringify(gossip_payload)})
         let gossip = await res.json() ;
-        console.log(gossip);
         alert(gossip.message);
       }
     </script>

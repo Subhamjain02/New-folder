@@ -99,14 +99,17 @@
               <option value="Normal">Normal</option>
               <option value="Trending">Trending</option>
             </select>
-            <label class="form-label " for="customFile">Frame Pic</label>
+            <label class="form-label " for="customFile">Trending Pic</label>
             <div class="form-outline mb-4"><input type="file" class="form-control" id="customFile" /></div>
+            <label class="form-label " for="customFile22">NearBy Pic</label>
+            <div class="form-outline mb-4"><input type="file" class="form-control" id="customFile22" /></div>
             <label class="form-label " for="customFile21">Card Pic</label>
             <div class="form-outline mb-4"><input type="file" class="form-control" id="customFile21" /></div>
+            
     
       
         <!-- photo input -->
-        <label class="form-label " for="customFile1">Images</label>
+        <label class="form-label " for="customFile1">Category Pic</label>
         
           <div class="form-outline mb-4"><input type="file" class="form-control" id="customFile1" /></div> 
           <div class="form-outline mb-4"><input type="file" class="form-control" id="customFile2" /></div>
@@ -372,7 +375,13 @@
         body2.append("image", file2);
         let res2 = await fetch(UPLOAD_API_URL, { method: 'POST' , body: body2});
         let photo2 = await res2.json();
-        let img_url2 = HOST_API_URL+'/newsdekho/api/public/images/'+photo2.content
+        let img_url2 = HOST_API_URL+'/newsdekho/api/public/images/'+photo2.content;
+        let file3= document.getElementById("customFile22").files[0];
+        const body3 = new FormData();
+        body3.append("image", file3);
+        let res4 = await fetch(UPLOAD_API_URL, { method: 'POST' , body: body3});
+        let photo4 = await res4.json();
+        let img_url3 = HOST_API_URL+'/newsdekho/api/public/images/'+photo4.content;
   
        get_imgs();
        await sleep(5000);
@@ -389,13 +398,12 @@
             bussinessLink: bussinessLink,
             photo: photo_global_arr,
             pic: img_url1,
-            cover: img_url2
+            cover: img_url2,
+            near: img_url3
         }
-        console.log(post);
         photo_global_arr = []
         let res3 = await fetch(POST_API_URL, { method: 'POST' , headers : getHeaders(), body: JSON.stringify(post)});
         let post_details = await res3.json();
-        console.log(post_details);
         alert(post_details.message);
         if(post_details?.status == 'success'){
           document.location = 'index.html';
@@ -405,7 +413,6 @@
     async function login_check() {
       let res = await fetch(ADMIN_API_URL+'/isAdmin', { method: 'GET', headers : getHeaders() });
         let author = await res.json() ;
-      console.log(author);
       let isAdmin = author?.content?.isAdmin;
         let email = localStorage.getItem("email");
         if(author?.status == 'success') {
