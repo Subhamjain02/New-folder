@@ -61,7 +61,7 @@ const ADMIN_API_URL = `${HOST_API_URL}/newsdekho/api/admin`;
         let temp = `
         <div class="card bg-dark text-white card-article">
       <img
-        src="`+ post?.cover +`"
+        src="`+ post?.photo[0] +`"
         class="card-img cardimg"
         alt="`+ post?.caption +`"
       />
@@ -91,10 +91,10 @@ const ADMIN_API_URL = `${HOST_API_URL}/newsdekho/api/admin`;
     let temp1 ='';
     let lt =0;
     let bk = 0;
-    let imgd =0;
-for(let i=0 ;i<post?.body.length;i+=800 ) {
-     lt =i+800;
-    if((i+800) > (post?.body.length -1)) {
+    let imgd =1;
+for(let i=0 ;i<post?.body.length;i+=150 ) {
+     lt =i+150;
+    if((i+150) > (post?.body.length -1)) {
       lt = post?.body.length -1;
       bk =1;
     }
@@ -149,7 +149,8 @@ for(let i=0 ;i<post?.body.length;i+=800 ) {
         let post1 = posts1.content;
         let category = post1.category;
         let res = await fetch(POST_API_URL+'/category/'+category, { method: 'GET' })
-        let posts = await res.json() ;
+        let posts_res = await res.json() ;
+        let posts = posts_res?.content;
         let bookmarks_arr = localStorage.getItem('bookmarks');
         let bookmarks = (bookmarks_arr) ? bookmarks_arr : [];
         let org_posts = [];
@@ -160,7 +161,7 @@ for(let i=0 ;i<post?.body.length;i+=800 ) {
           
         }
         
-        let html_content = org_posts?.content.map ( post =>{
+        let html_content = org_posts.map ( post =>{
           let author_id = localStorage.getItem('_id');
           let like_content = (post?.likes.includes(author_id)) ? `<i class="fa-regular fa-heart me-3 fw-bold" onclick="unlike('`+post?._id+`')"></i> `: `<i class="fa-regular fa-heart me-3" onclick="like('`+post?._id+`')"></i>`
           let bookmark_content = (bookmarks.includes(post?._id)) ? `<i class="fa-regular fa-bookmark fw-bold" onclick="unbookmark('`+post?._id+`')"></i> `: `<i class="fa-regular fa-bookmark text-light" onclick="bookmark('`+post?._id+`')"></i>`
@@ -172,7 +173,7 @@ for(let i=0 ;i<post?.body.length;i+=800 ) {
             <a href="Articles.html?id=`+post?._id+`" class="text-light">
             <div class="card bg-black posts">
               <span class="d-flex justify-content-start text-uppercase"> <h6>`+ post?.category +`</h6></span>
-              <img src="`+ post?.photo[0] +`" class="card-img-top cito" alt="`+ post?.caption +`"/>
+              <img src="`+ post?.cover +`" class="card-img-top cito" alt="`+ post?.caption +`"/>
               <div class="card-body cb bg-black">
                 <h5 class="card-title lh-sm ctitle">`+ post?.title +`</h5></a>
                 <a href="Articles.html?id=`+post?._id+`" class="text-light">
