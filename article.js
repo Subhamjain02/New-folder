@@ -87,12 +87,51 @@ const ADMIN_API_URL = `${HOST_API_URL}/newsdekho/api/admin`;
     if(post?.bussinessLink) {
       temp = temp+temp3;
     }
+    let temp4 = `
+ 
+    <div class="article-lg">
+    <div class="card bg-dark text-white card-article card-article-lg">
+      <img
+      src="`+ post?.photo[1] +`"
+      class="card-img cardimg"
+      alt="`+ post?.caption +`"
+    />
+    
+      <div class="card-img-overlay d-flex align-items-end justify-content-start cover" >
+        <div class="card-body cbody">
+        <h5 class="card-title lh-sm A-card-title">
+            `+post?.title +`
+          </h5>
+        
+          <p class="card-text lh-sm">
+            `+ post?.body.slice(0,150) +`
+            
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="lg-body ">
+    <div class="marg">
+    <span class="lg-heading fw-bold fs-3 lh-sm">
+    `+ post?.title +`
+    </span>
+    <p class="lg-para mt-2">
+            `+ post?.body.slice(0,150) +`
+            
+          </p>
+    </div>
+    </div>
+    </div>
+        
+    `
+    temp = temp + temp4;
     let temp2 = '';
     let temp1 ='';
     let lt =0;
     let bk = 0;
-    let imgd =1;
-for(let i=0 ;i<post?.body.length;i+=150 ) {
+    let imgd =2;
+for(let i=150 ;i<post?.body.length;i+=150 ) {
      lt =i+150;
     if((i+150) > (post?.body.length -1)) {
       lt = post?.body.length -1;
@@ -109,9 +148,7 @@ for(let i=0 ;i<post?.body.length;i+=150 ) {
     
       <div class="card-img-overlay d-flex align-items-end justify-content-start cover" >
         <div class="card-body cbody">
-          <h5 class="card-title lh-sm A-card-title">
-            `+ post?.title +`
-          </h5>
+        
           <p class="card-text lh-sm">
             `+ post?.body.slice(i,lt) +`
             
@@ -122,9 +159,6 @@ for(let i=0 ;i<post?.body.length;i+=150 ) {
 
     <div class="lg-body ">
     <div class="marg">
-    <span class="lg-heading fw-bold fs-3 lh-sm">
-    `+ post?.title +`
-    </span>
     <p class="lg-para mt-2">
             `+ post?.body.slice(i,lt) +`
             
