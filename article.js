@@ -131,11 +131,15 @@ const ADMIN_API_URL = `${HOST_API_URL}/newsdekho/api/admin`;
     let lt =0;
     let bk = 0;
     let imgd =2;
+    let ln = post?.photo.length;
 for(let i=150 ;i<post?.body.length;i+=150 ) {
      lt =i+150;
     if((i+150) > (post?.body.length -1)) {
       lt = post?.body.length -1;
       bk =1;
+    }
+    if(ln == imgd){
+      break;
     }
     temp1 = `
     <div class="article-lg">

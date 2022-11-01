@@ -329,30 +329,20 @@
             if(file) {
               let data = new FormData();
               data.append("image", file);
-              fetch(UPLOAD_API_URL, { method: 'POST' , body: data})
-              .then((res) => {
-                res.json()
-                 .then((photo)=> {
-                  photo_global_arr.push(HOST_API_URL+'/newsdekho/api/public/images/'+photo.content)
-                 })
-              })
-
-              
+             let res = await fetch(UPLOAD_API_URL, { method: 'POST' , body: data});
+             await sleep(1000);
+             let photo = await res.json();
+             photo_global_arr.push(HOST_API_URL+'/newsdekho/api/public/images/'+photo.content);  
             }
             
         }
         async function get_imgs() {
-          let photo_arr = [];
+
           for(let i=1;i<=20;i++) {
             let id = 'customFile'+i;
-            let url = get_url(id);
-            if(url){
-              photo_arr.push(url);
-            }
-            
-            
+            await get_url(id);     
           }
-          return photo_arr;
+ 
         }
     async function create_post() {
         let title = document.getElementById("form6Example9").value;
@@ -383,7 +373,7 @@
         let photo4 = await res4.json();
         let img_url3 = HOST_API_URL+'/newsdekho/api/public/images/'+photo4.content;
   
-       get_imgs();
+       await get_imgs();
        await sleep(5000);
         let tagArr = prepareTags(hashtags);
         let post = {
