@@ -49,10 +49,33 @@ const ADMIN_API_URL = `${HOST_API_URL}/newsdekho/api/admin`;
           fetch_post(postId);
         }
 
+      function get_body_Arr(body) {
+        let arr = [];
+        let cnt =0;
+        let cur ='';
+        for(let i=0;i<body.length; i++) {
+          let ch = body[i];
+          if(ch== ' '){
+            cnt++;
+          } 
+          cur =cur+body[i];
+          
+          if(cnt == 20) {
+            arr.push(cur);
+            cur= '';
+            cnt=0;
+          }
+
+        }
+        arr.push(cur);
+        return arr;
+      }
+
       async function fetch_post(postId) {
         let res = await fetch(POST_API_URL+'/'+postId, { method: 'GET' })
         let posts = await res.json() ;
         let post = posts.content;
+        let body_arr = get_body_Arr(post?.body);
         let bookmarks_arr = localStorage.getItem('bookmarks');
         let bookmarks = (bookmarks_arr) ? bookmarks_arr : [];
         let author_id = localStorage.getItem('_id');
@@ -104,7 +127,7 @@ const ADMIN_API_URL = `${HOST_API_URL}/newsdekho/api/admin`;
           </h5>
         
           <p class="card-text lh-sm">
-            `+ post?.body.slice(0,150) +`
+            `+ body_arr[0] +`
             
           </p>
         </div>
@@ -117,7 +140,7 @@ const ADMIN_API_URL = `${HOST_API_URL}/newsdekho/api/admin`;
     `+ post?.title +`
     </span>
     <p class="lg-para mt-2">
-            `+ post?.body.slice(0,150) +`
+            `+ body_arr[0] +`
             
           </p>
     </div>
@@ -128,16 +151,10 @@ const ADMIN_API_URL = `${HOST_API_URL}/newsdekho/api/admin`;
     temp = temp + temp4;
     let temp2 = '';
     let temp1 ='';
-    let lt =0;
-    let bk = 0;
     let imgd =2;
     let ln = post?.photo.length;
-for(let i=150 ;i<post?.body.length;i+=150 ) {
-     lt =i+150;
-    if((i+150) > (post?.body.length -1)) {
-      lt = post?.body.length -1;
-      bk =1;
-    }
+for(let i=1 ;i<body_arr.length;i+=1 ) {
+
     if(ln == imgd){
       break;
     }
@@ -154,7 +171,7 @@ for(let i=150 ;i<post?.body.length;i+=150 ) {
         <div class="card-body cbody">
         
           <p class="card-text lh-sm">
-            `+ post?.body.slice(i,lt) +`
+            `+ body_arr[i] +`
             
           </p>
         </div>
@@ -164,7 +181,7 @@ for(let i=150 ;i<post?.body.length;i+=150 ) {
     <div class="lg-body ">
     <div class="marg">
     <p class="lg-para mt-2">
-            `+ post?.body.slice(i,lt) +`
+            `+ body_arr[i] +`
             
           </p>
     </div>
@@ -172,9 +189,6 @@ for(let i=150 ;i<post?.body.length;i+=150 ) {
     </div>
         `
         temp2+=temp1;
-        if(bk == 1) {
-          break;
-        }
         imgd = imgd +1;
   }
   temp+=temp2;
