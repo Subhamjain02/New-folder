@@ -119,12 +119,13 @@ html *{
 }
   
 .navbar{
-    padding: 5px 0px 5px 0px  !important;
+    padding: 10px 0px 5px 0px  !important;
 }
 .navbar-brand{
-    margin-left: 10px;
 
-}
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+} 
 .icon
 {
     color: white;
@@ -231,6 +232,7 @@ h1{
     color: white;
     margin-left: 10px;
     font-size: 30px !important;
+    letter-spacing: -1.5px;
     /* text-shadow: 0px 0px 3px ; */
 
 }
@@ -238,6 +240,7 @@ h2{
     color: white;
     margin-left: 25px;
     font-size: 30px !important;
+    letter-spacing: -1.5px;
     /* text-shadow: 0px 0px 3px ; */
     font-family: 'Montserrat';
 
@@ -262,8 +265,8 @@ h4{
 
 }
 h6{
-    color: #C39B54;
-    margin-bottom: 5px !important;
+    color: #ff0000;
+    margin-bottom: 8px !important;
     margin-left: 3px;
     font-family: 'Montserrat';
   
@@ -279,12 +282,18 @@ h6{
     max-width: 180px;
     max-height: 260px;
     margin-right: 20px;
-    border-color: #C39B54!important;
-    /* box-shadow: 3px 3px 4px 3px #000000,  0px 0px 3px 3px #e7e7e7, inset 0px -75px 10px 0px  rgba(0, 0, 0, 0.5) ; */
-    box-shadow: 3px 3px 3px 1px #000000,  0px 0px 3px 1px #e7e7e7, inset 0px -74px 34px 0px  rgba(0, 0, 0, 0.7) ;
+    border: 3px solid;
+    border-radius: 1.5rem ;
+    border-image-source: linear-gradient(rgb(0, 0, 0), rgb(255, 0, 0));
+    border-image-slice: 1;
+    /* border-color: #C39B54!important; */
+
+    box-shadow:inset 0px -74px 34px 0px  rgba(0, 0, 0, 0.7) ;
 }
 
-
+.tflex .card::after{
+  border-radius: 1.5rem;
+}
 
 .tflex
 {
@@ -378,8 +387,8 @@ body::-webkit-scrollbar{
     overflow-x: auto !important;
     align-items: center;
 
-    background-color: #98763f;
-background-image: linear-gradient(296deg, #98763f 6%, #522888 24%, #000000 56%);
+    background-color: #000000;
+background-image: linear-gradient(155deg, #000000 73%, #6A1212 100%);
 
     
 }
@@ -443,7 +452,7 @@ a:hover {
 
 
 .cb{
-    padding: 10px !important;
+    padding: 10px 10px 10px 7px !important;
     color: #ffff;
     border-color: #000 !important;
     
@@ -539,7 +548,7 @@ a:hover {
 .www{
   font-size: small;
   padding-top: 10px ;
-  color: #C39B54;
+  color: red;
   margin-right: 10px;
   font-family: 'Montserrat' ;
   font-weight: bold;
@@ -547,8 +556,9 @@ a:hover {
 }
 .ctitle
 {
-  font-family: 'Zen Maru Gothic';
-  font-size: medium;
+  font-family: 'Montserrat';
+  font-size:larger;
+  font-weight: 300;
   margin-bottom: 15px !important;
   text-transform: uppercase;
 }

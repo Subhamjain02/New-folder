@@ -485,7 +485,7 @@ async function fetch_trending_post() {
     return(
  `
   <a href="Articles.html?id=`+post?._id+`" class="text-light">
-  <div class="card rounded-9 bg-transparent text-white border border-3">
+  <div class="card bg-transparent text-white ">
   <img src="`+ post?.pic +`" class="card-img ci rounded-8" alt="`+ post?.caption +`"/>
   <h5 class="card-title cti">#`+i+`</h5>
   <div class="card-img-overlay cio d-flex align-items-end justify-content-center">
@@ -547,7 +547,8 @@ async function fetch_nearby_post() {
   let html_content_text = `
   <div class="cont text-wrap">
         <h2>Nearby</h2>
-        <h3>(Bringing you the lastest news of your own city)</h3>
+        <h3>
+        (Explore the latest news around you)</h3>
     </div>
   `
   let html_content = nearby_post.map ( post => `
