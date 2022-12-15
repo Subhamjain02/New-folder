@@ -20,6 +20,7 @@ html *{
     font-size: 22px !important;
     color: rgb(255, 255, 255);
     margin-left: 5px;
+    letter-spacing: 0px;
 }
 
 .h2{
@@ -29,6 +30,7 @@ html *{
   margin-left: 5px;
  text-shadow: 0px 0px 0px;
  font-weight: 100 !important;
+ letter-spacing: 0px;
 }
 
 .imf
@@ -47,17 +49,15 @@ text-shadow: 0px 0px 3px;
 }
 
 .bgd{
-    background-color: #98763f;
-    background-image: linear-gradient(296deg, #98763f 0%, #522888 15%, #000000 35%);
-    
+    background-color: #000000;
+background-image: linear-gradient(155deg, #000000 73%, #6A1212 100%);
     /* border: 2px solid !important; */
     /* border-image: linear-gradient(to left, turquoise, greenyellow) 1 !important; */
     
 }
 .bgd1{
-    background-color: #98763f;
-    background-image: linear-gradient(300deg, #98763f 0%, #522888 16%, #000000 40%);
-    
+    background-color: #000000;
+    background-image: linear-gradient(155deg, #000000 73%, #6A1212 100%);
     /* border: 2px solid !important; */
     /* border-image: linear-gradient(to left, turquoise, greenyellow) 1 !important; */
     

@@ -486,7 +486,7 @@ async function fetch_trending_post() {
  `
   <a href="Articles.html?id=`+post?._id+`" class="text-light">
   <div class="card bg-transparent text-white ">
-  <img src="`+ post?.pic +`" class="card-img ci rounded-8" alt="`+ post?.caption +`"/>
+  <img src="`+ post?.pic +`" class="card-img ci " alt="`+ post?.caption +`"/>
   <h5 class="card-title cti">#`+i+`</h5>
   <div class="card-img-overlay cio d-flex align-items-end justify-content-center">
     <p class="card-text lh-sm para text-uppercase "> 

@@ -3,8 +3,8 @@ async function fetch_navbar() {
   let html_content = `
   <nav class="navbar navbar-expand-lg navbar-dark nvb fixed-top bg-black " style="background: rgb(0, 0, 0,0.1);">
   <div class="container">
-    <a class="navbar-brand ms-1 " href="index.html">
-      <img src="img/logo1.png" height="30px" alt="MDB Logo" loading="lazy"/></a>
+    <a class="navbar-brand ms-2 " href="index.html">
+      <img src="img/logo1.png" height="33px" alt="MDB Logo" loading="lazy"/></a>
     <div class="d-flex align-items-center">
       <a href="#!" class="text-white-50 fw-bold" data-mdb-target="#exampleModalToggle23" data-mdb-toggle="modal" data-mdb-dismiss="modal" >  <i class="fa-light fa-magnifying-glass me-3 icons1 " style="font-family: 'FontAwesome';"></i> </a>
       <div class="dropdown d-flex" >
@@ -501,34 +501,26 @@ async function fetch_option() {
 </li>
 <li>
   <a class="dropdown-item text-light" href="type.html?type=Humanitarian"><i class="fa fa-thin fa-hand-holding-heart " style="margin-right: 5px; "></i> Humanitarian</a>
+
+<div class="ha mb-2 mt-2"></div>
 </li>
-<li>
-  <a class="dropdown-item text-light" href="type.html?type=Sports"><i class="fa fa-thin fa-volleyball  " style="margin-right: 10px ; padding-left: 1px"></i>Sports</a>
+<a class="dropdown-item text-light" href="">Shows:</a>
 </li>
 <div class="ha mb-2 mt-2"></div>
+<li>
+ <a class="dropdown-item text-light" href="type.html?type=Talkshow"><i class="fa-solid fa-person-running me-2"></i> Breakfast</a>
+</li>
 <li>
    <a class="dropdown-item text-light" href="type.html?type=Newsroom"><i class="fa-solid fa-earth me-1"></i> Newsroom</a>
-</li>
-<li>
- <a class="dropdown-item text-light" href="type.html?type=Talkshow"><i class="fa fa-thin fa-microphone me-2 " style="padding-left: 1px;"></i> Talkshow</a>
-</li>
-<div class="ha mb-2 mt-2"></div>
-<li>
-<a class="dropdown-item text-light" href="">V24 SPECIALS</a>
-</li>
-<li>
-<div class="ha mb-2 mt-2"></div>
-<li>
-<a class="dropdown-item text-light" href="type.html?type=Explains"><i class="fa fa-solid fa-circle-info me-1"></i>  Explains</a>
 </li>
 <li>
 <a class="dropdown-item text-light" href="type.html?type=Films"><i class="fa fa-thin fa-film me-2"></i> Films</a>
 </li>
 <li> 
-<a class="dropdown-item text-light" href="type.html?type=Explore"><i class="fa-solid fa-wand-magic-sparkles me-1"></i>  Explore</a>
+<a class="dropdown-item text-light" href="type.html?type=Explore"><i class="fa-solid fa-wand-magic-sparkles me-1"></i>  Power Lunch</a>
 </li>
 <li>
-<a class="dropdown-item text-light" href="type.html?type=Persuit"><i class="fa-solid fa-person-running me-2"></i>  Persuit</a>
+<a class="dropdown-item text-light" href="type.html?type=Persuit"> <i class="fa fa-thin fa-microphone me-2 " style="padding-left: 1px;"></i> People's Show</a>
 </li>
 <div class="ha mb-2 mt-2"></div>
   <a class="dropdown-item text-light" href="Categories.html">  DATABASE</a>
