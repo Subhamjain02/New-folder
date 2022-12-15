@@ -93,9 +93,9 @@ const ADMIN_API_URL = `${HOST_API_URL}/newsdekho/api/admin`;
       </div>
       <div class="lss position-absolute d-flex align-items-center flex-column ">
         `+like_content+`
-        <p class="text-light www mb-5 ">`+ (post?.likes?.length+post?.ml) +` likes</p>
+        <p class="text-light www mb-4 ">`+ (post?.likes?.length+post?.ml) +` likes</p>
         <i class="fa-regular fa-eye  fs-1"></i>
-        <p class="www mb-5">`+ (post?.views+post?.mv) +` views</p>
+        <p class="www mb-4">`+ (post?.views+post?.mv) +` views</p>
         `+bookmark_content+`
       </div> 
       <div class="card-img-overlay d-flex align-items-end justify-content-start">
@@ -276,7 +276,7 @@ for(let i=1 ;i<body_arr.length;i+=1 ) {
           </div>
           </div>
           </div>  
-          <div class="hr mt-4 mb-4"></div>
+          <div class="hr mt-4 "></div>
               `
           )
           }

@@ -54,7 +54,7 @@ video{
 
 .article-date{
     position: absolute;
-    bottom: 5vh;
+    bottom: 1vh;
     right: 4vw;
     padding: 15px !important;
 }

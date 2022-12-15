@@ -69,11 +69,10 @@ async function fetch_navbar() {
   <div class="modal-content  bg-transparent ">  
   <div class="card text-white mcard text-center" style="border-radius: 1rem;">
     <button type="button" class="btn-close fs-6 btn-close-white mt-2 position-absolute end-0 mt-3 me-3" aria-label="Close" data-mdb-dismiss="modal"></button>
-       <img src="img/twitter-cover.jpg" height="24%" style="border-radius: 1rem 1rem 0rem 0rem;" alt="Loader" id="loader" loading="lazy"/></a>
+       <img src="img/twitter-cover.jpg" height="31%" style="border-radius: 1rem 1rem 0rem 0rem;" alt="Loader" id="loader" loading="lazy"/></a>
 
-       <span class="fw-bold mb-3 mt-3 login px-3">Explore <span class="premium">Premium</span> Content</span>
        <div class="mx-4 px-2 snp inp">
-    <div class="d-flex justify-content-evenly align-items-center mb-3">
+    <div class="d-flex justify-content-evenly align-items-center mb-4 mt-4">
       <div class="line me-2"></div>
       <p class="mb-0">Sign up with Phone no.</p>
       <div class="line ms-2"></div>
@@ -86,7 +85,7 @@ async function fetch_navbar() {
     <div class="form-check px-3 ms-3">
   <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked/>
   <label class="form-check-label" for="flexCheckChecked">
-    <span> I accept the Terms and Conditions. <a
+    <span class="text-muted"> I accept the Terms and Conditions. <a
     data-mdb-toggle="collapse"
     href="#collapseWithScrollbar"
     role="button"
@@ -123,12 +122,11 @@ async function fetch_navbar() {
   <div class="modal-content  bg-transparent ">  
   <div class="card text-white mcard text-center fpass" style="border-radius: 1rem;">
     <button type="button" class="btn-close fs-6 btn-close-white mt-2 position-absolute end-0 mt-3 me-3" aria-label="Close" data-mdb-dismiss="modal"></button>
-       <img src="img/twitter-cover.jpg" height="28%" style="border-radius: 1rem 1rem 0rem 0rem;" alt="Loader" id="loader" loading="lazy"/></a>
+       <img src="img/twitter-cover.jpg" height="31%" style="border-radius: 1rem 1rem 0rem 0rem;" alt="Loader" id="loader" loading="lazy"/></a>
 
-       <span class="fw-bold mb-4 mt-4 login px-3">Explore <span class="premium">Premium</span> Content</span>
        <div class="mx-4 px-2 snp">
     
-    <div class="d-flex justify-content-evenly align-items-center mb-4">
+    <div class="d-flex justify-content-evenly align-items-center mb-4 mt-4">
       <div class="line me-2"></div>
       <p class="mb-0">Type your Credetials</p>
       <div class="line ms-2"></div>
@@ -153,12 +151,11 @@ async function fetch_navbar() {
   <div class="modal-content  bg-transparent ">  
   <div class="card text-white mcard text-center fpass" style="border-radius: 1rem;">
     <button type="button" class="btn-close fs-6 btn-close-white mt-2 position-absolute end-0 mt-3 me-3" aria-label="Close" data-mdb-dismiss="modal"></button>
-       <img src="img/twitter-cover.jpg" height="28%" style="border-radius: 1rem 1rem 0rem 0rem;" alt="Loader" id="loader" loading="lazy"/></a>
+       <img src="img/twitter-cover.jpg" height="31%" style="border-radius: 1rem 1rem 0rem 0rem;" alt="Loader" id="loader" loading="lazy"/></a>
 
-       <span class="fw-bold mb-4 mt-4 login px-3">Explore <span class="premium">Premium</span> Content</span>
        <div class="mx-4 px-2">
     
-    <div class="d-flex justify-content-evenly align-items-center mb-4">
+    <div class="d-flex justify-content-evenly align-items-center mb-4 mt-4">
       <div class="line me-2"></div>
       <p class="mb-0">Enter your password</p>
       <div class="line ms-2"></div>
@@ -185,11 +182,10 @@ async function fetch_navbar() {
   <div class="modal-content  bg-transparent ">  
   <div class="card text-white mcard text-center" style="border-radius: 1rem;">
     <button type="button" class="btn-close fs-6 btn-close-white mt-2 position-absolute end-0 mt-3 me-3" aria-label="Close" data-mdb-dismiss="modal"></button>
-       <img src="img/twitter-cover.jpg" height="28%" style="border-radius: 1rem 1rem 0rem 0rem;" alt="Loader" id="loader" loading="lazy"/></a>
+       <img src="img/twitter-cover.jpg" height="31%" style="border-radius: 1rem 1rem 0rem 0rem;" alt="Loader" id="loader" loading="lazy"/></a>
 
-       <span class="fw-bold mb-4 mt-4 login px-3">Explore <span class="premium">Premium</span> Content</span>
        <div class="mx-4 px-2 snp">
-    <div class="d-flex justify-content-evenly align-items-center mb-4">
+    <div class="d-flex justify-content-evenly align-items-center mb-4 mt-4">
       <div class="line me-2"></div>
       <p class="mb-0">Login with Phone no.</p>
       <div class="line ms-2"></div>
