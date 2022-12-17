@@ -246,9 +246,9 @@ async function  fetch_posts () {
       <div class="col d-flex justify-content-center">
       <div class="card  billy-1   ">
         <img src="`+ post?.pic +`" class="card-img-top billyimg-1" alt="Fissure in Sandstone"/>
-        <div class="card-body bb ">
-          <h5 class="card-title lh-sm bill-title mb-0">BILLBOARD</h5>
-          <p class="bn fw-light lh-sm m-0"><a href="">`+ post?.title +`</a></p>
+        <div class="card-body bb pt-0">
+        <img src="img/bb.png" height="18px" alt="MDB Logo" loading="lazy"/>
+          <p class="bn fw-light lh-sm m-0 "><a href="">`+ post?.title +`</a></p>
     </div>
     </div>
     </div>
@@ -261,7 +261,7 @@ async function  fetch_posts () {
     <div class="card  billy  ">
       <img src="`+ post?.pic +`" class="card-img-top billyimg" alt="Fissure in Sandstone"/>
       <div class="card-body bb ">
-        <h5 class="card-title lh-sm bill-title mb-0">BILLBOARD</h5>
+      <img src="img/bb.png" height="25px" alt="MDB Logo" loading="lazy"/>
         <p class="bn fw-light lh-sm m-0"><a href="">`+ post?.title +`</a></p>
   </div>
   </div>
@@ -485,11 +485,11 @@ async function fetch_trending_post() {
     return(
  `
   <a href="Articles.html?id=`+post?._id+`" class="text-light">
-  <div class="card bg-transparent text-white ">
+  <div class="card bg-transparent text-white crd ">
   <img src="`+ post?.pic +`" class="card-img ci " alt="`+ post?.caption +`"/>
   <h5 class="card-title cti">#`+i+`</h5>
   <div class="card-img-overlay cio d-flex align-items-end justify-content-center">
-    <p class="card-text lh-sm para text-uppercase "> 
+    <p class="card-text lh-sm para text-uppercase d-flex justify-content-center "> 
         `+ post?.title +`
    </p>
   </div>

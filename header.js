@@ -499,7 +499,7 @@ async function fetch_option() {
 
 <div class="ha mb-2 mt-2"></div>
 </li>
-<a class="dropdown-item text-light" href="">Shows:</a>
+<a class="dropdown-item text-light" href="">Shows :</a>
 </li>
 <div class="ha mb-2 mt-2"></div>
 <li>
