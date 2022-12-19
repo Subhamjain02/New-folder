@@ -247,8 +247,8 @@ async function  fetch_posts () {
       <div class="card  billy-1   ">
         <img src="`+ post?.pic +`" class="card-img-top billyimg-1" alt="Fissure in Sandstone"/>
         <div class="card-body bb pt-0">
-        <img src="img/bb.png" height="18px" alt="MDB Logo" loading="lazy"/>
-          <p class="bn fw-light lh-sm m-0 "><a href="">`+ post?.title +`</a></p>
+          <p class="bn fw-light lh-sm m-0 p-0"><a href="">`+ post?.title +`</a></p>
+          <img src="img/bb.png" height="18px" alt="MDB Logo" loading="lazy"/>
     </div>
     </div>
     </div>
@@ -261,8 +261,8 @@ async function  fetch_posts () {
     <div class="card  billy  ">
       <img src="`+ post?.pic +`" class="card-img-top billyimg" alt="Fissure in Sandstone"/>
       <div class="card-body bb ">
-      <img src="img/bb.png" height="25px" alt="MDB Logo" loading="lazy"/>
-        <p class="bn fw-light lh-sm m-0"><a href="">`+ post?.title +`</a></p>
+      <p class="bn fw-light lh-sm mb-1 p-0"><a href="">`+ post?.title +`</a></p>
+      <img src="img/bb.png" height="25px" alt="MDB Logo" loading="lazy" />
   </div>
   </div>
   </div>

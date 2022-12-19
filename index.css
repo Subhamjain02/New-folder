@@ -373,7 +373,7 @@ body::-webkit-scrollbar{
     color: white !important;
     font-weight: 400 !important;
     padding-top: 10px;
-    padding-left:8px ;
+    padding-left:16px ;
     padding-right: 3px;
     overflow: hidden;
     height: 56px;
@@ -474,13 +474,14 @@ a:hover {
     
 }
 .bb{
-    padding: 5px 5px 0px 5px!important;
+    padding: 0px 5px !important;
     color: #ffff;
     border-color: #000 !important;
     background-color: #151419;
     
 
 }
+
     
 
 
