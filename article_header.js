@@ -496,7 +496,7 @@ async function fetch_option() {
   <a class="dropdown-item text-light" href="type.html?type=Government"><i class="fa fa-thin fa-landmark  me-1 "></i> Government</a>
 </li>
 <li>
-  <a class="dropdown-item text-light" href="type.html?type=Buisnesses"><i class="fa fa-duotone fa-user-tie  me-2"></i> Buisnesses</a>
+  <a class="dropdown-item text-light" href="type.html?type=Buisnesses"><i class="fa fa-duotone fa-user-tie  me-2"></i> Businesses</a>
 </li>
 <li>
   <a class="dropdown-item text-light ps-2" href="type.html?type=Public"><i class=" fa fa-solid fa-users me-1" style="margin-left: 7px ;"></i> Public</a>
